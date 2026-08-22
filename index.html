@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>NaldoA Digital Music</title>
+  
+  <!-- Google tag (gtag.js) - Substitua 'G-SEU_ID_AQUI' pelo seu ID do Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEU_ID_AQUI"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SEU_ID_AQUI');
+  </script>
+
+  <style>
+    :root {
+      --bg: #06080d;
+      --glass-card: rgba(18, 24, 38, 0.65);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --accent: #00d2ff;
+      --accent-glow: rgba(0, 210, 255, 0.35);
+      --text: #f0f4f8;
+      --text-dim: #8b99aa;
+      --player-glass: rgba(10, 14, 22, 0.94);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      padding-bottom: 120px;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 10%, rgba(0, 210, 255, 0.08), transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(0, 110, 255, 0.06), transparent 40%);
+      background-attachment: fixed;
+    }
+
+    header {
+      padding: 12px 18px;
+      background: rgba(6, 8, 13, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--glass-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-main {
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #fff;
+    }
+
+    .brand-sub {
+      font-size: 0.52rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-top: 1px;
+    }
+
+    .header-social-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--glass-border);
+      color: var(--text);
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .social-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .social-btn.spotify:hover {
+      color: #1DB954;
+      border-color: #1DB954;
+      box-shadow: 0 0 12px rgba(29, 185, 84, 0.4);
+    }
+
+    .social-btn.apple:hover {
+      color: #FA243C;
+      border-color: #FA243C;
+      box-shadow: 0 0 12px rgba(250, 36, 60, 0.4);
+    }
+
+    .social-btn.instagram:hover {
+      color: #E1306C;
+      border-color: #E1306C;
+      box-shadow: 0 0 12px rgba(225, 48, 108, 0.4);
+    }
+
+    .social-btn.tiktok:hover {
+      color: #00f2fe;
+      border-color: #ff0050;
+      box-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    .yt-hub-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+      margin: 8px auto 14px;
+      background: var(--glass-card);
+      border: 1px solid var(--glass-border);
+      padding: 16px;
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      max-width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .yt-hub-container {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+        align-items: center;
+        padding: 20px;
+      }
+    }
+
+    .yt-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .yt-actions {
+        align-items: flex-start;
+        flex: 1;
+      }
+    }
+
+    .yt-carousel {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .yt-carousel {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+    }
+
+    .yt-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--glass-border);
+      padding: 10px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.82rem;
+      font-weight: 700;
+      white-space: nowrap;
+      width: 100%;
+      max-width: 320px;
+      transition: all 0.2s ease;
+    }
+
+    @media (min-width: 768px) {
+      .yt-pill {
+        width: auto;
+        max-width: none;
+      }
+    }
+
+    .yt-pill:hover {
+      border-color: #ff0000;
+      box-shadow: 0 0 14px rgba(255, 0, 0, 0.35);
+    }
+
+    .yt-icon {
+      width: 18px;
+      height: 18px;
+      fill: #ff0000;
+    }
+
+    .yt-video-frame-box {
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 16/9;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      background: #000;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      flex-shrink: 0;
+    }
+
+    .yt-video-frame-box iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .rhythm-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin: 14px 0;
+      scrollbar-width: none;
+    }
+    .rhythm-scroll::-webkit-scrollbar { display: none; }
+
+    .rhythm-pill {
+      background: var(--glass-card);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(15px);
+      padding: 7px 16px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: pointer;
+      color: var(--text-dim);
+      transition: all 0.25s ease;
+    }
+
+    .rhythm-pill.active {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+      box-shadow: 0 0 14px var(--accent-glow);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin: 24px 0 12px;
+    }
+
+    .section-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-title.gold { color: #ffd700; }
+
+    .carousel-wrapper {
+      position: relative;
+    }
+
+    .carousel-nav-btn {
+      display: none;
+      position: absolute;
+      top: 40%;
+      transform: translateY(-50%);
+      background: rgba(6, 8, 13, 0.85);
+      border: 1px solid var(--glass-border);
+      color: #fff;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    @media (min-width: 900px) {
+      .carousel-nav-btn { display: flex; }
+      .carousel-wrapper:hover .carousel-nav-btn { border-color: var(--accent); box-shadow: 0 0 10px var(--accent-glow); }
+    }
+
+    .carousel-nav-btn.prev { left: -14px; }
+    .carousel-nav-btn.next { right: -14px; }
+
+    .carousel-container {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding: 6px 2px 14px 2px;
+      scrollbar-width: none;
+      scroll-behavior: smooth;
+    }
+    .carousel-container::-webkit-scrollbar { display: none; }
+
+    .track-card {
+      background: var(--glass-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 18px;
+      padding: 10px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+      min-width: 150px;
+      max-width: 150px;
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 600px) {
+      .track-card {
+        min-width: 175px;
+        max-width: 175px;
+        padding: 12px;
+      }
+    }
+
+    .track-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 210, 255, 0.4);
+      box-shadow: 0 10px 22px var(--accent-glow);
+    }
+
+    .cover-box {
+      width: 100%;
+      aspect-ratio: 1/1;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #111722;
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .cover-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .badge-tag {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      background: rgba(0, 0, 0, 0.82);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 6px;
+      backdrop-filter: blur(8px);
+      text-transform: uppercase;
+    }
+
+    .badge-tag.gold {
+      border-color: #ffd700;
+      color: #ffd700;
+    }
+
+    .track-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .track-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .track-sub-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.65rem;
+    }
+
+    .track-badge {
+      color: var(--accent);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .track-plays {
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+
+    .album-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 8, 13, 0.94);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      z-index: 95;
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+      transform: translateY(100%);
+      transition: transform 0.35s cubic-bezier(0.15, 0.9, 0.2, 1);
+      overflow-y: auto;
+    }
+
+    .album-modal.open { transform: translateY(0); }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .album-hero {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .album-hero-cover {
+      width: 120px;
+      height: 120px;
+      border-radius: 16px;
+      object-fit: cover;
+      box-shadow: 0 10px 30px rgba(0, 210, 255, 0.3);
+    }
+
+    .album-hero-info h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .album-hero-info p {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .btn-play-all {
+      margin-top: 10px;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tracklist-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .tracklist-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--glass-card);
+      border: 1px solid var(--glass-border);
+      padding: 12px 16px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tracklist-item:hover {
+      border-color: var(--accent);
+      background: rgba(0, 210, 255, 0.1);
+    }
+
+    .track-num-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .track-num {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      width: 20px;
+    }
+
+    .player-bar {
+      position: fixed;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      max-width: 750px;
+      margin: 0 auto;
+      height: 66px;
+      background: var(--player-glass);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      z-index: 80;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8);
+    }
+
+    .player-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex: 1;
+      cursor: pointer;
+    }
+
+    .mini-cover {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      object-fit: cover;
+      background: #141a24;
+    }
+
+    .mini-meta { min-width: 0; }
+
+    .mini-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mini-rhythm {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+    }
+
+    .btn-play-round {
+      background: var(--accent);
+      border: none;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 14px var(--accent-glow);
+    }
+
+    .full-player {
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 8, 13, 0.96);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 30px 24px;
+      transform: translateY(100%);
+      transition: transform 0.35s cubic-bezier(0.15, 0.9, 0.2, 1);
+    }
+
+    .full-player.open { transform: translateY(0); }
+
+    .full-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-close {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .full-cover-container {
+      width: 100%;
+      max-width: 320px;
+      aspect-ratio: 1/1;
+      margin: 0 auto;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 45px rgba(0, 210, 255, 0.25);
+    }
+
+    .full-cover-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .full-meta {
+      text-align: center;
+      margin: 16px 0;
+    }
+
+    .full-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .full-rhythm {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .progress-wrapper {
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .progress-bar-fill {
+      width: 0%;
+      height: 100%;
+      background: var(--accent);
+      border-radius: 10px;
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    .time-box {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      margin-top: 6px;
+    }
+
+    .full-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 32px;
+      margin-bottom: 16px;
+    }
+
+    .btn-full-play {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 22px var(--accent-glow);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 10px 10px;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      border-top: 1px solid var(--glass-border);
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-container">
+      <div class="brand-main">NALDOA</div>
+      <div class="brand-sub">DIGITAL MUSIC</div>
+    </div>
+    
+    <!-- Ícones de Redes Sociais & Streaming no Head -->
+    <div class="header-social-links">
+      <a href="https://open.spotify.com/artist/4J40pU58p0fF1T97zT39Xq" target="_blank" class="social-btn spotify" title="Spotify">
+        <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.503 17.308c-.218.358-.684.47-1.042.252-2.855-1.744-6.448-2.14-10.679-1.173-.408.093-.812-.162-.905-.57-.093-.408.162-.812.57-.905 4.636-1.06 8.604-.609 11.804 1.354.358.218.47.684.252 1.042zm1.47-3.267c-.274.446-.856.587-1.302.313-3.268-2.008-8.25-2.59-12.114-1.416-.502.152-1.037-.133-1.189-.635-.152-.502.133-1.037.635-1.189 4.417-1.34 9.907-.69 13.657 1.625.446.274.587.856.313 1.302zm.126-3.41c-3.918-2.327-10.375-2.542-14.11-1.408-.6.182-1.24-.165-1.422-.765-.182-.6.165-1.24.765-1.422 4.292-1.303 11.42-1.05 15.894 1.606.54.321.716 1.02.395 1.56-.321.54-1.02.716-1.522.429z"/></svg>
+      </a>
+      <a href="https://music.apple.com/artist/naldoa/1735008544" target="_blank" class="social-btn apple" title="Apple Music">
+        <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.63-.77 1.06-1.84.95-2.91-.92.04-2.03.62-2.69 1.39-.58.67-1.09 1.76-.95 2.8.03 0 .07.01.1.01.95 0 1.96-.52 2.59-1.29z"/></svg>
+      </a>
+      <a href="https://instagram.com/naldoamusic" target="_blank" class="social-btn instagram" title="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="https://tiktok.com/@naldoamusic" target="_blank" class="social-btn tiktok" title="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <div class="container">
+    
+    <!-- YouTube Centralizado com Canal Oficial Corrigido -->
+    <div class="yt-hub-container">
+      <div class="yt-actions">
+        <div class="section-title" style="font-size: 0.8rem; color: var(--text-dim);">Official YouTube Channels</div>
+        <div class="yt-carousel">
+          <a href="https://youtube.com/@naldoamusic?si=NhBGNUKl8piB9yt_" target="_blank" class="yt-pill">
+            <svg class="yt-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            Subscribe to NaldoA (Main)
+          </a>
+          <a href="https://youtube.com/@NaldoADigitalMusic" target="_blank" class="yt-pill">
+            <svg class="yt-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            NaldoA Digital Music Videos
+          </a>
+        </div>
+      </div>
+      <div class="yt-video-frame-box">
+        <iframe src="https://www.youtube.com/embed/3fDUloM-_Xs?enablejsapi=1" title="NaldoA - EMBER (Official Music Video)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- Quick Navigation -->
+    <div class="rhythm-scroll">
+      <div class="rhythm-pill active" onclick="scrollToSection('all')">All Genres</div>
+      <div class="rhythm-pill" onclick="scrollToSection('sec-top10')">★ Top 10 Hits</div>
+      <div class="rhythm-pill" onclick="scrollToSection('sec-Albums')">Albums</div>
+      <div class="rhythm-pill" onclick="scrollToSection('sec-Electronic-EDM')">Electronic / EDM</div>
+      <div class="rhythm-pill" onclick="scrollToSection('sec-Reggaeton')">Reggaeton</div>
+      <div class="rhythm-pill" onclick="scrollToSection('sec-Forro')">Forró</div>
+      <div class="rhythm-pill" onclick="scrollToSection('sec-Gospel')">Gospel</div>
+    </div>
+
+    <!-- TOP 10 HITS -->
+    <div id="sec-top10">
+      <div class="section-header">
+        <div class="section-title gold">★ Top 10 Hits (Most Played)</div>
+      </div>
+      <div class="carousel-wrapper">
+        <button class="carousel-nav-btn prev" onclick="scrollCarousel('top10Carousel', -350)">❮</button>
+        <div class="carousel-container" id="top10Carousel">
+          <div style="color: var(--text-dim); font-size: 0.8rem;">Loading Top 10...</div>
+        </div>
+        <button class="carousel-nav-btn next" onclick="scrollCarousel('top10Carousel', 350)">❯</button>
+      </div>
+    </div>
+
+    <!-- ALBUMS -->
+    <div id="sec-Albums" style="display:none;">
+      <div class="section-header">
+        <div class="section-title">Official Albums</div>
+      </div>
+      <div class="carousel-wrapper">
+        <button class="carousel-nav-btn prev" onclick="scrollCarousel('albumsCarousel', -350)">❮</button>
+        <div class="carousel-container" id="albumsCarousel"></div>
+        <button class="carousel-nav-btn next" onclick="scrollCarousel('albumsCarousel', 350)">❯</button>
+      </div>
+    </div>
+
+    <!-- DYNAMIC SECTIONS -->
+    <div id="dynamicSections"></div>
+
+    <footer>
+      <p>© 2026 NaldoA Digital Music • All Rights Reserved</p>
+      <p style="margin-top: 4px; opacity: 0.7;">Official High-Fidelity Audio Stream</p>
+    </footer>
+
+  </div>
+
+  <!-- Album Modal -->
+  <div class="album-modal" id="albumModal">
+    <div class="modal-header">
+      <span style="font-size: 0.75rem; letter-spacing: 2px; color: var(--text-dim); text-transform: uppercase;">Album View</span>
+      <button class="btn-close" onclick="closeAlbumModal()">✕</button>
+    </div>
+    <div class="album-hero">
+      <img src="" id="modalAlbumCover" class="album-hero-cover">
+      <div class="album-hero-info">
+        <h2 id="modalAlbumTitle">Album Name</h2>
+        <p id="modalAlbumMeta">NaldoA • 0 Tracks</p>
+        <button class="btn-play-all" onclick="playCurrentAlbum()">
+          <svg width="14" height="14" fill="#000" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          Play Album
+        </button>
+      </div>
+    </div>
+    <div class="tracklist-container" id="albumTracklist"></div>
+  </div>
+
+  <!-- Mini Player Bar -->
+  <div class="player-bar" id="miniPlayer">
+    <div class="player-left" onclick="openFullPlayer()">
+      <img src="" id="miniCover" class="mini-cover">
+      <div class="mini-meta">
+        <div class="mini-title" id="miniTitle">Select a track</div>
+        <div class="mini-rhythm" id="miniRhythm">NaldoA</div>
+      </div>
+    </div>
+    <button class="btn-play-round" onclick="togglePlay()">
+      <svg id="miniPlayIcon" width="18" height="18" viewBox="0 0 24 24" fill="#000"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+    </button>
+  </div>
+
+  <!-- Full Player Modal -->
+  <div class="full-player" id="fullPlayer">
+    <div class="full-header">
+      <button class="btn-close" onclick="closeFullPlayer()">✕</button>
+      <span style="font-size: 0.75rem; letter-spacing: 2px; color: var(--text-dim); text-transform: uppercase;">Playing Now</span>
+      <div style="width: 24px;"></div>
+    </div>
+
+    <div class="full-cover-container">
+      <img src="" id="fullCover">
+    </div>
+
+    <div class="full-meta">
+      <div class="full-title" id="fullTitle">Title</div>
+      <div class="full-rhythm" id="fullRhythm">Genre</div>
+    </div>
+
+    <div class="progress-wrapper">
+      <div class="progress-bar-bg" id="progressBar" onclick="seek(event)">
+        <div class="progress-bar-fill" id="progressFill"></div>
+      </div>
+      <div class="time-box">
+        <span id="currentTime">0:00</span>
+        <span id="durationTime">0:00</span>
+      </div>
+    </div>
+
+    <div class="full-controls">
+      <button style="background:none; border:none; color:#fff;" onclick="prevTrack()">
+        <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5" stroke="currentColor" stroke-width="2"></line></svg>
+      </button>
+      <button class="btn-full-play" onclick="togglePlay()">
+        <svg id="fullPlayIcon" width="24" height="24" fill="#000" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+      </button>
+      <button style="background:none; border:none; color:#fff;" onclick="nextTrack()">
+        <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2"></line></svg>
+      </button>
+    </div>
+  </div>
+
+  <audio id="audioElement"></audio>
+
+  <script>
+    const ARCHIVE_ITEM_ID = 'naldoa-digital-music-stream';
+    const ARCHIVE_DOWNLOAD_BASE = `https://archive.org/download/${ARCHIVE_ITEM_ID}`;
+
+    let allTracks = [];
+    let allAlbums = {};
+    let activeQueue = [];
+    let currentQueueIndex = 0;
+    let isPlaying = false;
+    let selectedAlbum = null;
+    let serverArchiveViews = 0;
+
+    const audio = document.getElementById('audioElement');
+    const top10Carousel = document.getElementById('top10Carousel');
+    const albumsCarousel = document.getElementById('albumsCarousel');
+    const secAlbums = document.getElementById('sec-Albums');
+    const dynamicSections = document.getElementById('dynamicSections');
+    const fullPlayer = document.getElementById('fullPlayer');
+    const albumModal = document.getElementById('albumModal');
+    const progressFill = document.getElementById('progressFill');
+
+    function getStoredPlays(id) {
+      return parseInt(localStorage.getItem(`plays_${id}`)) || 0;
+    }
+
+    function incrementPlay(track) {
+      let plays = getStoredPlays(track.id) + 1;
+      localStorage.setItem(`plays_${track.id}`, plays);
+      track.plays = plays;
+      
+      // Envia evento detalhado para o Google Analytics
+      if (typeof gtag === 'function') {
+        gtag('event', 'play_music', {
+          'track_name': track.title,
+          'genre': track.rhythm,
+          'artist': 'NaldoA',
+          'platform': 'NaldoA Digital Music'
+        });
+      }
+      renderApp();
+    }
+
+    function detectRhythm(name) {
+      const lower = name.toLowerCase();
+      if (lower.includes('reggaeton')) return 'Reggaeton';
+      if (lower.includes('forro') || lower.includes('forró')) return 'Forro';
+      if (lower.includes('gospel')) return 'Gospel';
+      if (
+        lower.includes('edm') || 
+        lower.includes('trance') || 
+        lower.includes('house') || 
+        lower.includes('progressive') || 
+        lower.includes('electronic')
+      ) {
+        return 'Electronic / EDM';
+      }
+      return 'Electronic / EDM';
+    }
+
+    function updateMediaSession(track) {
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: track.title,
+          artist: 'NaldoA',
+          album: 'NaldoA Digital Music',
+          artwork: [
+            { src: track.cover, sizes: '96x96', type: 'image/jpeg' },
+            { src: track.cover, sizes: '128x128', type: 'image/jpeg' },
+            { src: track.cover, sizes: '256x256', type: 'image/jpeg' },
+            { src: track.cover, sizes: '512x512', type: 'image/jpeg' }
+          ]
+        });
+
+        navigator.mediaSession.setActionHandler('play', () => togglePlay());
+        navigator.mediaSession.setActionHandler('pause', () => togglePlay());
+        navigator.mediaSession.setActionHandler('previoustrack', () => prevTrack());
+        navigator.mediaSession.setActionHandler('nexttrack', () => nextTrack());
+
+        if (audio.duration) {
+          navigator.mediaSession.setPositionState({
+            duration: audio.duration,
+            playbackRate: audio.playbackRate,
+            position: audio.currentTime
+          });
+        }
+      }
+    }
+
+    function scrollCarousel(id, amount) {
+      const container = document.getElementById(id);
+      if (container) {
+        container.scrollBy({ left: amount, behavior: 'smooth' });
+      }
+    }
+
+    function setupPcWheelScroll() {
+      document.querySelectorAll('.carousel-container').forEach(container => {
+        container.addEventListener('wheel', (e) => {
+          if (e.deltaY !== 0) {
+            e.preventDefault();
+            container.scrollLeft += e.deltaY * 1.5;
+          }
+        }, { passive: false });
+      });
+    }
+
+    async function loadCatalog() {
+      try {
+        const response = await fetch(`https://archive.org/metadata/${ARCHIVE_ITEM_ID}`);
+        const data = await response.json();
+        
+        serverArchiveViews = parseInt(data.item_views || data.views || 0);
+        const files = data.files || [];
+        
+        const allAudioFiles = files.filter(f => 
+          f.name && (
+            f.name.toLowerCase().endsWith('.mp3') || 
+            f.name.toLowerCase().endsWith('.wav') || 
+            f.name.toLowerCase().endsWith('.flac')
+          )
+        );
+
+        const uniqueMap = new Map();
+        allAlbums = {};
+
+        allAudioFiles.forEach(file => {
+          const rawName = file.name
+            .replace(/\.[^/.]+$/, "")
+            .replace(/_vbr$/, "");
+
+          if (!uniqueMap.has(rawName)) {
+            let isAlbum = false;
+            let albumKey = null;
+            let trackNumber = "";
+            let songTitle = rawName;
+
+            if (rawName.toLowerCase().startsWith("album_")) {
+              isAlbum = true;
+              const parts = rawName.split("_");
+              albumKey = parts[1];
+              trackNumber = parts[2] || "";
+              songTitle = parts.slice(3).join("_");
+            }
+
+            let matchingImg = files.find(f => f.name.startsWith(rawName) && (f.name.endsWith('.jpg') || f.name.endsWith('.png')));
+            if (!matchingImg && isAlbum) {
+              matchingImg = files.find(f => f.name.startsWith(`Album_${albumKey}`) && (f.name.endsWith('.jpg') || f.name.endsWith('.png')));
+            }
+            const coverUrl = matchingImg 
+              ? `${ARCHIVE_DOWNLOAD_BASE}/${matchingImg.name}`
+              : `${ARCHIVE_DOWNLOAD_BASE}/cover.jpg`;
+
+            const mp3Version = files.find(f => f.name.startsWith(rawName) && f.name.endsWith('.mp3'));
+            const fileToStream = mp3Version ? mp3Version.name : file.name;
+
+            const detectedGenre = file.genre || detectRhythm(rawName);
+            
+            const cleanTitle = songTitle
+              .replace(/_?(EDM|Progressive_House|Trance|Reggaeton|Forro|Forró|Gospel|Electronic)/gi, '')
+              .replaceAll('_', ' ')
+              .trim();
+
+            const trackObj = {
+              id: rawName,
+              title: file.title || cleanTitle || songTitle,
+              rhythm: detectedGenre,
+              url: `${ARCHIVE_DOWNLOAD_BASE}/${encodeURIComponent(fileToStream)}`,
+              cover: coverUrl,
+              plays: getStoredPlays(rawName),
+              isAlbum: isAlbum,
+              albumKey: albumKey,
+              trackNum: trackNumber
+            };
+
+            uniqueMap.set(rawName, trackObj);
+
+            if (isAlbum) {
+              if (!allAlbums[albumKey]) {
+                allAlbums[albumKey] = {
+                  title: albumKey.replaceAll('_', ' '),
+                  cover: coverUrl,
+                  tracks: []
+                };
+              }
+              allAlbums[albumKey].tracks.push(trackObj);
+            }
+          }
+        });
+
+        allTracks = Array.from(uniqueMap.values());
+        activeQueue = [...allTracks];
+        renderApp();
+        if (allTracks.length > 0) setTrackDetails(0, false);
+      } catch (err) {
+        top10Carousel.innerHTML = '<div style="color:#ff4d4d; padding:10px;">Error loading audio catalogue.</div>';
+      }
+    }
+
+    function createTrackCard(track, rankNumber = null) {
+      const card = document.createElement('div');
+      card.className = 'track-card';
+      card.onclick = () => {
+        activeQueue = [...allTracks];
+        currentQueueIndex = activeQueue.findIndex(t => t.id === track.id);
+        loadAndPlay(currentQueueIndex);
+      };
+
+      const rankBadge = rankNumber ? `<div class="badge-tag gold">#${rankNumber}</div>` : '';
+
+      card.innerHTML = `
+        <div class="cover-box">
+          ${rankBadge}
+          <img src="${track.cover}" onerror="this.src='https://via.placeholder.com/300/111722/00d2ff?text=NaldoA'" loading="lazy">
+        </div>
+        <div class="track-info">
+          <div class="track-title">${track.title}</div>
+          <div class="track-sub-row">
+            <span class="track-badge">${track.rhythm}</span>
+            <span class="track-plays">▶ ${track.plays}</span>
+          </div>
+        </div>
+      `;
+      return card;
+    }
+
+    function createAlbumCard(album, key) {
+      const card = document.createElement('div');
+      card.className = 'track-card';
+      card.onclick = () => openAlbumModal(key);
+
+      card.innerHTML = `
+        <div class="cover-box">
+          <div class="badge-tag">ALBUM</div>
+          <img src="${album.cover}" onerror="this.src='https://via.placeholder.com/300/111722/00d2ff?text=NaldoA'" loading="lazy">
+        </div>
+        <div class="track-info">
+          <div class="track-title">${album.title}</div>
+          <div class="track-sub-row">
+            <span class="track-badge">${album.tracks.length} TRACKS</span>
+          </div>
+        </div>
+      `;
+      return card;
+    }
+
+    function renderApp() {
+      top10Carousel.innerHTML = '';
+      const top10 = [...allTracks].sort((a, b) => b.plays - a.plays).slice(0, 10);
+      top10.forEach((track, index) => {
+        top10Carousel.appendChild(createTrackCard(track, index + 1));
+      });
+
+      const albumKeys = Object.keys(allAlbums);
+      if (albumKeys.length > 0) {
+        secAlbums.style.display = 'block';
+        albumsCarousel.innerHTML = '';
+        albumKeys.forEach(k => {
+          albumsCarousel.appendChild(createAlbumCard(allAlbums[k], k));
+        });
+      } else {
+        secAlbums.style.display = 'none';
+      }
+
+      dynamicSections.innerHTML = '';
+      const rhythmList = ['Electronic / EDM', 'Reggaeton', 'Forro', 'Gospel'];
+
+      rhythmList.forEach(rhythm => {
+        const rhythmTracks = allTracks.filter(t => t.rhythm.toLowerCase() === rhythm.toLowerCase());
+        
+        if (rhythmTracks.length > 0) {
+          const cleanId = rhythm.replace(/[\s\/]+/g, '-');
+          const sectionId = `sec-${cleanId}`;
+          const sectionWrapper = document.createElement('div');
+          sectionWrapper.id = sectionId;
+
+          sectionWrapper.innerHTML = `
+            <div class="section-header">
+              <div class="section-title">${rhythm}</div>
+            </div>
+            <div class="carousel-wrapper">
+              <button class="carousel-nav-btn prev" onclick="scrollCarousel('carousel-${cleanId}', -350)">❮</button>
+              <div class="carousel-container" id="carousel-${cleanId}"></div>
+              <button class="carousel-nav-btn next" onclick="scrollCarousel('carousel-${cleanId}', 350)">❯</button>
+            </div>
+          `;
+
+          dynamicSections.appendChild(sectionWrapper);
+          const carContainer = sectionWrapper.querySelector(`#carousel-${cleanId}`);
+          rhythmTracks.forEach(track => {
+            carContainer.appendChild(createTrackCard(track));
+          });
+        }
+      });
+
+      setupPcWheelScroll();
+    }
+
+    function openAlbumModal(key) {
+      selectedAlbum = allAlbums[key];
+      document.getElementById('modalAlbumTitle').innerText = selectedAlbum.title;
+      document.getElementById('modalAlbumCover').src = selectedAlbum.cover;
+      document.getElementById('modalAlbumMeta').innerText = `NaldoA • ${selectedAlbum.tracks.length} Tracks`;
+
+      const listContainer = document.getElementById('albumTracklist');
+      listContainer.innerHTML = '';
+
+      selectedAlbum.tracks.forEach((t, i) => {
+        const item = document.createElement('div');
+        item.className = 'tracklist-item';
+        item.onclick = () => {
+          activeQueue = [...selectedAlbum.tracks];
+          currentQueueIndex = i;
+          loadAndPlay(currentQueueIndex);
+          closeAlbumModal();
+        };
+
+        item.innerHTML = `
+          <div class="track-num-title">
+            <span class="track-num">${t.trackNum || (i+1)}</span>
+            <span>${t.title}</span>
+          </div>
+          <span style="font-size:0.75rem; color:var(--accent); font-weight:700;">${t.rhythm}</span>
+        `;
+        listContainer.appendChild(item);
+      });
+
+      albumModal.classList.add('open');
+    }
+
+    function closeAlbumModal() {
+      albumModal.classList.remove('open');
+    }
+
+    function playCurrentAlbum() {
+      if (selectedAlbum && selectedAlbum.tracks.length > 0) {
+        activeQueue = [...selectedAlbum.tracks];
+        currentQueueIndex = 0;
+        loadAndPlay(0);
+        closeAlbumModal();
+      }
+    }
+
+    function scrollToSection(id) {
+      document.querySelectorAll('.rhythm-pill').forEach(el => el.classList.remove('active'));
+      event.target.classList.add('active');
+
+      if (id === 'all') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function setTrackDetails(index, autoplay = true) {
+      const track = activeQueue[index];
+      if (!track) return;
+
+      audio.src = track.url;
+
+      document.getElementById('miniTitle').innerText = track.title;
+      document.getElementById('miniRhythm').innerText = `NaldoA • ${track.rhythm}`;
+      document.getElementById('miniCover').src = track.cover;
+
+      document.getElementById('fullTitle').innerText = track.title;
+      document.getElementById('fullRhythm').innerText = `NaldoA • ${track.rhythm}`;
+      document.getElementById('fullCover').src = track.cover;
+
+      if (autoplay) {
+        audio.play().then(() => {
+          isPlaying = true;
+          updatePlayIcons();
+          incrementPlay(track);
+          updateMediaSession(track);
+        }).catch(() => {});
+      } else {
+        updateMediaSession(track);
+      }
+    }
+
+    function loadAndPlay(index) {
+      currentQueueIndex = index;
+      setTrackDetails(currentQueueIndex, true);
+    }
+
+    function togglePlay() {
+      if (!audio.src && allTracks.length > 0) {
+        activeQueue = [...allTracks];
+        loadAndPlay(0);
+        return;
+      }
+      if (isPlaying) {
+        audio.pause();
+        isPlaying = false;
+      } else {
+        audio.play();
+        isPlaying = true;
+      }
+      updatePlayIcons();
+    }
+
+    function prevTrack() {
+      currentQueueIndex = (currentQueueIndex - 1 + activeQueue.length) % activeQueue.length;
+      loadAndPlay(currentQueueIndex);
+    }
+
+    function nextTrack() {
+      currentQueueIndex = (currentQueueIndex + 1) % activeQueue.length;
+      loadAndPlay(currentQueueIndex);
+    }
+
+    function updatePlayIcons() {
+      const playSvg = '<polygon points="5 3 19 12 5 21 5 3"></polygon>';
+      const pauseSvg = '<rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>';
+      document.getElementById('miniPlayIcon').innerHTML = isPlaying ? pauseSvg : playSvg;
+      document.getElementById('fullPlayIcon').innerHTML = isPlaying ? pauseSvg : playSvg;
+    }
+
+    function openFullPlayer() { fullPlayer.classList.add('open'); }
+    function closeFullPlayer() { fullPlayer.classList.remove('open'); }
+
+    audio.ontimeupdate = () => {
+      if (audio.duration) {
+        const percent = (audio.currentTime / audio.duration) * 100;
+        progressFill.style.width = percent + '%';
+        document.getElementById('currentTime').innerText = fmt(audio.currentTime);
+        document.getElementById('durationTime').innerText = fmt(audio.duration);
+      }
+    };
+
+    function seek(e) {
+      const bar = document.getElementById('progressBar');
+      const rect = bar.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      audio.currentTime = (clickX / rect.width) * audio.duration;
+    }
+
+    function fmt(s) {
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60);
+      return `${m}:${sec < 10 ? '0' : ''}${sec}`;
+    }
+
+    audio.onended = () => nextTrack();
+
+    loadCatalog();
+  </script>
+</body>
+</html>
