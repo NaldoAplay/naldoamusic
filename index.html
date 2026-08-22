@@ -11,17 +11,18 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="NaldoA">
   <link rel="apple-touch-icon" href="icon.png">
-<link rel="icon" type="image/png" href="icon.png">
-<meta name="google-site-verification" content="PZFFJm_Wbf1_G96H6vLLwWTxFwV8BVkNG5f26izxQ_g" />
+  <link rel="icon" type="image/png" href="icon.png">
+  <meta name="google-site-verification" content="PZFFJm_Wbf1_G96H6vLLwWTxFwV8BVkNG5f26izxQ_g" />
+  
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RMZDGK7R4G"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RMZDGK7R4G"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-RMZDGK7R4G');
-</script>
+    gtag('config', 'G-RMZDGK7R4G');
+  </script>
 
   <style>
     :root {
@@ -942,6 +943,7 @@
 
     function updateThemeIcon(theme) {
       const icon = document.getElementById('themeIcon');
+      if (!icon) return;
       if (theme === 'dark') {
         icon.innerHTML = '<path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>';
       } else {
@@ -987,37 +989,29 @@
     }
 
     function updateMediaSession(track) {
-  if ('mediaSession' in navigator) {
-    const albumName = track.isAlbum && track.albumKey 
-      ? track.albumKey.replaceAll('_', ' ') 
-      : 'NaldoA Digital Music';
+      if ('mediaSession' in navigator && track) {
+        const albumName = track.isAlbum && track.albumKey 
+          ? track.albumKey.replaceAll('_', ' ') 
+          : 'NaldoA Digital Music';
 
-    navigator.mediaSession.metadata = new MediaMetadata({
-      title: track.title,
-      artist: 'NaldoA',
-      album: albumName,
-      artwork: [
-        { src: track.cover, sizes: '96x96', type: 'image/jpeg' },
-        { src: track.cover, sizes: '128x128', type: 'image/jpeg' },
-        { src: track.cover, sizes: '256x256', type: 'image/jpeg' },
-        { src: track.cover, sizes: '512x512', type: 'image/jpeg' }
-      ]
-    });
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: track.title,
+          artist: 'NaldoA',
+          album: albumName,
+          artwork: [
+            { src: track.cover, sizes: '96x96', type: 'image/jpeg' },
+            { src: track.cover, sizes: '128x128', type: 'image/jpeg' },
+            { src: track.cover, sizes: '256x256', type: 'image/jpeg' },
+            { src: track.cover, sizes: '512x512', type: 'image/jpeg' }
+          ]
+        });
 
-    navigator.mediaSession.setActionHandler('play', () => togglePlay());
-    navigator.mediaSession.setActionHandler('pause', () => togglePlay());
-    navigator.mediaSession.setActionHandler('previoustrack', () => prevTrack());
-    navigator.mediaSession.setActionHandler('nexttrack', () => nextTrack());
-
-    if (audio.duration) {
-      navigator.mediaSession.setPositionState({
-        duration: audio.duration,
-        playbackRate: audio.playbackRate,
-        position: audio.currentTime
-      });
+        navigator.mediaSession.setActionHandler('play', () => togglePlay());
+        navigator.mediaSession.setActionHandler('pause', () => togglePlay());
+        navigator.mediaSession.setActionHandler('previoustrack', () => prevTrack());
+        navigator.mediaSession.setActionHandler('nexttrack', () => nextTrack());
+      }
     }
-  }
-}
 
     function scrollCarousel(id, amount) {
       const container = document.getElementById(id);
@@ -1289,6 +1283,7 @@
       if (!track) return;
 
       audio.src = track.url;
+      updateMediaSession(track);
 
       document.getElementById('miniTitle').innerText = track.title;
       document.getElementById('miniRhythm').innerText = `NaldoA • ${track.rhythm}`;
@@ -1301,12 +1296,10 @@
       if (autoplay) {
         audio.play().then(() => {
           isPlaying = true;
+          if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
           updatePlayIcons();
           incrementPlay(track);
-          updateMediaSession(track);
-        }).catch(() => {});
-      } else {
-        updateMediaSession(track);
+        }).catch(err => console.log('Playback error:', err));
       }
     }
 
@@ -1323,12 +1316,9 @@
       }
       if (isPlaying) {
         audio.pause();
-        isPlaying = false;
       } else {
         audio.play();
-        isPlaying = true;
       }
-      updatePlayIcons();
     }
 
     function prevTrack() {
@@ -1351,12 +1341,38 @@
     function openFullPlayer() { fullPlayer.classList.add('open'); }
     function closeFullPlayer() { fullPlayer.classList.remove('open'); }
 
+    audio.onplay = () => {
+      isPlaying = true;
+      if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
+      updatePlayIcons();
+    };
+
+    audio.onpause = () => {
+      isPlaying = false;
+      if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
+      updatePlayIcons();
+    };
+
+    audio.onended = () => {
+      nextTrack();
+    };
+
     audio.ontimeupdate = () => {
       if (audio.duration) {
         const percent = (audio.currentTime / audio.duration) * 100;
         progressFill.style.width = percent + '%';
         document.getElementById('currentTime').innerText = fmt(audio.currentTime);
         document.getElementById('durationTime').innerText = fmt(audio.duration);
+
+        if ('mediaSession' in navigator && navigator.mediaSession.setPositionState) {
+          try {
+            navigator.mediaSession.setPositionState({
+              duration: audio.duration,
+              playbackRate: audio.playbackRate,
+              position: audio.currentTime
+            });
+          } catch(e) {}
+        }
       }
     };
 
@@ -1372,8 +1388,6 @@
       const sec = Math.floor(s % 60);
       return `${m}:${sec < 10 ? '0' : ''}${sec}`;
     }
-
-    audio.onended = () => nextTrack();
 
     initTheme();
     loadCatalog();
