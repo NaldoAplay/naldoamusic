@@ -14,7 +14,7 @@
   <link rel="icon" type="image/png" href="icon.png">
   <meta name="google-site-verification" content="PZFFJm_Wbf1_G96H6vLLwWTxFwV8BVkNG5f26izxQ_g" />
   
-  <!-- Google tag (gtag.js) -->
+  <!-- Google Analytics 4 (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RMZDGK7R4G"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -95,6 +95,7 @@
     .brand-container {
       display: flex;
       flex-direction: column;
+      cursor: pointer;
     }
 
     .brand-main {
@@ -293,6 +294,7 @@
       justify-content: space-between;
       align-items: flex-end;
       margin: 24px 0 12px;
+      cursor: pointer;
     }
 
     .section-title {
@@ -306,7 +308,19 @@
       gap: 6px;
     }
 
+    .section-title:hover {
+      color: var(--accent);
+    }
+
     .section-title.gold { color: #e6a100; }
+    .section-title.gold:hover { color: #ffd700; }
+
+    .view-all-btn {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 700;
+      cursor: pointer;
+    }
 
     .carousel-wrapper { position: relative; }
 
@@ -345,6 +359,46 @@
     }
     .carousel-container::-webkit-scrollbar { display: none; }
 
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 14px;
+      padding: 10px 0;
+    }
+
+    @media (min-width: 600px) {
+      .category-grid {
+        grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+        gap: 18px;
+      }
+    }
+
+    .category-page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px 0 20px;
+    }
+
+    .btn-back {
+      background: var(--glass-card);
+      border: 1px solid var(--glass-border);
+      color: var(--text);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-back:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
     .track-card {
       background: var(--glass-card);
       backdrop-filter: blur(20px);
@@ -357,6 +411,11 @@
       min-width: 150px;
       max-width: 150px;
       flex-shrink: 0;
+    }
+
+    .category-grid .track-card {
+      min-width: 100%;
+      max-width: 100%;
     }
 
     @media (min-width: 600px) {
@@ -736,7 +795,7 @@
 <body>
 
   <header>
-    <div class="brand-container">
+    <div class="brand-container" onclick="showAllContent()">
       <div class="brand-main">NALDOA</div>
       <div class="brand-sub">DIGITAL MUSIC</div>
     </div>
@@ -784,44 +843,59 @@
       </div>
     </div>
 
+    <!-- Clicar nas abas agora abre a categoria inteira em grade -->
     <div class="rhythm-scroll">
-      <div class="rhythm-pill active" onclick="scrollToSection('all')">All Genres</div>
-      <div class="rhythm-pill" onclick="scrollToSection('sec-top10')">★ Top 10 Hits</div>
-      <div class="rhythm-pill" onclick="scrollToSection('sec-Albums')">Albums</div>
-      <div class="rhythm-pill" onclick="scrollToSection('sec-Electronic-EDM')">Electronic / EDM</div>
-      <div class="rhythm-pill" onclick="scrollToSection('sec-Reggaeton')">Reggaeton</div>
-      <div class="rhythm-pill" onclick="scrollToSection('sec-Forro')">Forró</div>
-      <div class="rhythm-pill" onclick="scrollToSection('sec-Gospel')">Gospel</div>
+      <div class="rhythm-pill active" id="tab-all" onclick="showAllContent()">All Genres</div>
+      <div class="rhythm-pill" id="tab-top10" onclick="openCategoryView('top10')">★ Top 10 Hits</div>
+      <div class="rhythm-pill" id="tab-albums" onclick="openCategoryView('albums')">Albums</div>
+      <div class="rhythm-pill" id="tab-Electronic-EDM" onclick="openCategoryView('Electronic / EDM')">Electronic / EDM</div>
+      <div class="rhythm-pill" id="tab-Reggaeton" onclick="openCategoryView('Reggaeton')">Reggaeton</div>
+      <div class="rhythm-pill" id="tab-Forro" onclick="openCategoryView('Forro')">Forró</div>
+      <div class="rhythm-pill" id="tab-Gospel" onclick="openCategoryView('Gospel')">Gospel</div>
     </div>
 
-    <!-- TOP 10 HITS -->
-    <div id="sec-top10">
-      <div class="section-header">
-        <div class="section-title gold">★ Top 10 Hits (Most Played)</div>
-      </div>
-      <div class="carousel-wrapper">
-        <button class="carousel-nav-btn prev" onclick="scrollCarousel('top10Carousel', -350)">❮</button>
-        <div class="carousel-container" id="top10Carousel">
-          <div style="color: var(--text-dim); font-size: 0.8rem;">Loading Top 10...</div>
+    <!-- MAIN CAROUSEL VIEW -->
+    <div id="mainCarouselView">
+      <!-- TOP 10 HITS -->
+      <div id="sec-top10">
+        <div class="section-header" onclick="openCategoryView('top10')">
+          <div class="section-title gold">★ Top 10 Hits (Most Played)</div>
+          <span class="view-all-btn">Ver tudo ❯</span>
         </div>
-        <button class="carousel-nav-btn next" onclick="scrollCarousel('top10Carousel', 350)">❯</button>
+        <div class="carousel-wrapper">
+          <button class="carousel-nav-btn prev" onclick="scrollCarousel('top10Carousel', -350)">❮</button>
+          <div class="carousel-container" id="top10Carousel">
+            <div style="color: var(--text-dim); font-size: 0.8rem;">Loading Top 10...</div>
+          </div>
+          <button class="carousel-nav-btn next" onclick="scrollCarousel('top10Carousel', 350)">❯</button>
+        </div>
       </div>
+
+      <!-- ALBUMS -->
+      <div id="sec-Albums" style="display:none;">
+        <div class="section-header" onclick="openCategoryView('albums')">
+          <div class="section-title">Official Albums</div>
+          <span class="view-all-btn">Ver tudo ❯</span>
+        </div>
+        <div class="carousel-wrapper">
+          <button class="carousel-nav-btn prev" onclick="scrollCarousel('albumsCarousel', -350)">❮</button>
+          <div class="carousel-container" id="albumsCarousel"></div>
+          <button class="carousel-nav-btn next" onclick="scrollCarousel('albumsCarousel', 350)">❯</button>
+        </div>
+      </div>
+
+      <!-- DYNAMIC SECTIONS -->
+      <div id="dynamicSections"></div>
     </div>
 
-    <!-- ALBUMS -->
-    <div id="sec-Albums" style="display:none;">
-      <div class="section-header">
-        <div class="section-title">Official Albums</div>
+    <!-- CATEGORY SINGLE VIEW (GRADE DEDICADA) -->
+    <div id="categoryDedicatedView" style="display:none;">
+      <div class="category-page-header">
+        <button class="btn-back" onclick="showAllContent()">← Voltar ao Início</button>
+        <div class="section-title" id="catViewTitle" style="font-size:1.1rem;">Category</div>
       </div>
-      <div class="carousel-wrapper">
-        <button class="carousel-nav-btn prev" onclick="scrollCarousel('albumsCarousel', -350)">❮</button>
-        <div class="carousel-container" id="albumsCarousel"></div>
-        <button class="carousel-nav-btn next" onclick="scrollCarousel('albumsCarousel', 350)">❯</button>
-      </div>
+      <div class="category-grid" id="categoryGrid"></div>
     </div>
-
-    <!-- DYNAMIC SECTIONS -->
-    <div id="dynamicSections"></div>
 
     <footer>
       <p>© 2026 NaldoA Digital Music • All Rights Reserved</p>
@@ -922,11 +996,13 @@
     const albumsCarousel = document.getElementById('albumsCarousel');
     const secAlbums = document.getElementById('sec-Albums');
     const dynamicSections = document.getElementById('dynamicSections');
+    const mainCarouselView = document.getElementById('mainCarouselView');
+    const categoryDedicatedView = document.getElementById('categoryDedicatedView');
+    const categoryGrid = document.getElementById('categoryGrid');
     const fullPlayer = document.getElementById('fullPlayer');
     const albumModal = document.getElementById('albumModal');
     const progressFill = document.getElementById('progressFill');
 
-    // Theme Mode Toggle
     function initTheme() {
       const savedTheme = localStorage.getItem('theme') || 'dark';
       document.documentElement.setAttribute('data-theme', savedTheme);
@@ -1006,8 +1082,21 @@
           ]
         });
 
-        navigator.mediaSession.setActionHandler('play', () => togglePlay());
-        navigator.mediaSession.setActionHandler('pause', () => togglePlay());
+        navigator.mediaSession.setActionHandler('play', () => {
+          audio.play().then(() => {
+            isPlaying = true;
+            navigator.mediaSession.playbackState = 'playing';
+            updatePlayIcons();
+          }).catch(() => {});
+        });
+
+        navigator.mediaSession.setActionHandler('pause', () => {
+          audio.pause();
+          isPlaying = false;
+          navigator.mediaSession.playbackState = 'paused';
+          updatePlayIcons();
+        });
+
         navigator.mediaSession.setActionHandler('previoustrack', () => prevTrack());
         navigator.mediaSession.setActionHandler('nexttrack', () => nextTrack());
       }
@@ -1031,6 +1120,52 @@
       });
     }
 
+    // Alternador de Visualização (Grade da Categoria ou Carrossel Inicial)
+    function showAllContent() {
+      document.querySelectorAll('.rhythm-pill').forEach(el => el.classList.remove('active'));
+      const allTab = document.getElementById('tab-all');
+      if (allTab) allTab.classList.add('active');
+
+      mainCarouselView.style.display = 'block';
+      categoryDedicatedView.style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openCategoryView(categoryKey) {
+      document.querySelectorAll('.rhythm-pill').forEach(el => el.classList.remove('active'));
+      
+      mainCarouselView.style.display = 'none';
+      categoryDedicatedView.style.display = 'block';
+      categoryGrid.innerHTML = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (categoryKey === 'top10') {
+        const t = document.getElementById('tab-top10');
+        if (t) t.classList.add('active');
+        document.getElementById('catViewTitle').innerText = '★ Top 10 Hits (Mais Tocadas)';
+        const top10 = [...allTracks].sort((a, b) => b.plays - a.plays).slice(0, 10);
+        top10.forEach((track, index) => {
+          categoryGrid.appendChild(createTrackCard(track, index + 1));
+        });
+      } else if (categoryKey === 'albums') {
+        const t = document.getElementById('tab-albums');
+        if (t) t.classList.add('active');
+        document.getElementById('catViewTitle').innerText = 'Official Albums';
+        Object.keys(allAlbums).forEach(k => {
+          categoryGrid.appendChild(createAlbumCard(allAlbums[k], k));
+        });
+      } else {
+        const cleanPillId = 'tab-' + categoryKey.replace(/[\s\/]+/g, '-');
+        const t = document.getElementById(cleanPillId);
+        if (t) t.classList.add('active');
+        document.getElementById('catViewTitle').innerText = categoryKey;
+        const filtered = allTracks.filter(tr => tr.rhythm.toLowerCase() === categoryKey.toLowerCase());
+        filtered.forEach(track => {
+          categoryGrid.appendChild(createTrackCard(track));
+        });
+      }
+    }
+
     async function loadCatalog() {
       try {
         const response = await fetch(`https://archive.org/metadata/${ARCHIVE_ITEM_ID}`);
@@ -1044,6 +1179,15 @@
             f.name.toLowerCase().endsWith('.wav') || 
             f.name.toLowerCase().endsWith('.flac')
           )
+        );
+
+        // Imagens reais excluindo arquivos automáticos do Archive
+        const realImages = files.filter(f => 
+          f.name && 
+          (f.name.toLowerCase().endsWith('.jpg') || f.name.toLowerCase().endsWith('.png')) &&
+          !f.name.toLowerCase().includes('_waveform') &&
+          !f.name.toLowerCase().includes('_spectrogram') &&
+          !f.name.toLowerCase().includes('_thumb')
         );
 
         const uniqueMap = new Map();
@@ -1060,20 +1204,32 @@
             let trackNumber = "";
             let songTitle = rawName;
 
+            // Tratamento fiel dos nomes dos álbuns
             if (rawName.toLowerCase().startsWith("album_")) {
               isAlbum = true;
               const parts = rawName.split("_");
-              albumKey = parts[1];
-              trackNumber = parts[2] || "";
-              songTitle = parts.slice(3).join("_");
+              albumKey = parts[1] || "Album";
+              
+              // Se tiver número da faixa
+              if (parts[2] && /^\d+$/.test(parts[2])) {
+                trackNumber = parts[2];
+                songTitle = parts.slice(3).join("_");
+              } else {
+                songTitle = parts.slice(2).join("_");
+              }
             }
 
-            let matchingImg = files.find(f => f.name.startsWith(rawName) && (f.name.endsWith('.jpg') || f.name.endsWith('.png')));
-            if (!matchingImg && isAlbum) {
-              matchingImg = files.find(f => f.name.startsWith(`Album_${albumKey}`) && (f.name.endsWith('.jpg') || f.name.endsWith('.png')));
+            // Capa específica do álbum ou da música
+            let matchingImg = null;
+            if (isAlbum) {
+              matchingImg = realImages.find(f => f.name.toLowerCase().startsWith(`album_${albumKey.toLowerCase()}`));
             }
+            if (!matchingImg) {
+              matchingImg = realImages.find(f => f.name.toLowerCase().startsWith(rawName.toLowerCase()));
+            }
+
             const coverUrl = matchingImg 
-              ? `${ARCHIVE_DOWNLOAD_BASE}/${matchingImg.name}`
+              ? `${ARCHIVE_DOWNLOAD_BASE}/${encodeURIComponent(matchingImg.name)}`
               : `${ARCHIVE_DOWNLOAD_BASE}/cover.jpg`;
 
             const mp3Version = files.find(f => f.name.startsWith(rawName) && f.name.endsWith('.mp3'));
@@ -1081,6 +1237,7 @@
 
             const detectedGenre = file.genre || detectRhythm(rawName);
             
+            // Limpa o título formatando underscores para espaços
             const cleanTitle = songTitle
               .replace(/_?(EDM|Progressive_House|Trance|Reggaeton|Forro|Forró|Gospel|Electronic)/gi, '')
               .replaceAll('_', ' ')
@@ -1088,7 +1245,7 @@
 
             const trackObj = {
               id: rawName,
-              title: cleanTitle || file.title || songTitle,
+              title: cleanTitle || file.title || songTitle.replaceAll('_', ' '),
               rhythm: detectedGenre,
               url: `${ARCHIVE_DOWNLOAD_BASE}/${encodeURIComponent(fileToStream)}`,
               cover: coverUrl,
@@ -1136,7 +1293,7 @@
       card.innerHTML = `
         <div class="cover-box">
           ${rankBadge}
-          <img src="${track.cover}" onerror="this.src='https://via.placeholder.com/300/111722/00d2ff?text=NaldoA'" loading="lazy">
+          <img src="${track.cover}" onerror="this.src='${ARCHIVE_DOWNLOAD_BASE}/cover.jpg'" loading="lazy">
         </div>
         <div class="track-info">
           <div class="track-title">${track.title}</div>
@@ -1157,7 +1314,7 @@
       card.innerHTML = `
         <div class="cover-box">
           <div class="badge-tag">ALBUM</div>
-          <img src="${album.cover}" onerror="this.src='https://via.placeholder.com/300/111722/00d2ff?text=NaldoA'" loading="lazy">
+          <img src="${album.cover}" onerror="this.src='${ARCHIVE_DOWNLOAD_BASE}/cover.jpg'" loading="lazy">
         </div>
         <div class="track-info">
           <div class="track-title">${album.title}</div>
@@ -1200,8 +1357,9 @@
           sectionWrapper.id = sectionId;
 
           sectionWrapper.innerHTML = `
-            <div class="section-header">
+            <div class="section-header" onclick="openCategoryView('${rhythm}')">
               <div class="section-title">${rhythm}</div>
+              <span class="view-all-btn">Ver tudo ❯</span>
             </div>
             <div class="carousel-wrapper">
               <button class="carousel-nav-btn prev" onclick="scrollCarousel('carousel-${cleanId}', -350)">❮</button>
@@ -1266,18 +1424,6 @@
       }
     }
 
-    function scrollToSection(id) {
-      document.querySelectorAll('.rhythm-pill').forEach(el => el.classList.remove('active'));
-      event.target.classList.add('active');
-
-      if (id === 'all') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
-
     function setTrackDetails(index, autoplay = true) {
       const track = activeQueue[index];
       if (!track) return;
@@ -1317,7 +1463,11 @@
       if (isPlaying) {
         audio.pause();
       } else {
-        audio.play();
+        audio.play().then(() => {
+          isPlaying = true;
+          if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
+          updatePlayIcons();
+        }).catch(() => {});
       }
     }
 
