@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#06080d">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="NaldoA Music">
+  <meta name="apple-mobile-web-app-title" content="NaldoA">
   <link rel="apple-touch-icon" href="icon.png">
   <link rel="icon" type="image/png" href="icon.png">
   <meta name="google-site-verification" content="PZFFJm_Wbf1_G96H6vLLwWTxFwV8BVkNG5f26izxQ_g" />
@@ -843,7 +843,7 @@
       </div>
     </div>
 
-    <!-- Clicar nas abas agora abre a categoria inteira em grade -->
+    <!-- Abas Clicáveis: Abrir Grade Dedicada -->
     <div class="rhythm-scroll">
       <div class="rhythm-pill active" id="tab-all" onclick="showAllContent()">All Genres</div>
       <div class="rhythm-pill" id="tab-top10" onclick="openCategoryView('top10')">★ Top 10 Hits</div>
@@ -1120,7 +1120,6 @@
       });
     }
 
-    // Alternador de Visualização (Grade da Categoria ou Carrossel Inicial)
     function showAllContent() {
       document.querySelectorAll('.rhythm-pill').forEach(el => el.classList.remove('active'));
       const allTab = document.getElementById('tab-all');
@@ -1181,7 +1180,6 @@
           )
         );
 
-        // Imagens reais excluindo arquivos automáticos do Archive
         const realImages = files.filter(f => 
           f.name && 
           (f.name.toLowerCase().endsWith('.jpg') || f.name.toLowerCase().endsWith('.png')) &&
@@ -1204,24 +1202,28 @@
             let trackNumber = "";
             let songTitle = rawName;
 
-            // Tratamento fiel dos nomes dos álbuns
             if (rawName.toLowerCase().startsWith("album_")) {
               isAlbum = true;
-              const parts = rawName.split("_");
-              albumKey = parts[1] || "Album";
+              const withoutPrefix = rawName.substring(6);
               
-              // Se tiver número da faixa
-              if (parts[2] && /^\d+$/.test(parts[2])) {
-                trackNumber = parts[2];
-                songTitle = parts.slice(3).join("_");
+              // Separa com exatidão antes e depois do número da faixa (_01_, _02_, _14_)
+              const numberMatch = withoutPrefix.match(/_(\d{1,3})_/);
+              
+              if (numberMatch) {
+                const numIndex = withoutPrefix.indexOf(numberMatch[0]);
+                albumKey = withoutPrefix.substring(0, numIndex); 
+                trackNumber = numberMatch[1]; 
+                songTitle = withoutPrefix.substring(numIndex + numberMatch[0].length);
               } else {
-                songTitle = parts.slice(2).join("_");
+                const parts = withoutPrefix.split("_");
+                albumKey = parts[0];
+                songTitle = parts.slice(1).join("_");
               }
             }
 
-            // Capa específica do álbum ou da música
+            // Capa
             let matchingImg = null;
-            if (isAlbum) {
+            if (isAlbum && albumKey) {
               matchingImg = realImages.find(f => f.name.toLowerCase().startsWith(`album_${albumKey.toLowerCase()}`));
             }
             if (!matchingImg) {
@@ -1237,15 +1239,15 @@
 
             const detectedGenre = file.genre || detectRhythm(rawName);
             
-            // Limpa o título formatando underscores para espaços
+            // Limpa o sufixo de ritmo no final da faixa
             const cleanTitle = songTitle
-              .replace(/_?(EDM|Progressive_House|Trance|Reggaeton|Forro|Forró|Gospel|Electronic)/gi, '')
+              .replace(/_?(EDM|Progressive_House|Trance|Reggaeton|Forro|Forró|Gospel|Electronic)$/gi, '')
               .replaceAll('_', ' ')
               .trim();
 
             const trackObj = {
               id: rawName,
-              title: cleanTitle || file.title || songTitle.replaceAll('_', ' '),
+              title: cleanTitle || songTitle.replaceAll('_', ' '),
               rhythm: detectedGenre,
               url: `${ARCHIVE_DOWNLOAD_BASE}/${encodeURIComponent(fileToStream)}`,
               cover: coverUrl,
@@ -1257,7 +1259,7 @@
 
             uniqueMap.set(rawName, trackObj);
 
-            if (isAlbum) {
+            if (isAlbum && albumKey) {
               if (!allAlbums[albumKey]) {
                 allAlbums[albumKey] = {
                   title: albumKey.replaceAll('_', ' '),
