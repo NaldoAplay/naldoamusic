@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#06080d">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="NaldoA Music">
+  <meta name="apple-mobile-web-app-title" content="NaldoA">
   <link rel="apple-touch-icon" href="icon.png">
   <link rel="icon" type="image/png" href="icon.png">
   <meta name="google-site-verification" content="PZFFJm_Wbf1_G96H6vLLwWTxFwV8BVkNG5f26izxQ_g" />
@@ -259,12 +259,75 @@
       border: none;
     }
 
+    /* SEARCH BAR STYLES */
+    .search-box-wrapper {
+      margin: 16px 0 12px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 13px 44px 13px 44px;
+      background: var(--glass-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 600;
+      outline: none;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      transition: all 0.25s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 18px var(--accent-glow);
+    }
+
+    .search-input::placeholder {
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    .search-icon-left {
+      position: absolute;
+      left: 16px;
+      width: 18px;
+      height: 18px;
+      fill: var(--text-dim);
+      pointer-events: none;
+    }
+
+    .search-clear-btn {
+      position: absolute;
+      right: 14px;
+      background: rgba(125,125,125,0.15);
+      border: none;
+      color: var(--text-dim);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    .search-clear-btn:hover {
+      color: var(--text);
+      background: var(--accent);
+    }
+
     .rhythm-scroll {
       display: flex;
       gap: 8px;
       overflow-x: auto;
       padding-bottom: 8px;
-      margin: 14px 0;
+      margin: 10px 0 14px;
       scrollbar-width: none;
     }
     .rhythm-scroll::-webkit-scrollbar { display: none; }
@@ -843,7 +906,16 @@
       </div>
     </div>
 
-    <!-- Abas Clicáveis: Abrir Grade Dedicada -->
+    <!-- SEARCH BAR -->
+    <div class="search-box-wrapper">
+      <svg class="search-icon-left" viewBox="0 0 24 24">
+        <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+      </svg>
+      <input type="text" id="searchInput" class="search-input" placeholder="Search tracks, albums or genres..." oninput="handleSearch(this.value)">
+      <button class="search-clear-btn" id="searchClearBtn" onclick="clearSearch()">✕</button>
+    </div>
+
+    <!-- Category Tabs -->
     <div class="rhythm-scroll">
       <div class="rhythm-pill active" id="tab-all" onclick="showAllContent()">All Genres</div>
       <div class="rhythm-pill" id="tab-top10" onclick="openCategoryView('top10')">★ Top 10 Hits</div>
@@ -888,7 +960,7 @@
       <div id="dynamicSections"></div>
     </div>
 
-    <!-- CATEGORY SINGLE VIEW (GRADE DEDICADA) -->
+    <!-- CATEGORY SINGLE VIEW (GRADE DEDICADA & RESULTADOS DE PESQUISA) -->
     <div id="categoryDedicatedView" style="display:none;">
       <div class="category-page-header">
         <button class="btn-back" onclick="showAllContent()">← Voltar ao Início</button>
@@ -1002,6 +1074,8 @@
     const fullPlayer = document.getElementById('fullPlayer');
     const albumModal = document.getElementById('albumModal');
     const progressFill = document.getElementById('progressFill');
+    const searchInput = document.getElementById('searchInput');
+    const searchClearBtn = document.getElementById('searchClearBtn');
 
     function initTheme() {
       const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -1120,7 +1194,51 @@
       });
     }
 
+    /* SEARCH LOGIC */
+    function handleSearch(query) {
+      const clean = query.trim().toLowerCase();
+      
+      if (!clean) {
+        searchClearBtn.style.display = 'none';
+        showAllContent();
+        return;
+      }
+
+      searchClearBtn.style.display = 'flex';
+      document.querySelectorAll('.rhythm-pill').forEach(el => el.classList.remove('active'));
+
+      mainCarouselView.style.display = 'none';
+      categoryDedicatedView.style.display = 'block';
+      categoryGrid.innerHTML = '';
+
+      document.getElementById('catViewTitle').innerText = `Search: "${query}"`;
+
+      const results = allTracks.filter(track => {
+        const titleMatch = track.title.toLowerCase().includes(clean);
+        const rhythmMatch = track.rhythm.toLowerCase().includes(clean);
+        const albumMatch = track.albumKey && track.albumKey.toLowerCase().includes(clean);
+        return titleMatch || rhythmMatch || albumMatch;
+      });
+
+      if (results.length === 0) {
+        categoryGrid.innerHTML = `<div style="color:var(--text-dim); padding:20px; grid-column: 1 / -1; text-align:center;">No tracks found for "${query}".</div>`;
+        return;
+      }
+
+      results.forEach(track => {
+        categoryGrid.appendChild(createTrackCard(track));
+      });
+    }
+
+    function clearSearch() {
+      searchInput.value = '';
+      searchClearBtn.style.display = 'none';
+      showAllContent();
+    }
+
     function showAllContent() {
+      searchInput.value = '';
+      searchClearBtn.style.display = 'none';
       document.querySelectorAll('.rhythm-pill').forEach(el => el.classList.remove('active'));
       const allTab = document.getElementById('tab-all');
       if (allTab) allTab.classList.add('active');
@@ -1131,6 +1249,8 @@
     }
 
     function openCategoryView(categoryKey) {
+      searchInput.value = '';
+      searchClearBtn.style.display = 'none';
       document.querySelectorAll('.rhythm-pill').forEach(el => el.classList.remove('active'));
       
       mainCarouselView.style.display = 'none';
@@ -1206,7 +1326,6 @@
               isAlbum = true;
               const withoutPrefix = rawName.substring(6);
               
-              // Separa com exatidão antes e depois do número da faixa (_01_, _02_, _14_)
               const numberMatch = withoutPrefix.match(/_(\d{1,3})_/);
               
               if (numberMatch) {
@@ -1221,7 +1340,6 @@
               }
             }
 
-            // Capa
             let matchingImg = null;
             if (isAlbum && albumKey) {
               matchingImg = realImages.find(f => f.name.toLowerCase().startsWith(`album_${albumKey.toLowerCase()}`));
@@ -1239,7 +1357,6 @@
 
             const detectedGenre = file.genre || detectRhythm(rawName);
             
-            // Limpa o sufixo de ritmo no final da faixa
             const cleanTitle = songTitle
               .replace(/_?(EDM|Progressive_House|Trance|Reggaeton|Forro|Forró|Gospel|Electronic)$/gi, '')
               .replaceAll('_', ' ')
