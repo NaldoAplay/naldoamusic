@@ -120,27 +120,6 @@
       gap: 8px;
     }
 
-    .donate-btn-top {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 6px 12px;
-      border-radius: 50px;
-      background: rgba(255, 82, 82, 0.15);
-      border: 1px solid rgba(255, 82, 82, 0.35);
-      color: #ff5252;
-      font-size: 0.75rem;
-      font-weight: 800;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .donate-btn-top:hover {
-      background: #ff5252;
-      color: #fff;
-      box-shadow: 0 0 12px rgba(255, 82, 82, 0.4);
-    }
-
     .social-btn, .theme-toggle-btn {
       display: flex;
       align-items: center;
@@ -245,6 +224,7 @@
       white-space: nowrap;
       width: 100%;
       max-width: 320px;
+      cursor: pointer;
     }
 
     @media (min-width: 768px) {
@@ -254,6 +234,20 @@
     .yt-pill:hover {
       border-color: #ff0000;
       box-shadow: 0 0 14px rgba(255, 0, 0, 0.25);
+    }
+
+    /* PÍLULA DE DOAÇÃO AO LADO DO YOUTUBE */
+    .yt-pill.support-pill {
+      background: rgba(255, 82, 82, 0.12);
+      border-color: rgba(255, 82, 82, 0.35);
+      color: #ff5252;
+    }
+
+    .yt-pill.support-pill:hover {
+      background: #ff5252;
+      color: #fff;
+      border-color: #ff5252;
+      box-shadow: 0 0 14px rgba(255, 82, 82, 0.4);
     }
 
     .yt-icon {
@@ -1012,11 +1006,6 @@
     </div>
     
     <div class="header-actions">
-      <!-- BOTÃO DE DOAÇÃO LIVRE / APOIO -->
-      <button class="donate-btn-top" onclick="openSupportModal()">
-        ❤️ Support / Apoiar
-      </button>
-
       <!-- Theme Mode Toggle -->
       <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Light/Dark Mode">
         <svg id="themeIcon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
@@ -1042,7 +1031,7 @@
     
     <div class="yt-hub-container">
       <div class="yt-actions">
-        <div class="section-title" style="font-size: 0.8rem; color: var(--text-dim);">Official YouTube Channels</div>
+        <div class="section-title" style="font-size: 0.8rem; color: var(--text-dim);">Official Channels & Support</div>
         <div class="yt-carousel">
           <a href="https://youtube.com/@naldoamusic?si=NhBGNUKl8piB9yt_" target="_blank" class="yt-pill">
             <svg class="yt-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -1052,6 +1041,10 @@
             <svg class="yt-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
             NaldoA Digital Music Videos
           </a>
+          <!-- BOTÃO DE DOAÇÃO POSICIONADO AO LADO DOS CANAIS -->
+          <button class="yt-pill support-pill" onclick="openSupportModal()">
+            ❤️ Support / Apoiar NaldoA
+          </button>
         </div>
       </div>
       <div class="yt-video-frame-box">
@@ -1479,7 +1472,6 @@
       }
     }
 
-    /* MODAL DE APOIO / DOAÇÃO */
     function openSupportModal() {
       donationModal.classList.add('open');
     }
