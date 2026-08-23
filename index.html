@@ -120,6 +120,27 @@
       gap: 8px;
     }
 
+    .donate-btn-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: 50px;
+      background: rgba(255, 82, 82, 0.15);
+      border: 1px solid rgba(255, 82, 82, 0.35);
+      color: #ff5252;
+      font-size: 0.75rem;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .donate-btn-top:hover {
+      background: #ff5252;
+      color: #fff;
+      box-shadow: 0 0 12px rgba(255, 82, 82, 0.4);
+    }
+
     .social-btn, .theme-toggle-btn {
       display: flex;
       align-items: center;
@@ -259,7 +280,6 @@
       border: none;
     }
 
-    /* SEARCH BAR STYLES */
     .search-box-wrapper {
       margin: 16px 0 12px;
       position: relative;
@@ -829,7 +849,7 @@
       justify-content: center;
       align-items: center;
       gap: 32px;
-      margin-bottom: 16px;
+      margin-bottom: 10px;
     }
 
     .btn-full-play {
@@ -843,6 +863,134 @@
       justify-content: center;
       cursor: pointer;
       box-shadow: 0 0 22px var(--accent-glow);
+    }
+
+    .player-action-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .btn-action-pill {
+      background: var(--glass-card);
+      border: 1px solid var(--glass-border);
+      color: var(--text);
+      padding: 9px 20px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    .btn-action-pill.heart {
+      background: rgba(255, 82, 82, 0.12);
+      border-color: rgba(255, 82, 82, 0.35);
+      color: #ff5252;
+    }
+
+    .btn-action-pill.heart:hover {
+      background: #ff5252;
+      color: #fff;
+      box-shadow: 0 0 14px rgba(255, 82, 82, 0.35);
+    }
+
+    /* MODAL DE DOAÇÃO BILÍNGUE */
+    .donation-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      z-index: 110;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .donation-modal.open {
+      display: flex;
+    }
+
+    .donation-card {
+      background: var(--glass-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 24px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    .donation-card h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .donation-card p {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    .pix-box {
+      background: rgba(0,0,0,0.35);
+      border: 1px dashed var(--accent);
+      padding: 12px;
+      border-radius: 14px;
+      margin-bottom: 14px;
+    }
+
+    .pix-key {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--accent);
+      word-break: break-all;
+      margin-bottom: 8px;
+      user-select: text;
+    }
+
+    .btn-copy-pix {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .mp-link-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: #009ee3;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.85rem;
+      border-radius: 14px;
+      margin-top: 8px;
+    }
+
+    .mp-link-btn:hover {
+      background: #0088cc;
+      box-shadow: 0 0 15px rgba(0, 158, 227, 0.4);
     }
 
     footer {
@@ -864,7 +1012,12 @@
     </div>
     
     <div class="header-actions">
-      <!-- Theme Mode Toggle (Dark / Light) -->
+      <!-- BOTÃO DE DOAÇÃO LIVRE / APOIO -->
+      <button class="donate-btn-top" onclick="openSupportModal()">
+        ❤️ Support / Apoiar
+      </button>
+
+      <!-- Theme Mode Toggle -->
       <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Light/Dark Mode">
         <svg id="themeIcon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
       </button>
@@ -960,7 +1113,7 @@
       <div id="dynamicSections"></div>
     </div>
 
-    <!-- CATEGORY SINGLE VIEW (GRADE DEDICADA & RESULTADOS DE PESQUISA) -->
+    <!-- CATEGORY SINGLE VIEW -->
     <div id="categoryDedicatedView" style="display:none;">
       <div class="category-page-header">
         <button class="btn-back" onclick="showAllContent()">← Voltar ao Início</button>
@@ -1037,6 +1190,7 @@
       </div>
     </div>
 
+    <!-- CONTROLES -->
     <div class="full-controls">
       <button style="background:none; border:none; color:var(--text); cursor:pointer;" onclick="prevTrack()">
         <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5" stroke="currentColor" stroke-width="2"></line></svg>
@@ -1047,6 +1201,46 @@
       <button style="background:none; border:none; color:var(--text); cursor:pointer;" onclick="nextTrack()">
         <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2"></line></svg>
       </button>
+    </div>
+
+    <!-- BOTÃO APOIAR DENTRO DO PLAYER -->
+    <div class="player-action-row">
+      <button class="btn-action-pill heart" onclick="openSupportModal()">
+        ❤️ Support / Apoiar NaldoA
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL DE DOAÇÃO E APOIO (BILÍNGUE: PORTUGUÊS / INGLÊS) -->
+  <div class="donation-modal" id="donationModal" onclick="closeDonationModal(event)">
+    <div class="donation-card" onclick="event.stopPropagation()">
+      <button class="btn-close" style="position:absolute; top:16px; right:16px;" onclick="closeDonationModalDirect()">✕</button>
+      
+      <h3>Support NaldoA ❤️</h3>
+      <p style="margin-bottom: 12px;">
+        Enjoying the music? Support the production of new tracks with any amount!<br>
+        <span style="font-size:0.75rem; opacity:0.8;">Gostou das músicas? Apoie novos lançamentos com qualquer valor!</span>
+      </p>
+      
+      <!-- Brasil (Pix) -->
+      <div class="pix-box">
+        <span style="font-size:0.72rem; color:var(--text-dim); text-transform:uppercase; font-weight:700; display:block; margin-bottom:4px;">
+          🇧🇷 Brasil • Chave Pix (E-mail):
+        </span>
+        <div class="pix-key" id="pixKeyValue">naldoamusic@gmail.com</div>
+        <button class="btn-copy-pix" onclick="copyPixKey()">
+          <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+          <span id="copyBtnText">Copiar Chave Pix</span>
+        </button>
+      </div>
+
+      <!-- Internacional / Cartões (Mercado Pago) -->
+      <a href="https://link.mercadopago.com.br/supportnaldoamusic" target="_blank" class="mp-link-btn" id="mpDonationLink">
+        🌎 International Cards / Mercado Pago
+      </a>
+      <span style="font-size:0.68rem; color:var(--text-dim); display:block; margin-top:6px;">
+        Accepts USD ($), EUR (€), BRL (R$) and credit cards worldwide.
+      </span>
     </div>
   </div>
 
@@ -1076,6 +1270,7 @@
     const progressFill = document.getElementById('progressFill');
     const searchInput = document.getElementById('searchInput');
     const searchClearBtn = document.getElementById('searchClearBtn');
+    const donationModal = document.getElementById('donationModal');
 
     function initTheme() {
       const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -1194,7 +1389,6 @@
       });
     }
 
-    /* SEARCH LOGIC */
     function handleSearch(query) {
       const clean = query.trim().toLowerCase();
       
@@ -1283,6 +1477,29 @@
           categoryGrid.appendChild(createTrackCard(track));
         });
       }
+    }
+
+    /* MODAL DE APOIO / DOAÇÃO */
+    function openSupportModal() {
+      donationModal.classList.add('open');
+    }
+
+    function closeDonationModal(e) {
+      if (e.target === donationModal) donationModal.classList.remove('open');
+    }
+
+    function closeDonationModalDirect() {
+      donationModal.classList.remove('open');
+    }
+
+    function copyPixKey() {
+      const pixKey = document.getElementById('pixKeyValue').innerText;
+      navigator.clipboard.writeText(pixKey).then(() => {
+        document.getElementById('copyBtnText').innerText = 'Chave Copiada! ✓';
+        setTimeout(() => {
+          document.getElementById('copyBtnText').innerText = 'Copiar Chave Pix';
+        }, 2500);
+      });
     }
 
     async function loadCatalog() {
