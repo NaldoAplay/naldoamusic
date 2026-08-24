@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>NaldoA Digital Music</title>
+  <title>NaldoA Digital Music • Official Web Player</title>
   
   <!-- PWA & App Icons -->
   <meta name="theme-color" content="#06080d">
@@ -24,7 +24,7 @@
     gtag('config', 'G-RMZDGK7R4G');
   </script>
   
-    <!-- SEO & Google Search Snippet -->
+  <!-- SEO & Google Search Snippet -->
   <meta name="description" content="Stream official electronic music, albums, trance, EDM, reggaeton and gospel tracks by NaldoA. High-fidelity audio player.">
   <meta name="keywords" content="NaldoA, NaldoA Digital Music, Electronic, EDM, Trance, Progressive House, Music Stream">
   <meta name="author" content="NaldoA">
@@ -44,12 +44,12 @@
   <meta name="twitter:description" content="Listen to official releases, albums, and exclusive tracks by electronic music producer NaldoA.">
   <meta name="twitter:image" content="https://archive.org/download/naldoa-digital-music-stream/cover.jpg">
 
-
   <style>
-    :root {
+    /* 1. DARK CLÁSSICO (CYAN NEON) */
+    :root, [data-theme="dark"] {
       --bg: #06080d;
-      --bg-gradient-1: rgba(0, 210, 255, 0.08);
-      --bg-gradient-2: rgba(0, 110, 255, 0.06);
+      --bg-gradient-1: rgba(0, 210, 255, 0.12);
+      --bg-gradient-2: rgba(0, 110, 255, 0.08);
       --header-bg: rgba(6, 8, 13, 0.85);
       --glass-card: rgba(18, 24, 38, 0.65);
       --glass-border: rgba(255, 255, 255, 0.08);
@@ -60,12 +60,68 @@
       --player-glass: rgba(10, 14, 22, 0.94);
       --modal-bg: rgba(6, 8, 13, 0.96);
       --card-bg-hover: rgba(0, 210, 255, 0.1);
+      --heart-active: #ff4757;
     }
 
+    /* 2. PURPLE VIOLET GLASS (DARK) */
+    [data-theme="purple"] {
+      --bg: #090514;
+      --bg-gradient-1: rgba(187, 134, 252, 0.16);
+      --bg-gradient-2: rgba(255, 0, 128, 0.10);
+      --header-bg: rgba(9, 5, 20, 0.85);
+      --glass-card: rgba(26, 16, 48, 0.65);
+      --glass-border: rgba(255, 255, 255, 0.10);
+      --accent: #bb86fc;
+      --accent-glow: rgba(187, 134, 252, 0.40);
+      --text: #f6f0fd;
+      --text-dim: #a192b8;
+      --player-glass: rgba(15, 9, 30, 0.95);
+      --modal-bg: rgba(9, 5, 20, 0.98);
+      --card-bg-hover: rgba(187, 134, 252, 0.12);
+      --heart-active: #ff2a7a;
+    }
+
+    /* 3. EMERALD CYBER GLASS (DARK) */
+    [data-theme="emerald"] {
+      --bg: #030d0a;
+      --bg-gradient-1: rgba(0, 255, 170, 0.14);
+      --bg-gradient-2: rgba(0, 168, 255, 0.08);
+      --header-bg: rgba(3, 13, 10, 0.85);
+      --glass-card: rgba(12, 34, 28, 0.65);
+      --glass-border: rgba(255, 255, 255, 0.09);
+      --accent: #00ffaa;
+      --accent-glow: rgba(0, 255, 170, 0.35);
+      --text: #f0fdf7;
+      --text-dim: #7da595;
+      --player-glass: rgba(6, 20, 16, 0.95);
+      --modal-bg: rgba(3, 13, 10, 0.98);
+      --card-bg-hover: rgba(0, 255, 170, 0.10);
+      --heart-active: #ff4757;
+    }
+
+    /* 4. SUNSET AMBER GLASS (DARK) */
+    [data-theme="sunset"] {
+      --bg: #120904;
+      --bg-gradient-1: rgba(255, 154, 0, 0.15);
+      --bg-gradient-2: rgba(255, 0, 85, 0.10);
+      --header-bg: rgba(18, 9, 4, 0.85);
+      --glass-card: rgba(38, 20, 12, 0.65);
+      --glass-border: rgba(255, 255, 255, 0.10);
+      --accent: #ff9a00;
+      --accent-glow: rgba(255, 154, 0, 0.40);
+      --text: #fff6ee;
+      --text-dim: #b89882;
+      --player-glass: rgba(26, 13, 6, 0.95);
+      --modal-bg: rgba(18, 9, 4, 0.98);
+      --card-bg-hover: rgba(255, 154, 0, 0.12);
+      --heart-active: #ff0055;
+    }
+
+    /* 5. LIGHT CLÁSSICO (FROST BLUE) */
     [data-theme="light"] {
       --bg: #f2f5fa;
-      --bg-gradient-1: rgba(0, 180, 255, 0.12);
-      --bg-gradient-2: rgba(90, 140, 255, 0.08);
+      --bg-gradient-1: rgba(0, 180, 255, 0.14);
+      --bg-gradient-2: rgba(90, 140, 255, 0.09);
       --header-bg: rgba(255, 255, 255, 0.85);
       --glass-card: rgba(255, 255, 255, 0.75);
       --glass-border: rgba(0, 0, 0, 0.08);
@@ -76,6 +132,61 @@
       --player-glass: rgba(255, 255, 255, 0.95);
       --modal-bg: rgba(245, 248, 252, 0.98);
       --card-bg-hover: rgba(0, 136, 204, 0.08);
+      --heart-active: #ff4757;
+    }
+
+    /* 6. ROSE PASTEL GLASS (LIGHT) */
+    [data-theme="light-rose"] {
+      --bg: #fcf4f7;
+      --bg-gradient-1: rgba(255, 64, 129, 0.15);
+      --bg-gradient-2: rgba(186, 104, 200, 0.10);
+      --header-bg: rgba(255, 255, 255, 0.88);
+      --glass-card: rgba(255, 255, 255, 0.80);
+      --glass-border: rgba(255, 64, 129, 0.12);
+      --accent: #e91e63;
+      --accent-glow: rgba(233, 30, 99, 0.25);
+      --text: #2a111a;
+      --text-dim: #785a67;
+      --player-glass: rgba(255, 255, 255, 0.96);
+      --modal-bg: rgba(254, 246, 249, 0.98);
+      --card-bg-hover: rgba(233, 30, 99, 0.08);
+      --heart-active: #e91e63;
+    }
+
+    /* 7. EMERALD FRESH GLASS (LIGHT) */
+    [data-theme="light-emerald"] {
+      --bg: #f2faf6;
+      --bg-gradient-1: rgba(0, 200, 117, 0.15);
+      --bg-gradient-2: rgba(0, 184, 212, 0.10);
+      --header-bg: rgba(255, 255, 255, 0.88);
+      --glass-card: rgba(255, 255, 255, 0.80);
+      --glass-border: rgba(0, 200, 117, 0.12);
+      --accent: #00a86b;
+      --accent-glow: rgba(0, 168, 107, 0.25);
+      --text: #0e241b;
+      --text-dim: #547366;
+      --player-glass: rgba(255, 255, 255, 0.96);
+      --modal-bg: rgba(244, 252, 248, 0.98);
+      --card-bg-hover: rgba(0, 168, 107, 0.08);
+      --heart-active: #ff4757;
+    }
+
+    /* 8. SUNSET GOLD GLASS (LIGHT) */
+    [data-theme="light-gold"] {
+      --bg: #faf6f0;
+      --bg-gradient-1: rgba(255, 145, 0, 0.15);
+      --bg-gradient-2: rgba(255, 87, 34, 0.10);
+      --header-bg: rgba(255, 255, 255, 0.88);
+      --glass-card: rgba(255, 255, 255, 0.80);
+      --glass-border: rgba(255, 145, 0, 0.12);
+      --accent: #e67e00;
+      --accent-glow: rgba(230, 126, 0, 0.25);
+      --text: #26190a;
+      --text-dim: #796652;
+      --player-glass: rgba(255, 255, 255, 0.96);
+      --modal-bg: rgba(254, 250, 245, 0.98);
+      --card-bg-hover: rgba(230, 126, 0, 0.08);
+      --heart-active: #ff3838;
     }
 
     * {
@@ -94,8 +205,8 @@
       padding-bottom: 120px;
       overflow-x: hidden;
       background-image: 
-        radial-gradient(circle at 10% 10%, var(--bg-gradient-1), transparent 40%),
-        radial-gradient(circle at 90% 80%, var(--bg-gradient-2), transparent 40%);
+        radial-gradient(circle at 10% 10%, var(--bg-gradient-1), transparent 45%),
+        radial-gradient(circle at 90% 80%, var(--bg-gradient-2), transparent 45%);
       background-attachment: fixed;
     }
 
@@ -215,18 +326,15 @@
 
     .yt-carousel {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      flex-wrap: wrap;
       gap: 10px;
       width: 100%;
-      align-items: center;
+      justify-content: center;
     }
 
     @media (min-width: 768px) {
-      .yt-carousel {
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: flex-start;
-      }
+      .yt-carousel { justify-content: flex-start; }
     }
 
     .yt-pill {
@@ -243,13 +351,7 @@
       font-size: 0.82rem;
       font-weight: 700;
       white-space: nowrap;
-      width: 100%;
-      max-width: 320px;
       cursor: pointer;
-    }
-
-    @media (min-width: 768px) {
-      .yt-pill { width: auto; max-width: none; }
     }
 
     .yt-pill:hover {
@@ -257,7 +359,6 @@
       box-shadow: 0 0 14px rgba(255, 0, 0, 0.25);
     }
 
-    /* PÍLULA DE DOAÇÃO AO LADO DO YOUTUBE */
     .yt-pill.support-pill {
       background: rgba(255, 82, 82, 0.12);
       border-color: rgba(255, 82, 82, 0.35);
@@ -382,7 +483,7 @@
 
     .rhythm-pill.active {
       background: var(--accent);
-      color: #fff;
+      color: #000;
       border-color: var(--accent);
       box-shadow: 0 0 14px var(--accent-glow);
     }
@@ -406,12 +507,11 @@
       gap: 6px;
     }
 
-    .section-title:hover {
-      color: var(--accent);
-    }
-
+    .section-title:hover { color: var(--accent); }
     .section-title.gold { color: #e6a100; }
     .section-title.gold:hover { color: #ffd700; }
+    .section-title.purple { color: #bb86fc; }
+    .section-title.purple:hover { color: #d7b5ff; }
 
     .view-all-btn {
       font-size: 0.75rem;
@@ -566,6 +666,71 @@
       color: #ffd700;
     }
 
+    .card-heart-btn {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
+      z-index: 5;
+    }
+
+    .card-heart-btn.active {
+      color: var(--heart-active);
+      border-color: var(--heart-active);
+    }
+
+    .card-heart-btn svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    /* EQUALIZER ANIMATION */
+    .card-visualizer {
+      position: absolute;
+      bottom: 6px;
+      right: 6px;
+      display: none;
+      align-items: flex-end;
+      gap: 2px;
+      height: 14px;
+      padding: 3px 5px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 6px;
+      backdrop-filter: blur(4px);
+    }
+
+    .track-card.is-playing .card-visualizer {
+      display: flex;
+    }
+
+    .eq-bar {
+      width: 2px;
+      background: var(--accent);
+      border-radius: 1px;
+      animation: eqBounce 1s infinite ease-in-out;
+    }
+
+    .eq-bar:nth-child(1) { height: 6px; animation-delay: 0.1s; }
+    .eq-bar:nth-child(2) { height: 12px; animation-delay: 0.3s; }
+    .eq-bar:nth-child(3) { height: 8px; animation-delay: 0.2s; }
+
+    @keyframes eqBounce {
+      0%, 100% { transform: scaleY(0.3); }
+      50% { transform: scaleY(1); }
+    }
+
     .track-info {
       display: flex;
       flex-direction: column;
@@ -651,7 +816,7 @@
     .btn-play-all {
       margin-top: 10px;
       background: var(--accent);
-      color: #fff;
+      color: #000;
       border: none;
       padding: 8px 18px;
       border-radius: 50px;
@@ -752,6 +917,12 @@
       color: var(--text-dim);
     }
 
+    .mini-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
     .btn-play-round {
       background: var(--accent);
       border: none;
@@ -814,7 +985,7 @@
 
     .full-meta {
       text-align: center;
-      margin: 16px 0;
+      margin: 16px 0 6px;
     }
 
     .full-title {
@@ -863,9 +1034,23 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 32px;
+      gap: 22px;
       margin-bottom: 10px;
     }
+
+    .btn-ctrl {
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+    }
+
+    .btn-ctrl:hover { color: var(--text); }
+    .btn-ctrl.active { color: var(--accent); }
 
     .btn-full-play {
       width: 68px;
@@ -892,7 +1077,7 @@
       background: var(--glass-card);
       border: 1px solid var(--glass-border);
       color: var(--text);
-      padding: 9px 20px;
+      padding: 9px 18px;
       border-radius: 50px;
       font-size: 0.8rem;
       font-weight: 800;
@@ -903,19 +1088,46 @@
       text-decoration: none;
     }
 
-    .btn-action-pill.heart {
+    .btn-action-pill.heart-active {
+      color: var(--heart-active);
+      border-color: var(--heart-active);
+    }
+
+    .btn-action-pill.support {
       background: rgba(255, 82, 82, 0.12);
       border-color: rgba(255, 82, 82, 0.35);
       color: #ff5252;
     }
 
-    .btn-action-pill.heart:hover {
+    .btn-action-pill.support:hover {
       background: #ff5252;
       color: #fff;
-      box-shadow: 0 0 14px rgba(255, 82, 82, 0.35);
     }
 
-    /* MODAL DE DOAÇÃO BILÍNGUE */
+    /* TOAST NOTIFICATION */
+    .toast-box {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-100px);
+      background: var(--modal-bg);
+      border: 1px solid var(--accent);
+      color: var(--text);
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 10px 30px var(--accent-glow);
+      z-index: 200;
+      transition: transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast-box.show { transform: translateX(-50%) translateY(0); }
+
     .donation-modal {
       position: fixed;
       inset: 0;
@@ -929,9 +1141,7 @@
       padding: 20px;
     }
 
-    .donation-modal.open {
-      display: flex;
-    }
+    .donation-modal.open { display: flex; }
 
     .donation-card {
       background: var(--glass-card);
@@ -1020,6 +1230,10 @@
 </head>
 <body>
 
+  <div class="toast-box" id="toastBox">
+    <span id="toastMsg">Link copiado!</span>
+  </div>
+
   <header>
     <div class="brand-container" onclick="showAllContent()">
       <div class="brand-main">NALDOA</div>
@@ -1027,9 +1241,9 @@
     </div>
     
     <div class="header-actions">
-      <!-- Theme Mode Toggle -->
-      <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Light/Dark Mode">
-        <svg id="themeIcon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+      <!-- Theme Switcher (Cycle 8 Themes: 4 Dark & 4 Light) -->
+      <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Trocar Tema Glass">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
       </button>
 
       <!-- Social Links -->
@@ -1062,7 +1276,7 @@
             <svg class="yt-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
             NaldoA Digital Music Videos
           </a>
-          <!-- BOTÃO DE DOAÇÃO POSICIONADO AO LADO DOS CANAIS -->
+          <!-- BOTÃO DE DOAÇÃO AO LADO DOS CANAIS -->
           <button class="yt-pill support-pill" onclick="openSupportModal()">
             ❤️ Support / Apoiar NaldoA
           </button>
@@ -1085,6 +1299,8 @@
     <!-- Category Tabs -->
     <div class="rhythm-scroll">
       <div class="rhythm-pill active" id="tab-all" onclick="showAllContent()">All Genres</div>
+      <div class="rhythm-pill" id="tab-favorites" onclick="openCategoryView('favorites')">❤️ Favorites</div>
+      <div class="rhythm-pill" id="tab-discovery" onclick="openCategoryView('discovery')">✨ Discovery</div>
       <div class="rhythm-pill" id="tab-top10" onclick="openCategoryView('top10')">★ Top 10 Hits</div>
       <div class="rhythm-pill" id="tab-albums" onclick="openCategoryView('albums')">Albums</div>
       <div class="rhythm-pill" id="tab-Electronic-EDM" onclick="openCategoryView('Electronic / EDM')">Electronic / EDM</div>
@@ -1095,6 +1311,19 @@
 
     <!-- MAIN CAROUSEL VIEW -->
     <div id="mainCarouselView">
+      <!-- DISCOVERY CAROUSEL -->
+      <div id="sec-discovery">
+        <div class="section-header" onclick="openCategoryView('discovery')">
+          <div class="section-title purple">✨ Discovery & Highlights</div>
+          <span class="view-all-btn">Ver tudo ❯</span>
+        </div>
+        <div class="carousel-wrapper">
+          <button class="carousel-nav-btn prev" onclick="scrollCarousel('discoveryCarousel', -350)">❮</button>
+          <div class="carousel-container" id="discoveryCarousel"></div>
+          <button class="carousel-nav-btn next" onclick="scrollCarousel('discoveryCarousel', 350)">❯</button>
+        </div>
+      </div>
+
       <!-- TOP 10 HITS -->
       <div id="sec-top10">
         <div class="section-header" onclick="openCategoryView('top10')">
@@ -1172,9 +1401,11 @@
         <div class="mini-rhythm" id="miniRhythm">NaldoA</div>
       </div>
     </div>
-    <button class="btn-play-round" onclick="togglePlay()">
-      <svg id="miniPlayIcon" width="18" height="18" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-    </button>
+    <div class="mini-controls">
+      <button class="btn-play-round" onclick="togglePlay()">
+        <svg id="miniPlayIcon" width="18" height="18" viewBox="0 0 24 24" fill="#000"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+      </button>
+    </div>
   </div>
 
   <!-- Full Player Modal -->
@@ -1182,7 +1413,11 @@
     <div class="full-header">
       <button class="btn-close" onclick="closeFullPlayer()">✕</button>
       <span style="font-size: 0.75rem; letter-spacing: 2px; color: var(--text-dim); text-transform: uppercase;">Playing Now</span>
-      <div style="width: 24px;"></div>
+      
+      <!-- BOTÃO COMPARTILHAR EXCLUSIVO NO TOPO DO PLAYER -->
+      <button class="btn-ctrl" onclick="shareCurrentTrack()" title="Compartilhar Faixa">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+      </button>
     </div>
 
     <div class="full-cover-container">
@@ -1204,23 +1439,37 @@
       </div>
     </div>
 
-    <!-- CONTROLES -->
+    <!-- MODERN CONTROLS (Shuffle, Prev, Play, Next, Repeat) -->
     <div class="full-controls">
-      <button style="background:none; border:none; color:var(--text); cursor:pointer;" onclick="prevTrack()">
-        <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5" stroke="currentColor" stroke-width="2"></line></svg>
+      <button class="btn-ctrl" id="btnShuffle" onclick="toggleShuffle()" title="Modo Aleatório">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
       </button>
-      <button class="btn-full-play" onclick="togglePlay()">
-        <svg id="fullPlayIcon" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+      
+      <button class="btn-ctrl" onclick="prevTrack()" title="Anterior">
+        <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg>
       </button>
-      <button style="background:none; border:none; color:var(--text); cursor:pointer;" onclick="nextTrack()">
-        <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2"></line></svg>
+      
+      <button class="btn-full-play" onclick="togglePlay()" title="Play / Pause">
+        <svg id="fullPlayIcon" width="24" height="24" fill="#000" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+      </button>
+      
+      <button class="btn-ctrl" onclick="nextTrack()" title="Próxima">
+        <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
+      </button>
+
+      <button class="btn-ctrl" id="btnRepeat" onclick="toggleRepeat()" title="Repetir Faixa">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
       </button>
     </div>
 
-    <!-- BOTÃO APOIAR DENTRO DO PLAYER -->
+    <!-- BOTÕES INFERIORES: APENAS FAVORITAR E APOIAR -->
     <div class="player-action-row">
-      <button class="btn-action-pill heart" onclick="openSupportModal()">
-        ❤️ Support / Apoiar NaldoA
+      <button class="btn-action-pill" id="fullPlayerLikeBtn" onclick="toggleLikeCurrentTrack()">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <span id="fullPlayerLikeText">Favoritar</span>
+      </button>
+      <button class="btn-action-pill support" onclick="openSupportModal()">
+        ❤️ Apoiar NaldoA
       </button>
     </div>
   </div>
@@ -1264,14 +1513,41 @@
     const ARCHIVE_ITEM_ID = 'naldoa-digital-music-stream';
     const ARCHIVE_DOWNLOAD_BASE = `https://archive.org/download/${ARCHIVE_ITEM_ID}`;
 
+    const THEME_LIST = [
+      'dark',
+      'light',
+      'purple',
+      'light-rose',
+      'emerald',
+      'light-emerald',
+      'sunset',
+      'light-gold'
+    ];
+
+    const THEME_NAMES = {
+      'dark': 'Dark Clássico (Cyan)',
+      'light': 'Light Clássico (Frost)',
+      'purple': 'Purple Violet Glass (Escuro)',
+      'light-rose': 'Rose Pastel Glass (Claro)',
+      'emerald': 'Emerald Cyber Glass (Escuro)',
+      'light-emerald': 'Emerald Fresh Glass (Claro)',
+      'sunset': 'Sunset Amber Glass (Escuro)',
+      'light-gold': 'Sunset Gold Glass (Claro)'
+    };
+
     let allTracks = [];
     let allAlbums = {};
     let activeQueue = [];
     let currentQueueIndex = 0;
     let isPlaying = false;
+    let isShuffle = false;
+    let isRepeat = false;
     let selectedAlbum = null;
+    let discoveryTracks = [];
+    let favoriteTrackIds = JSON.parse(localStorage.getItem('naldoa_favs') || '[]');
 
     const audio = document.getElementById('audioElement');
+    const discoveryCarousel = document.getElementById('discoveryCarousel');
     const top10Carousel = document.getElementById('top10Carousel');
     const albumsCarousel = document.getElementById('albumsCarousel');
     const secAlbums = document.getElementById('sec-Albums');
@@ -1285,29 +1561,31 @@
     const searchInput = document.getElementById('searchInput');
     const searchClearBtn = document.getElementById('searchClearBtn');
     const donationModal = document.getElementById('donationModal');
+    const btnShuffle = document.getElementById('btnShuffle');
+    const btnRepeat = document.getElementById('btnRepeat');
+    const toastBox = document.getElementById('toastBox');
+    const toastMsg = document.getElementById('toastMsg');
+
+    function showToast(msg) {
+      toastMsg.innerText = msg;
+      toastBox.classList.add('show');
+      setTimeout(() => toastBox.classList.remove('show'), 2500);
+    }
 
     function initTheme() {
-      const savedTheme = localStorage.getItem('theme') || 'dark';
+      const savedTheme = localStorage.getItem('theme_mode') || 'dark';
       document.documentElement.setAttribute('data-theme', savedTheme);
-      updateThemeIcon(savedTheme);
     }
 
     function toggleTheme() {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-      updateThemeIcon(next);
-    }
-
-    function updateThemeIcon(theme) {
-      const icon = document.getElementById('themeIcon');
-      if (!icon) return;
-      if (theme === 'dark') {
-        icon.innerHTML = '<path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>';
-      } else {
-        icon.innerHTML = '<path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0z"/>';
-      }
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const currentIndex = THEME_LIST.indexOf(current);
+      const nextIndex = (currentIndex + 1) % THEME_LIST.length;
+      const nextTheme = THEME_LIST[nextIndex];
+      
+      document.documentElement.setAttribute('data-theme', nextTheme);
+      localStorage.setItem('theme_mode', nextTheme);
+      showToast(`Tema: ${THEME_NAMES[nextTheme]}`);
     }
 
     function getStoredPlays(id) {
@@ -1328,6 +1606,121 @@
         });
       }
       renderApp();
+    }
+
+    /* CURTIDAS (FAVORITES) LOGIC */
+    function isFavorite(trackId) {
+      return favoriteTrackIds.includes(trackId);
+    }
+
+    function toggleLike(trackId, event) {
+      if (event) event.stopPropagation();
+      if (isFavorite(trackId)) {
+        favoriteTrackIds = favoriteTrackIds.filter(id => id !== trackId);
+        showToast('Removido dos favoritos');
+      } else {
+        favoriteTrackIds.push(trackId);
+        showToast('Adicionado aos favoritos ❤️');
+      }
+      localStorage.setItem('naldoa_favs', JSON.stringify(favoriteTrackIds));
+      updateFullPlayerLikeBtn();
+      renderApp();
+    }
+
+    function toggleLikeCurrentTrack() {
+      const track = activeQueue[currentQueueIndex];
+      if (track) toggleLike(track.id);
+    }
+
+    function updateFullPlayerLikeBtn() {
+      const track = activeQueue[currentQueueIndex];
+      const btn = document.getElementById('fullPlayerLikeBtn');
+      const txt = document.getElementById('fullPlayerLikeText');
+      if (!track || !btn) return;
+      if (isFavorite(track.id)) {
+        btn.classList.add('heart-active');
+        txt.innerText = 'Curtido ❤️';
+      } else {
+        btn.classList.remove('heart-active');
+        txt.innerText = 'Favoritar';
+      }
+    }
+
+    /* SHUFFLE & REPEAT */
+    function toggleShuffle() {
+      isShuffle = !isShuffle;
+      btnShuffle.classList.toggle('active', isShuffle);
+      showToast(isShuffle ? 'Modo Aleatório: Ativado 🔀' : 'Modo Aleatório: Desativado');
+    }
+
+    function toggleRepeat() {
+      isRepeat = !isRepeat;
+      btnRepeat.classList.toggle('active', isRepeat);
+      showToast(isRepeat ? 'Repetir Música: Ativado 🔁' : 'Repetir Música: Desativado');
+    }
+
+    /* COMPARTILHAMENTO CORRIGIDO E SEGURO */
+    function copyToClipboardFallback(text) {
+      const tempInput = document.createElement('textarea');
+      tempInput.value = text;
+      tempInput.setAttribute('readonly', '');
+      tempInput.style.position = 'fixed';
+      tempInput.style.left = '-9999px';
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      tempInput.setSelectionRange(0, 99999);
+      try {
+        document.execCommand('copy');
+        showToast('Link da música copiado! ✓');
+      } catch (err) {
+        showToast('Erro ao copiar link');
+      }
+      document.body.removeChild(tempInput);
+    }
+
+    function shareCurrentTrack() {
+      const track = activeQueue[currentQueueIndex];
+      if (!track) return;
+      
+      const shareUrl = `https://naldoaplay.github.io/naldoamusic/?track=${encodeURIComponent(track.id)}`;
+      
+      if (navigator.share) {
+        navigator.share({
+          title: `${track.title} - NaldoA`,
+          url: shareUrl
+        }).catch(() => {
+          copyToClipboardFallback(shareUrl);
+        });
+      } else if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(shareUrl).then(() => {
+          showToast('Link da música copiado! ✓');
+        }).catch(() => {
+          copyToClipboardFallback(shareUrl);
+        });
+      } else {
+        copyToClipboardFallback(shareUrl);
+      }
+    }
+
+    function checkDirectUrlTrack() {
+      const params = new URLSearchParams(window.location.search);
+      const trackParam = params.get('track');
+      const hashParam = window.location.hash ? window.location.hash.substring(1) : null;
+      const targetTrackId = trackParam || hashParam;
+
+      if (targetTrackId && allTracks.length > 0) {
+        const decoded = decodeURIComponent(targetTrackId).toLowerCase();
+        const foundIndex = allTracks.findIndex(t => 
+          t.id.toLowerCase() === decoded || 
+          t.title.toLowerCase() === decoded.replaceAll('_', ' ')
+        );
+
+        if (foundIndex !== -1) {
+          activeQueue = [...allTracks];
+          loadAndPlay(foundIndex);
+          openFullPlayer();
+        }
+      }
     }
 
     function detectRhythm(name) {
@@ -1466,7 +1859,26 @@
       categoryGrid.innerHTML = '';
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      if (categoryKey === 'top10') {
+      if (categoryKey === 'favorites') {
+        const t = document.getElementById('tab-favorites');
+        if (t) t.classList.add('active');
+        document.getElementById('catViewTitle').innerText = '❤️ Minhas Músicas Favoritas';
+        const favs = allTracks.filter(tr => isFavorite(tr.id));
+        if (favs.length === 0) {
+          categoryGrid.innerHTML = `<div style="color:var(--text-dim); padding:30px; grid-column: 1 / -1; text-align:center;">Você ainda não favoritou nenhuma música.<br>Clique no coração das faixas para salvá-las aqui!</div>`;
+          return;
+        }
+        favs.forEach(track => {
+          categoryGrid.appendChild(createTrackCard(track));
+        });
+      } else if (categoryKey === 'discovery') {
+        const t = document.getElementById('tab-discovery');
+        if (t) t.classList.add('active');
+        document.getElementById('catViewTitle').innerText = '✨ Descobertas & Destaques';
+        discoveryTracks.forEach(track => {
+          categoryGrid.appendChild(createTrackCard(track));
+        });
+      } else if (categoryKey === 'top10') {
         const t = document.getElementById('tab-top10');
         if (t) t.classList.add('active');
         document.getElementById('catViewTitle').innerText = '★ Top 10 Hits (Mais Tocadas)';
@@ -1493,26 +1905,22 @@
       }
     }
 
-    function openSupportModal() {
-      donationModal.classList.add('open');
-    }
-
-    function closeDonationModal(e) {
-      if (e.target === donationModal) donationModal.classList.remove('open');
-    }
-
-    function closeDonationModalDirect() {
-      donationModal.classList.remove('open');
-    }
+    function openSupportModal() { donationModal.classList.add('open'); }
+    function closeDonationModal(e) { if (e.target === donationModal) donationModal.classList.remove('open'); }
+    function closeDonationModalDirect() { donationModal.classList.remove('open'); }
 
     function copyPixKey() {
       const pixKey = document.getElementById('pixKeyValue').innerText;
-      navigator.clipboard.writeText(pixKey).then(() => {
-        document.getElementById('copyBtnText').innerText = 'Chave Copiada! ✓';
-        setTimeout(() => {
-          document.getElementById('copyBtnText').innerText = 'Copiar Chave Pix';
-        }, 2500);
-      });
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(pixKey).then(() => {
+          document.getElementById('copyBtnText').innerText = 'Chave Copiada! ✓';
+          setTimeout(() => {
+            document.getElementById('copyBtnText').innerText = 'Copiar Chave Pix';
+          }, 2500);
+        }).catch(() => copyToClipboardFallback(pixKey));
+      } else {
+        copyToClipboardFallback(pixKey);
+      }
     }
 
     async function loadCatalog() {
@@ -1620,9 +2028,11 @@
         });
 
         allTracks = Array.from(uniqueMap.values());
+        discoveryTracks = [...allTracks].sort(() => 0.5 - Math.random()).slice(0, 10);
         activeQueue = [...allTracks];
         renderApp();
         if (allTracks.length > 0) setTrackDetails(0, false);
+        checkDirectUrlTrack();
       } catch (err) {
         top10Carousel.innerHTML = '<div style="color:#ff4d4d; padding:10px;">Error loading audio catalogue.</div>';
       }
@@ -1630,7 +2040,10 @@
 
     function createTrackCard(track, rankNumber = null) {
       const card = document.createElement('div');
-      card.className = 'track-card';
+      const isCurrentPlaying = activeQueue[currentQueueIndex] && activeQueue[currentQueueIndex].id === track.id && isPlaying;
+      card.className = `track-card ${isCurrentPlaying ? 'is-playing' : ''}`;
+      card.id = `card-${track.id}`;
+      
       card.onclick = () => {
         activeQueue = [...allTracks];
         currentQueueIndex = activeQueue.findIndex(t => t.id === track.id);
@@ -1638,10 +2051,19 @@
       };
 
       const rankBadge = rankNumber ? `<div class="badge-tag gold">#${rankNumber}</div>` : '';
+      const favClass = isFavorite(track.id) ? 'active' : '';
 
       card.innerHTML = `
         <div class="cover-box">
           ${rankBadge}
+          <button class="card-heart-btn ${favClass}" onclick="toggleLike('${track.id}', event)" title="Favoritar">
+            <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          </button>
+          <div class="card-visualizer">
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+          </div>
           <img src="${track.cover}" onerror="this.src='${ARCHIVE_DOWNLOAD_BASE}/cover.jpg'" loading="lazy">
         </div>
         <div class="track-info">
@@ -1676,6 +2098,11 @@
     }
 
     function renderApp() {
+      discoveryCarousel.innerHTML = '';
+      discoveryTracks.forEach(track => {
+        discoveryCarousel.appendChild(createTrackCard(track));
+      });
+
       top10Carousel.innerHTML = '';
       const top10 = [...allTracks].sort((a, b) => b.plays - a.plays).slice(0, 10);
       top10.forEach((track, index) => {
@@ -1760,9 +2187,7 @@
       albumModal.classList.add('open');
     }
 
-    function closeAlbumModal() {
-      albumModal.classList.remove('open');
-    }
+    function closeAlbumModal() { albumModal.classList.remove('open'); }
 
     function playCurrentAlbum() {
       if (selectedAlbum && selectedAlbum.tracks.length > 0) {
@@ -1779,6 +2204,7 @@
 
       audio.src = track.url;
       updateMediaSession(track);
+      updateFullPlayerLikeBtn();
 
       document.getElementById('miniTitle').innerText = track.title;
       document.getElementById('miniRhythm').innerText = `NaldoA • ${track.rhythm}`;
@@ -1821,12 +2247,20 @@
     }
 
     function prevTrack() {
-      currentQueueIndex = (currentQueueIndex - 1 + activeQueue.length) % activeQueue.length;
+      if (isShuffle) {
+        currentQueueIndex = Math.floor(Math.random() * activeQueue.length);
+      } else {
+        currentQueueIndex = (currentQueueIndex - 1 + activeQueue.length) % activeQueue.length;
+      }
       loadAndPlay(currentQueueIndex);
     }
 
     function nextTrack() {
-      currentQueueIndex = (currentQueueIndex + 1) % activeQueue.length;
+      if (isShuffle) {
+        currentQueueIndex = Math.floor(Math.random() * activeQueue.length);
+      } else {
+        currentQueueIndex = (currentQueueIndex + 1) % activeQueue.length;
+      }
       loadAndPlay(currentQueueIndex);
     }
 
@@ -1835,6 +2269,16 @@
       const pauseSvg = '<rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>';
       document.getElementById('miniPlayIcon').innerHTML = isPlaying ? pauseSvg : playSvg;
       document.getElementById('fullPlayIcon').innerHTML = isPlaying ? pauseSvg : playSvg;
+      
+      document.querySelectorAll('.track-card').forEach(card => {
+        card.classList.remove('is-playing');
+      });
+      const currentTrack = activeQueue[currentQueueIndex];
+      if (currentTrack && isPlaying) {
+        document.querySelectorAll(`[id="card-${currentTrack.id}"]`).forEach(card => {
+          card.classList.add('is-playing');
+        });
+      }
     }
 
     function openFullPlayer() { fullPlayer.classList.add('open'); }
@@ -1853,7 +2297,12 @@
     };
 
     audio.onended = () => {
-      nextTrack();
+      if (isRepeat) {
+        audio.currentTime = 0;
+        audio.play().catch(() => {});
+      } else {
+        nextTrack();
+      }
     };
 
     audio.ontimeupdate = () => {
