@@ -287,7 +287,7 @@
       padding: 16px;
     }
 
-    /* SLIM SINGLE-ROW SCROLLABLE HUB BAR */
+    /* SLIM HORIZONTAL SINGLE-ROW HUB BAR */
     .compact-hub-bar {
       display: flex;
       align-items: center;
@@ -1721,8 +1721,10 @@
           activeQueue = [...allTracks];
           loadAndPlay(foundIndex);
           openFullPlayer();
+          return true;
         }
       }
+      return false;
     }
 
     /* DETECÇÃO INTELIGENTE DE RITMOS */
@@ -2039,8 +2041,27 @@
         discoveryTracks = [...allTracks].sort(() => 0.5 - Math.random()).slice(0, 10);
         activeQueue = [...allTracks];
         renderApp();
-        if (allTracks.length > 0) setTrackDetails(0, false);
-        checkDirectUrlTrack();
+
+        // 1. CHECAGEM POR LINK DIRETO COM PARÂMETRO
+        const hasUrlTrack = checkDirectUrlTrack();
+
+        // 2. RESTAURAÇÃO INTELIGENTE DO ÚLTIMO ESTADO (SE NÃO VEIO POR LINK DIRETO)
+        if (!hasUrlTrack && allTracks.length > 0) {
+          const lastSavedId = localStorage.getItem('naldoa_last_track_id');
+          const lastSavedTime = parseFloat(localStorage.getItem('naldoa_last_track_time')) || 0;
+          
+          let targetIndex = 0;
+          if (lastSavedId) {
+            const foundIdx = allTracks.findIndex(t => t.id === lastSavedId);
+            if (foundIdx !== -1) targetIndex = foundIdx;
+          }
+
+          setTrackDetails(targetIndex, false);
+
+          if (lastSavedTime > 0) {
+            audio.currentTime = lastSavedTime;
+          }
+        }
       } catch (err) {
         top10Carousel.innerHTML = '<div style="color:#ff4d4d; padding:10px;">Error loading audio catalogue.</div>';
       }
@@ -2248,6 +2269,9 @@
       updateMediaSession(track);
       updateFullPlayerLikeBtn();
 
+      // SALVA O ID DA ÚLTIMA FAIXA CARREGADA
+      localStorage.setItem('naldoa_last_track_id', track.id);
+
       document.getElementById('miniTitle').innerText = track.title;
       document.getElementById('miniRhythm').innerText = `NaldoA • ${track.rhythm}`;
       document.getElementById('miniCover').src = track.cover;
@@ -2354,6 +2378,9 @@
         document.getElementById('currentTime').innerText = fmt(audio.currentTime);
         document.getElementById('durationTime').innerText = fmt(audio.duration);
 
+        // SALVA CONTINUAMENTE A POSIÇÃO DA MÚSICA EM SEGUNDO PLANO
+        localStorage.setItem('naldoa_last_track_time', audio.currentTime);
+
         if ('mediaSession' in navigator && navigator.mediaSession.setPositionState) {
           try {
             navigator.mediaSession.setPositionState({
@@ -2371,6 +2398,7 @@
       const rect = bar.getBoundingClientRect();
       const clickX = e.clientX - rect.left;
       audio.currentTime = (clickX / rect.width) * audio.duration;
+      localStorage.setItem('naldoa_last_track_time', audio.currentTime);
     }
 
     function fmt(s) {
