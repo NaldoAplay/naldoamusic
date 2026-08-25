@@ -287,19 +287,28 @@
       padding: 16px;
     }
 
-    /* COMPACT HUB BAR */
+    /* SLIM SINGLE-ROW SCROLLABLE HUB BAR */
     .compact-hub-bar {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
       gap: 8px;
-      margin: 6px 0 16px;
-      padding: 10px 14px;
+      margin: 4px 0 12px;
+      padding: 6px 10px;
       background: var(--glass-card);
       border: 1px solid var(--glass-border);
       border-radius: 50px;
       backdrop-filter: blur(15px);
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: none;
+    }
+
+    .compact-hub-bar::-webkit-scrollbar { display: none; }
+
+    @media (min-width: 768px) {
+      .compact-hub-bar {
+        justify-content: center;
+      }
     }
 
     .hub-btn {
@@ -312,10 +321,11 @@
       border-radius: 50px;
       text-decoration: none;
       color: var(--text);
-      font-size: 0.76rem;
+      font-size: 0.74rem;
       font-weight: 700;
       white-space: nowrap;
       cursor: pointer;
+      flex-shrink: 0;
       transition: all 0.2s ease;
     }
 
@@ -339,13 +349,14 @@
     }
 
     .hub-icon {
-      width: 15px;
-      height: 15px;
+      width: 14px;
+      height: 14px;
       fill: #ff0000;
+      flex-shrink: 0;
     }
 
     .search-box-wrapper {
-      margin: 10px 0 12px;
+      margin: 8px 0 10px;
       position: relative;
       display: flex;
       align-items: center;
@@ -353,7 +364,7 @@
 
     .search-input {
       width: 100%;
-      padding: 13px 44px 13px 44px;
+      padding: 12px 42px 12px 42px;
       background: var(--glass-card);
       border: 1px solid var(--glass-border);
       border-radius: 50px;
@@ -410,8 +421,8 @@
       display: flex;
       gap: 8px;
       overflow-x: auto;
-      padding-bottom: 8px;
-      margin: 10px 0 14px;
+      padding-bottom: 6px;
+      margin: 8px 0 12px;
       scrollbar-width: none;
     }
     .rhythm-scroll::-webkit-scrollbar { display: none; }
@@ -427,6 +438,7 @@
       white-space: nowrap;
       cursor: pointer;
       color: var(--text-dim);
+      flex-shrink: 0;
     }
 
     .rhythm-pill.active {
@@ -440,7 +452,7 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      margin: 24px 0 12px;
+      margin: 22px 0 10px;
       cursor: pointer;
     }
 
@@ -709,6 +721,47 @@
     .track-plays {
       color: var(--text-dim);
       font-weight: 600;
+    }
+
+    /* FEATURED VIDEO SECTION (BOTTOM) */
+    .bottom-video-section {
+      margin: 35px auto 10px;
+      padding: 18px;
+      background: var(--glass-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      text-align: center;
+      max-width: 650px;
+    }
+
+    .bottom-video-title {
+      font-size: 0.9rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #ff3333;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .bottom-video-box {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+
+    .bottom-video-box iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
     .album-modal {
@@ -1169,11 +1222,11 @@
 
     footer {
       text-align: center;
-      padding: 30px 10px 10px;
+      padding: 24px 10px 10px;
       font-size: 0.75rem;
       color: var(--text-dim);
       border-top: 1px solid var(--glass-border);
-      margin-top: 40px;
+      margin-top: 20px;
     }
   </style>
 </head>
@@ -1190,7 +1243,7 @@
     </div>
     
     <div class="header-actions">
-      <!-- Theme Switcher (Cycle 8 Themes: 4 Dark & 4 Light) -->
+      <!-- Theme Switcher (Cycle 8 Themes) -->
       <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Switch Glass Theme">
         <svg id="themeIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
       </button>
@@ -1213,7 +1266,7 @@
 
   <div class="container">
     
-    <!-- COMPACT HUB BAR -->
+    <!-- SLIM HORIZONTAL SINGLE-ROW HUB BAR -->
     <div class="compact-hub-bar">
       <a href="https://youtube.com/@naldoamusic?si=NhBGNUKl8piB9yt_" target="_blank" class="hub-btn">
         <svg class="hub-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -1237,17 +1290,13 @@
       <button class="search-clear-btn" id="searchClearBtn" onclick="clearSearch()">✕</button>
     </div>
 
-    <!-- Category Tabs -->
-    <div class="rhythm-scroll">
-      <div class="rhythm-pill active" id="tab-all" onclick="showAllContent()">All Genres</div>
+    <!-- DYNAMIC CATEGORY TABS -->
+    <div class="rhythm-scroll" id="rhythmTabsContainer">
+      <div class="rhythm-pill active" id="tab-all" onclick="showAllContent()">All Tracks</div>
       <div class="rhythm-pill" id="tab-favorites" onclick="openCategoryView('favorites')">❤️ Favorites</div>
       <div class="rhythm-pill" id="tab-discovery" onclick="openCategoryView('discovery')">✨ Discovery</div>
       <div class="rhythm-pill" id="tab-top10" onclick="openCategoryView('top10')">★ Top 10 Hits</div>
       <div class="rhythm-pill" id="tab-albums" onclick="openCategoryView('albums')">Albums</div>
-      <div class="rhythm-pill" id="tab-Electronic-EDM" onclick="openCategoryView('Electronic / EDM')">Electronic / EDM</div>
-      <div class="rhythm-pill" id="tab-Reggaeton" onclick="openCategoryView('Reggaeton')">Reggaeton</div>
-      <div class="rhythm-pill" id="tab-Forro" onclick="openCategoryView('Forro')">Forró</div>
-      <div class="rhythm-pill" id="tab-Gospel" onclick="openCategoryView('Gospel')">Gospel</div>
     </div>
 
     <!-- MAIN CAROUSEL VIEW -->
@@ -1293,8 +1342,20 @@
         </div>
       </div>
 
-      <!-- DYNAMIC SECTIONS -->
+      <!-- DYNAMIC GENRE SECTIONS -->
       <div id="dynamicSections"></div>
+
+      <!-- FEATURED VIDEO (DISCREET AT THE BOTTOM) -->
+      <div class="bottom-video-section">
+        <div class="bottom-video-title">
+          <svg style="width:16px; height:16px; fill:#ff3333;" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          Featured Music Video • NaldoA
+        </div>
+        <div class="bottom-video-box">
+          <iframe src="https://www.youtube.com/embed/3fDUloM-_Xs" title="NaldoA - EMBER (Official Music Video)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+
     </div>
 
     <!-- CATEGORY SINGLE VIEW -->
@@ -1492,6 +1553,7 @@
     const albumsCarousel = document.getElementById('albumsCarousel');
     const secAlbums = document.getElementById('sec-Albums');
     const dynamicSections = document.getElementById('dynamicSections');
+    const rhythmTabsContainer = document.getElementById('rhythmTabsContainer');
     const mainCarouselView = document.getElementById('mainCarouselView');
     const categoryDedicatedView = document.getElementById('categoryDedicatedView');
     const categoryGrid = document.getElementById('categoryGrid');
@@ -1663,21 +1725,27 @@
       }
     }
 
+    /* DETECÇÃO INTELIGENTE DE RITMOS */
     function detectRhythm(name) {
       const lower = name.toLowerCase();
+      if (lower.includes('love') || lower.includes('romantic') || lower.includes('slow') || lower.includes('ballad')) {
+        return 'Love Songs';
+      }
       if (lower.includes('reggaeton')) return 'Reggaeton';
       if (lower.includes('forro') || lower.includes('forró')) return 'Forro';
-      if (lower.includes('gospel')) return 'Gospel';
+      if (lower.includes('gospel') || lower.includes('worship') || lower.includes('louvor')) return 'Gospel';
       if (
         lower.includes('edm') || 
         lower.includes('trance') || 
         lower.includes('house') || 
         lower.includes('progressive') || 
-        lower.includes('electronic')
+        lower.includes('electronic') ||
+        lower.includes('dance') ||
+        lower.includes('electro')
       ) {
         return 'Electronic / EDM';
       }
-      return 'Electronic / EDM';
+      return 'Other';
     }
 
     function updateMediaSession(track) {
@@ -1936,7 +2004,7 @@
             const detectedGenre = file.genre || detectRhythm(rawName);
             
             const cleanTitle = songTitle
-              .replace(/_?(EDM|Progressive_House|Trance|Reggaeton|Forro|Forró|Gospel|Electronic)$/gi, '')
+              .replace(/_?(EDM|Progressive_House|Trance|Reggaeton|Forro|Forró|Gospel|Electronic|Love_Songs|Other)$/gi, '')
               .replaceAll('_', ' ')
               .trim();
 
@@ -2063,11 +2131,41 @@
         secAlbums.style.display = 'none';
       }
 
-      // DYNAMIC SECTIONS
-      dynamicSections.innerHTML = '';
-      const rhythmList = ['Electronic / EDM', 'Reggaeton', 'Forro', 'Gospel'];
+      // IDENTIFICAÇÃO DINÂMICA DE TODOS OS GÊNEROS PRESENTES NO CATÁLOGO
+      const detectedGenres = Array.from(new Set(allTracks.map(t => t.rhythm))).filter(Boolean);
+      
+      const priorityOrder = ['Electronic / EDM', 'Reggaeton', 'Forro', 'Gospel', 'Love Songs', 'Other'];
+      detectedGenres.sort((a, b) => {
+        const iA = priorityOrder.indexOf(a);
+        const iB = priorityOrder.indexOf(b);
+        if (iA !== -1 && iB !== -1) return iA - iB;
+        if (iA !== -1) return -1;
+        if (iB !== -1) return 1;
+        return a.localeCompare(b);
+      });
 
-      rhythmList.forEach(rhythm => {
+      // RENDERIZAÇÃO DAS ABAS DE CATEGORIAS DINÂMICAS
+      rhythmTabsContainer.innerHTML = `
+        <div class="rhythm-pill active" id="tab-all" onclick="showAllContent()">All Tracks</div>
+        <div class="rhythm-pill" id="tab-favorites" onclick="openCategoryView('favorites')">❤️ Favorites</div>
+        <div class="rhythm-pill" id="tab-discovery" onclick="openCategoryView('discovery')">✨ Discovery</div>
+        <div class="rhythm-pill" id="tab-top10" onclick="openCategoryView('top10')">★ Top 10 Hits</div>
+        <div class="rhythm-pill" id="tab-albums" onclick="openCategoryView('albums')">Albums</div>
+      `;
+
+      detectedGenres.forEach(genre => {
+        const cleanId = 'tab-' + genre.replace(/[\s\/]+/g, '-');
+        const pill = document.createElement('div');
+        pill.className = 'rhythm-pill';
+        pill.id = cleanId;
+        pill.innerText = genre;
+        pill.onclick = () => openCategoryView(genre);
+        rhythmTabsContainer.appendChild(pill);
+      });
+
+      // RENDERIZAÇÃO DOS CARROSSÉIS DE GÊNEROS NA TELA PRINCIPAL
+      dynamicSections.innerHTML = '';
+      detectedGenres.forEach(rhythm => {
         const rhythmTracks = allTracks.filter(t => t.rhythm.toLowerCase() === rhythm.toLowerCase());
         
         if (rhythmTracks.length > 0) {
