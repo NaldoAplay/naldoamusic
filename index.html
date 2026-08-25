@@ -1441,7 +1441,7 @@
     </div>
 
 
-    <!--    TESTE DO BOTAO HAMBURGUER DE LISTA DE MUSICAS.  -->
+    <!--    TESTE DO BOTAO HAMBURGER DE LISTA DE MUSICAS.  -->
 
 
     <! --    FIM.    -->
@@ -1495,7 +1495,7 @@
         <span id="fullPlayerLikeText">Favorite</span>
       </button>
       <button class="btn-action-pill support" onclick="openSupportModal()">
-        ❤️ Support NaldoA
+        Support NaldoA
       </button>
     </div>
   </div>
@@ -1664,7 +1664,7 @@
       const txt = document.getElementById('fullPlayerLikeText');
       if (!track || !btn) return;
       if (isFavorite(track.id)) {
-        btn.classList.add('heart-active');
+        btn.classList.add('heart-active'); 
         txt.innerText = 'Favorited ❤️';
       } else {
         btn.classList.remove('heart-active');
@@ -1986,7 +1986,6 @@
         allAlbums = {};
 
         allAudioFiles.forEach(file => {
-          // Limpeza rigorosa de todas as extensões e sufixos de conversão do Archive.org
           let rawName = file.name
             .replace(/\.(mp3|wav|flac|aac|ogg)$/i, '')
             .replace(/_vbr$/i, '');
@@ -2032,7 +2031,6 @@
 
             const detectedGenre = file.genre || detectRhythm(rawName);
             
-            // LIMPEZA COMPLETA DO TÍTULO: remove extensões residuais e sufixos de ritmos
             let cleanTitle = songTitle
               .replace(/\.(mp3|wav|flac|aac|ogg)$/i, '')
               .replace(/_?(EDM|Progressive_House|Trance|Reggaeton|Forro|Forró|Gospel|Electronic|Love_Songs|Other)$/gi, '')
@@ -2071,10 +2069,8 @@
         activeQueue = [...allTracks];
         renderApp();
 
-        // 1. CHECAGEM POR LINK DIRETO COM PARÂMETRO
         const hasUrlTrack = checkDirectUrlTrack();
 
-        // 2. RESTAURAÇÃO INTELIGENTE DO ÚLTIMO ESTADO (SE NÃO VEIO POR LINK DIRETO)
         if (!hasUrlTrack && allTracks.length > 0) {
           const lastSavedId = localStorage.getItem('naldoa_last_track_id');
           const lastSavedTime = parseFloat(localStorage.getItem('naldoa_last_track_time')) || 0;
@@ -2105,7 +2101,8 @@
       card.onclick = () => {
         activeQueue = [...allTracks];
         currentQueueIndex = activeQueue.findIndex(t => t.id === track.id);
-        loadAndPlay(currentQueueIndex);
+        setTrackDetails(currentQueueIndex, true);
+        openFullPlayer(); // <--- ABRIR EM TELA CHEIA AO CLICAR NO CARD
       };
 
       const rankBadge = rankNumber ? `<div class="badge-tag gold">#${rankNumber}</div>` : '';
@@ -2156,20 +2153,17 @@
     }
 
     function renderApp() {
-      // DISCOVERY CAROUSEL
       discoveryCarousel.innerHTML = '';
       discoveryTracks.forEach(track => {
         discoveryCarousel.appendChild(createTrackCard(track));
       });
 
-      // TOP 10 HITS CAROUSEL
       top10Carousel.innerHTML = '';
       const top10 = [...allTracks].sort((a, b) => b.plays - a.plays).slice(0, 10);
       top10.forEach((track, index) => {
         top10Carousel.appendChild(createTrackCard(track, index + 1));
       });
 
-      // ALBUMS CAROUSEL
       const albumKeys = Object.keys(allAlbums);
       if (albumKeys.length > 0) {
         secAlbums.style.display = 'block';
@@ -2181,7 +2175,6 @@
         secAlbums.style.display = 'none';
       }
 
-      // IDENTIFICAÇÃO DINÂMICA DE TODOS OS GÊNEROS PRESENTES NO CATÁLOGO
       const detectedGenres = Array.from(new Set(allTracks.map(t => t.rhythm))).filter(Boolean);
       
       const priorityOrder = ['Electronic / EDM', 'Reggaeton', 'Forro', 'Gospel', 'Love Songs', 'Other'];
@@ -2194,7 +2187,6 @@
         return a.localeCompare(b);
       });
 
-      // RENDERIZAÇÃO DAS ABAS DE CATEGORIAS DINÂMICAS
       rhythmTabsContainer.innerHTML = `
         <div class="rhythm-pill active" id="tab-all" onclick="showAllContent()">All Tracks</div>
         <div class="rhythm-pill" id="tab-favorites" onclick="openCategoryView('favorites')">❤️ Favorites</div>
@@ -2213,7 +2205,6 @@
         rhythmTabsContainer.appendChild(pill);
       });
 
-      // RENDERIZAÇÃO DOS CARROSSÉIS DE GÊNEROS NA TELA PRINCIPAL
       dynamicSections.innerHTML = '';
       detectedGenres.forEach(rhythm => {
         const rhythmTracks = allTracks.filter(t => t.rhythm.toLowerCase() === rhythm.toLowerCase());
@@ -2262,8 +2253,9 @@
         item.onclick = () => {
           activeQueue = [...selectedAlbum.tracks];
           currentQueueIndex = i;
-          loadAndPlay(currentQueueIndex);
+          setTrackDetails(currentQueueIndex, true);
           closeAlbumModal();
+          openFullPlayer(); // <--- ABRIR EM TELA CHEIA AO CLICAR NA MÚSICA DO ÁLBUM
         };
 
         item.innerHTML = `
@@ -2285,8 +2277,9 @@
       if (selectedAlbum && selectedAlbum.tracks.length > 0) {
         activeQueue = [...selectedAlbum.tracks];
         currentQueueIndex = 0;
-        loadAndPlay(0);
+        setTrackDetails(0, true);
         closeAlbumModal();
+        openFullPlayer(); // <--- ABRIR EM TELA CHEIA AO CLICAR EM PLAY ALBUM
       }
     }
 
@@ -2294,11 +2287,11 @@
       const track = activeQueue[index];
       if (!track) return;
 
+      currentQueueIndex = index;
       audio.src = track.url;
       updateMediaSession(track);
       updateFullPlayerLikeBtn();
 
-      // SALVA O ID DA ÚLTIMA FAIXA CARREGADA
       localStorage.setItem('naldoa_last_track_id', track.id);
 
       document.getElementById('miniTitle').innerText = track.title;
@@ -2319,15 +2312,11 @@
       }
     }
 
-    function loadAndPlay(index) {
-      currentQueueIndex = index;
-      setTrackDetails(currentQueueIndex, true);
-    }
-
     function togglePlay() {
       if (!audio.src && allTracks.length > 0) {
         activeQueue = [...allTracks];
-        loadAndPlay(0);
+        setTrackDetails(0, true);
+        openFullPlayer();
         return;
       }
       if (isPlaying) {
@@ -2347,7 +2336,8 @@
       } else {
         currentQueueIndex = (currentQueueIndex - 1 + activeQueue.length) % activeQueue.length;
       }
-      loadAndPlay(currentQueueIndex);
+      setTrackDetails(currentQueueIndex, true);
+      openFullPlayer();
     }
 
     function nextTrack() {
@@ -2356,7 +2346,8 @@
       } else {
         currentQueueIndex = (currentQueueIndex + 1) % activeQueue.length;
       }
-      loadAndPlay(currentQueueIndex);
+      setTrackDetails(currentQueueIndex, true);
+      openFullPlayer();
     }
 
     function updatePlayIcons() {
@@ -2407,7 +2398,6 @@
         document.getElementById('currentTime').innerText = fmt(audio.currentTime);
         document.getElementById('durationTime').innerText = fmt(audio.duration);
 
-        // SALVA CONTINUAMENTE A POSIÇÃO DA MÚSICA EM SEGUNDO PLANO
         localStorage.setItem('naldoa_last_track_time', audio.currentTime);
 
         if ('mediaSession' in navigator && navigator.mediaSession.setPositionState) {
@@ -2439,8 +2429,6 @@
     initTheme();
     loadCatalog();
 
-
-    //.  TESTE DO BOTAO HAMBURGER DAS LISTs de musica
     /* FUNÇÃO PARA ABRIR A FILA ATUAL OU O ÁLBUM DO PLAYER */
     function openCurrentQueueModal() {
       const track = activeQueue[currentQueueIndex];
@@ -2458,9 +2446,9 @@
           const item = document.createElement('div');
           item.className = `tracklist-item ${i === currentQueueIndex ? 'is-playing-item' : ''}`;
           item.onclick = () => {
-            currentQueueIndex = i;
-            loadAndPlay(currentQueueIndex);
+            setTrackDetails(i, true);
             closeAlbumModal();
+            openFullPlayer();
           };
 
           item.innerHTML = `
@@ -2476,8 +2464,6 @@
         albumModal.classList.add('open');
       }
     }
-
-    
   </script>
 </body>
 </html>
