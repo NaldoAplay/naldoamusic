@@ -48,7 +48,7 @@
   <meta name="twitter:image" content="https://archive.org/download/naldoa-digital-music-stream/cover.jpg">
 
   <style>
-    /* 1. DARK CLÁSSICO (CYAN NEON) */
+    /* 1. CLASSIC DARK (CYAN NEON) */
     :root, [data-theme="dark"] {
       --bg: #06080d;
       --bg-gradient-1: rgba(0, 210, 255, 0.12);
@@ -120,7 +120,7 @@
       --heart-active: #ff0055;
     }
 
-    /* 5. LIGHT CLÁSSICO (FROST BLUE) */
+    /* 5. CLASSIC LIGHT (FROST BLUE) */
     [data-theme="light"] {
       --bg: #f2f5fa;
       --bg-gradient-1: rgba(0, 180, 255, 0.14);
@@ -287,120 +287,65 @@
       padding: 16px;
     }
 
-    .yt-hub-container {
+    /* COMPACT HUB BAR */
+    .compact-hub-bar {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 16px;
-      margin: 8px auto 14px;
-      background: var(--glass-card);
-      border: 1px solid var(--glass-border);
-      padding: 16px;
-      border-radius: 20px;
-      backdrop-filter: blur(15px);
-      max-width: 100%;
-    }
-
-    @media (min-width: 768px) {
-      .yt-hub-container {
-        flex-direction: row;
-        justify-content: space-between;
-        text-align: left;
-        align-items: center;
-        padding: 20px;
-      }
-    }
-
-    .yt-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      width: 100%;
-      align-items: center;
-    }
-
-    @media (min-width: 768px) {
-      .yt-actions {
-        align-items: flex-start;
-        flex: 1;
-      }
-    }
-
-    .yt-carousel {
-      display: flex;
-      flex-direction: row;
       flex-wrap: wrap;
-      gap: 10px;
-      width: 100%;
-      justify-content: center;
-    }
-
-    @media (min-width: 768px) {
-      .yt-carousel { justify-content: flex-start; }
-    }
-
-    .yt-pill {
-      display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
+      margin: 6px 0 16px;
+      padding: 10px 14px;
+      background: var(--glass-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      backdrop-filter: blur(15px);
+    }
+
+    .hub-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       background: rgba(125, 125, 125, 0.08);
       border: 1px solid var(--glass-border);
-      padding: 10px 18px;
+      padding: 6px 14px;
       border-radius: 50px;
       text-decoration: none;
       color: var(--text);
-      font-size: 0.82rem;
+      font-size: 0.76rem;
       font-weight: 700;
       white-space: nowrap;
       cursor: pointer;
+      transition: all 0.2s ease;
     }
 
-    .yt-pill:hover {
+    .hub-btn:hover {
       border-color: #ff0000;
-      box-shadow: 0 0 14px rgba(255, 0, 0, 0.25);
+      color: #ff0000;
+      transform: translateY(-1px);
     }
 
-    .yt-pill.support-pill {
+    .hub-btn.support {
       background: rgba(255, 82, 82, 0.12);
       border-color: rgba(255, 82, 82, 0.35);
       color: #ff5252;
     }
 
-    .yt-pill.support-pill:hover {
+    .hub-btn.support:hover {
       background: #ff5252;
       color: #fff;
       border-color: #ff5252;
-      box-shadow: 0 0 14px rgba(255, 82, 82, 0.4);
+      box-shadow: 0 0 12px rgba(255, 82, 82, 0.35);
     }
 
-    .yt-icon {
-      width: 18px;
-      height: 18px;
+    .hub-icon {
+      width: 15px;
+      height: 15px;
       fill: #ff0000;
     }
 
-    .yt-video-frame-box {
-      width: 100%;
-      max-width: 380px;
-      aspect-ratio: 16/9;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid var(--glass-border);
-      background: #000;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-      flex-shrink: 0;
-    }
-
-    .yt-video-frame-box iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
     .search-box-wrapper {
-      margin: 16px 0 12px;
+      margin: 10px 0 12px;
       position: relative;
       display: flex;
       align-items: center;
@@ -1033,6 +978,7 @@
       margin-top: 6px;
     }
 
+    /* MODERN CONTROLS */
     .full-controls {
       display: flex;
       justify-content: center;
@@ -1234,7 +1180,7 @@
 <body>
 
   <div class="toast-box" id="toastBox">
-    <span id="toastMsg">Link copiado!</span>
+    <span id="toastMsg">Track link copied!</span>
   </div>
 
   <header>
@@ -1245,7 +1191,7 @@
     
     <div class="header-actions">
       <!-- Theme Switcher (Cycle 8 Themes: 4 Dark & 4 Light) -->
-      <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Trocar Tema Glass">
+      <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Switch Glass Theme">
         <svg id="themeIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
       </button>
 
@@ -1267,27 +1213,19 @@
 
   <div class="container">
     
-    <div class="yt-hub-container">
-      <div class="yt-actions">
-        <div class="section-title" style="font-size: 0.8rem; color: var(--text-dim);">Official Channels & Support</div>
-        <div class="yt-carousel">
-          <a href="https://youtube.com/@naldoamusic?si=NhBGNUKl8piB9yt_" target="_blank" class="yt-pill">
-            <svg class="yt-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            Subscribe to NaldoA (Main)
-          </a>
-          <a href="https://youtube.com/@NaldoADigitalMusic" target="_blank" class="yt-pill">
-            <svg class="yt-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            NaldoA Digital Music Videos
-          </a>
-          <!-- BOTÃO DE DOAÇÃO AO LADO DOS CANAIS -->
-          <button class="yt-pill support-pill" onclick="openSupportModal()">
-            ❤️ Support / Apoiar NaldoA
-          </button>
-        </div>
-      </div>
-      <div class="yt-video-frame-box">
-        <iframe src="https://www.youtube.com/embed/3fDUloM-_Xs?enablejsapi=1" title="NaldoA - EMBER (Official Music Video)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
+    <!-- COMPACT HUB BAR -->
+    <div class="compact-hub-bar">
+      <a href="https://youtube.com/@naldoamusic?si=NhBGNUKl8piB9yt_" target="_blank" class="hub-btn">
+        <svg class="hub-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        Subscribe (Main Channel)
+      </a>
+      <a href="https://youtube.com/@NaldoADigitalMusic" target="_blank" class="hub-btn">
+        <svg class="hub-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        Digital Music Videos
+      </a>
+      <button class="hub-btn support" onclick="openSupportModal()">
+        ❤️ Support NaldoA (Pix)
+      </button>
     </div>
 
     <!-- SEARCH BAR -->
@@ -1318,7 +1256,7 @@
       <div id="sec-discovery">
         <div class="section-header" onclick="openCategoryView('discovery')">
           <div class="section-title purple">✨ Discovery & Highlights</div>
-          <span class="view-all-btn">Ver tudo ❯</span>
+          <span class="view-all-btn">View all ❯</span>
         </div>
         <div class="carousel-wrapper">
           <button class="carousel-nav-btn prev" onclick="scrollCarousel('discoveryCarousel', -350)">❮</button>
@@ -1331,7 +1269,7 @@
       <div id="sec-top10">
         <div class="section-header" onclick="openCategoryView('top10')">
           <div class="section-title gold">★ Top 10 Hits (Most Played)</div>
-          <span class="view-all-btn">Ver tudo ❯</span>
+          <span class="view-all-btn">View all ❯</span>
         </div>
         <div class="carousel-wrapper">
           <button class="carousel-nav-btn prev" onclick="scrollCarousel('top10Carousel', -350)">❮</button>
@@ -1346,7 +1284,7 @@
       <div id="sec-Albums" style="display:none;">
         <div class="section-header" onclick="openCategoryView('albums')">
           <div class="section-title">Official Albums</div>
-          <span class="view-all-btn">Ver tudo ❯</span>
+          <span class="view-all-btn">View all ❯</span>
         </div>
         <div class="carousel-wrapper">
           <button class="carousel-nav-btn prev" onclick="scrollCarousel('albumsCarousel', -350)">❮</button>
@@ -1362,7 +1300,7 @@
     <!-- CATEGORY SINGLE VIEW -->
     <div id="categoryDedicatedView" style="display:none;">
       <div class="category-page-header">
-        <button class="btn-back" onclick="showAllContent()">← Voltar ao Início</button>
+        <button class="btn-back" onclick="showAllContent()">← Back to Home</button>
         <div class="section-title" id="catViewTitle" style="font-size:1.1rem;">Category</div>
       </div>
       <div class="category-grid" id="categoryGrid"></div>
@@ -1417,8 +1355,8 @@
       <button class="btn-close" onclick="closeFullPlayer()">✕</button>
       <span style="font-size: 0.75rem; letter-spacing: 2px; color: var(--text-dim); text-transform: uppercase;">Playing Now</span>
       
-      <!-- BOTÃO COMPARTILHAR EXCLUSIVO NO TOPO DO PLAYER -->
-      <button class="btn-ctrl" onclick="shareCurrentTrack()" title="Compartilhar Faixa">
+      <!-- SHARE BUTTON -->
+      <button class="btn-ctrl" onclick="shareCurrentTrack()" title="Share Track">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
       </button>
     </div>
@@ -1442,13 +1380,13 @@
       </div>
     </div>
 
-    <!-- MODERN CONTROLS (Shuffle, Prev, Play, Next, Repeat) -->
+    <!-- MODERN CONTROLS -->
     <div class="full-controls">
-      <button class="btn-ctrl" id="btnShuffle" onclick="toggleShuffle()" title="Modo Aleatório">
+      <button class="btn-ctrl" id="btnShuffle" onclick="toggleShuffle()" title="Shuffle Mode">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
       </button>
       
-      <button class="btn-ctrl" onclick="prevTrack()" title="Anterior">
+      <button class="btn-ctrl" onclick="prevTrack()" title="Previous Track">
         <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg>
       </button>
       
@@ -1456,51 +1394,50 @@
         <svg id="fullPlayIcon" width="24" height="24" fill="#000" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
       </button>
       
-      <button class="btn-ctrl" onclick="nextTrack()" title="Próxima">
+      <button class="btn-ctrl" onclick="nextTrack()" title="Next Track">
         <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
       </button>
 
-      <button class="btn-ctrl" id="btnRepeat" onclick="toggleRepeat()" title="Repetir Faixa">
+      <button class="btn-ctrl" id="btnRepeat" onclick="toggleRepeat()" title="Repeat Track">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
       </button>
     </div>
 
-    <!-- BOTÕES INFERIORES: APENAS FAVORITAR E APOIAR -->
+    <!-- ACTION BUTTONS -->
     <div class="player-action-row">
       <button class="btn-action-pill" id="fullPlayerLikeBtn" onclick="toggleLikeCurrentTrack()">
         <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-        <span id="fullPlayerLikeText">Favoritar</span>
+        <span id="fullPlayerLikeText">Favorite</span>
       </button>
       <button class="btn-action-pill support" onclick="openSupportModal()">
-        ❤️ Apoiar NaldoA
+        ❤️ Support NaldoA
       </button>
     </div>
   </div>
 
-  <!-- MODAL DE DOAÇÃO E APOIO -->
+  <!-- DONATION MODAL -->
   <div class="donation-modal" id="donationModal" onclick="closeDonationModal(event)">
     <div class="donation-card" onclick="event.stopPropagation()">
       <button class="btn-close" style="position:absolute; top:16px; right:16px;" onclick="closeDonationModalDirect()">✕</button>
       
       <h3>Support NaldoA ❤️</h3>
       <p style="margin-bottom: 12px;">
-        Enjoying the music? Support the production of new tracks with any amount!<br>
-        <span style="font-size:0.75rem; opacity:0.8;">Gostou das músicas? Apoie novos lançamentos com qualquer valor!</span>
+        Enjoying the music? Support the production of new tracks with any amount!
       </p>
       
-      <!-- Brasil (Pix) -->
+      <!-- Brazil Pix -->
       <div class="pix-box">
         <span style="font-size:0.72rem; color:var(--text-dim); text-transform:uppercase; font-weight:700; display:block; margin-bottom:4px;">
-          🇧🇷 Brasil • Chave Pix (E-mail):
+          🇧🇷 Brazil • Pix Key (E-mail):
         </span>
         <div class="pix-key" id="pixKeyValue">naldoamusic@gmail.com</div>
         <button class="btn-copy-pix" onclick="copyPixKey()">
           <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-          <span id="copyBtnText">Copiar Chave Pix</span>
+          <span id="copyBtnText">Copy Pix Key</span>
         </button>
       </div>
 
-      <!-- Internacional / Cartões (Mercado Pago) -->
+      <!-- Worldwide / Mercado Pago -->
       <a href="https://link.mercadopago.com.br/supportnaldoamusic" target="_blank" class="mp-link-btn" id="mpDonationLink">
         🌎 International Cards / Mercado Pago
       </a>
@@ -1528,14 +1465,14 @@
     ];
 
     const THEME_NAMES = {
-      'dark': 'Dark Clássico (Cyan)',
-      'light': 'Light Clássico (Frost)',
-      'purple': 'Purple Violet Glass (Escuro)',
-      'light-rose': 'Rose Pastel Glass (Claro)',
-      'emerald': 'Emerald Cyber Glass (Escuro)',
-      'light-emerald': 'Emerald Fresh Glass (Claro)',
-      'sunset': 'Sunset Amber Glass (Escuro)',
-      'light-gold': 'Sunset Gold Glass (Claro)'
+      'dark': 'Classic Dark (Cyan)',
+      'light': 'Classic Light (Frost)',
+      'purple': 'Purple Violet Glass',
+      'light-rose': 'Rose Pastel Glass',
+      'emerald': 'Emerald Cyber Glass',
+      'light-emerald': 'Emerald Fresh Glass',
+      'sunset': 'Sunset Amber Glass',
+      'light-gold': 'Sunset Gold Glass'
     };
 
     let allTracks = [];
@@ -1588,7 +1525,7 @@
       
       document.documentElement.setAttribute('data-theme', nextTheme);
       localStorage.setItem('theme_mode', nextTheme);
-      showToast(`Tema: ${THEME_NAMES[nextTheme]}`);
+      showToast(`Theme: ${THEME_NAMES[nextTheme]}`);
     }
 
     function getStoredPlays(id) {
@@ -1611,7 +1548,7 @@
       renderApp();
     }
 
-    /* CURTIDAS (FAVORITES) LOGIC */
+    /* FAVORITES LOGIC */
     function isFavorite(trackId) {
       return favoriteTrackIds.includes(trackId);
     }
@@ -1620,10 +1557,10 @@
       if (event) event.stopPropagation();
       if (isFavorite(trackId)) {
         favoriteTrackIds = favoriteTrackIds.filter(id => id !== trackId);
-        showToast('Removido dos favoritos');
+        showToast('Removed from favorites');
       } else {
         favoriteTrackIds.push(trackId);
-        showToast('Adicionado aos favoritos ❤️');
+        showToast('Added to favorites ❤️');
       }
       localStorage.setItem('naldoa_favs', JSON.stringify(favoriteTrackIds));
       updateFullPlayerLikeBtn();
@@ -1642,10 +1579,10 @@
       if (!track || !btn) return;
       if (isFavorite(track.id)) {
         btn.classList.add('heart-active');
-        txt.innerText = 'Curtido ❤️';
+        txt.innerText = 'Favorited ❤️';
       } else {
         btn.classList.remove('heart-active');
-        txt.innerText = 'Favoritar';
+        txt.innerText = 'Favorite';
       }
     }
 
@@ -1653,16 +1590,16 @@
     function toggleShuffle() {
       isShuffle = !isShuffle;
       btnShuffle.classList.toggle('active', isShuffle);
-      showToast(isShuffle ? 'Modo Aleatório: Ativado 🔀' : 'Modo Aleatório: Desativado');
+      showToast(isShuffle ? 'Shuffle Mode: ON 🔀' : 'Shuffle Mode: OFF');
     }
 
     function toggleRepeat() {
       isRepeat = !isRepeat;
       btnRepeat.classList.toggle('active', isRepeat);
-      showToast(isRepeat ? 'Repetir Música: Ativado 🔁' : 'Repetir Música: Desativado');
+      showToast(isRepeat ? 'Repeat Track: ON 🔁' : 'Repeat Track: OFF');
     }
 
-    /* COMPARTILHAMENTO */
+    /* SHARE */
     function copyToClipboardFallback(text) {
       const tempInput = document.createElement('textarea');
       tempInput.value = text;
@@ -1674,9 +1611,9 @@
       tempInput.setSelectionRange(0, 99999);
       try {
         document.execCommand('copy');
-        showToast('Link da música copiado! ✓');
+        showToast('Track link copied! ✓');
       } catch (err) {
-        showToast('Erro ao copiar link');
+        showToast('Error copying link');
       }
       document.body.removeChild(tempInput);
     }
@@ -1696,7 +1633,7 @@
         });
       } else if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(shareUrl).then(() => {
-          showToast('Link da música copiado! ✓');
+          showToast('Track link copied! ✓');
         }).catch(() => {
           copyToClipboardFallback(shareUrl);
         });
@@ -1865,10 +1802,10 @@
       if (categoryKey === 'favorites') {
         const t = document.getElementById('tab-favorites');
         if (t) t.classList.add('active');
-        document.getElementById('catViewTitle').innerText = '❤️ Minhas Músicas Favoritas';
+        document.getElementById('catViewTitle').innerText = '❤️ My Favorite Tracks';
         const favs = allTracks.filter(tr => isFavorite(tr.id));
         if (favs.length === 0) {
-          categoryGrid.innerHTML = `<div style="color:var(--text-dim); padding:30px; grid-column: 1 / -1; text-align:center;">Você ainda não favoritou nenhuma música.<br>Clique no coração das faixas para salvá-las aqui!</div>`;
+          categoryGrid.innerHTML = `<div style="color:var(--text-dim); padding:30px; grid-column: 1 / -1; text-align:center;">No favorite tracks added yet.<br>Click the heart icon on any track to save it here!</div>`;
           return;
         }
         favs.forEach(track => {
@@ -1877,14 +1814,14 @@
       } else if (categoryKey === 'discovery') {
         const t = document.getElementById('tab-discovery');
         if (t) t.classList.add('active');
-        document.getElementById('catViewTitle').innerText = '✨ Descobertas & Destaques';
+        document.getElementById('catViewTitle').innerText = '✨ Discovery & Highlights';
         discoveryTracks.forEach(track => {
           categoryGrid.appendChild(createTrackCard(track));
         });
       } else if (categoryKey === 'top10') {
         const t = document.getElementById('tab-top10');
         if (t) t.classList.add('active');
-        document.getElementById('catViewTitle').innerText = '★ Top 10 Hits (Mais Tocadas)';
+        document.getElementById('catViewTitle').innerText = '★ Top 10 Hits (Most Played)';
         const top10 = [...allTracks].sort((a, b) => b.plays - a.plays).slice(0, 10);
         top10.forEach((track, index) => {
           categoryGrid.appendChild(createTrackCard(track, index + 1));
@@ -1916,9 +1853,9 @@
       const pixKey = document.getElementById('pixKeyValue').innerText;
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(pixKey).then(() => {
-          document.getElementById('copyBtnText').innerText = 'Chave Copiada! ✓';
+          document.getElementById('copyBtnText').innerText = 'Key Copied! ✓';
           setTimeout(() => {
-            document.getElementById('copyBtnText').innerText = 'Copiar Chave Pix';
+            document.getElementById('copyBtnText').innerText = 'Copy Pix Key';
           }, 2500);
         }).catch(() => copyToClipboardFallback(pixKey));
       } else {
@@ -2059,7 +1996,7 @@
       card.innerHTML = `
         <div class="cover-box">
           ${rankBadge}
-          <button class="card-heart-btn ${favClass}" onclick="toggleLike('${track.id}', event)" title="Favoritar">
+          <button class="card-heart-btn ${favClass}" onclick="toggleLike('${track.id}', event)" title="Favorite">
             <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
           </button>
           <div class="card-visualizer">
@@ -2101,17 +2038,20 @@
     }
 
     function renderApp() {
+      // DISCOVERY CAROUSEL
       discoveryCarousel.innerHTML = '';
       discoveryTracks.forEach(track => {
         discoveryCarousel.appendChild(createTrackCard(track));
       });
 
+      // TOP 10 HITS CAROUSEL
       top10Carousel.innerHTML = '';
       const top10 = [...allTracks].sort((a, b) => b.plays - a.plays).slice(0, 10);
       top10.forEach((track, index) => {
         top10Carousel.appendChild(createTrackCard(track, index + 1));
       });
 
+      // ALBUMS CAROUSEL
       const albumKeys = Object.keys(allAlbums);
       if (albumKeys.length > 0) {
         secAlbums.style.display = 'block';
@@ -2123,6 +2063,7 @@
         secAlbums.style.display = 'none';
       }
 
+      // DYNAMIC SECTIONS
       dynamicSections.innerHTML = '';
       const rhythmList = ['Electronic / EDM', 'Reggaeton', 'Forro', 'Gospel'];
 
@@ -2138,7 +2079,7 @@
           sectionWrapper.innerHTML = `
             <div class="section-header" onclick="openCategoryView('${rhythm}')">
               <div class="section-title">${rhythm}</div>
-              <span class="view-all-btn">Ver tudo ❯</span>
+              <span class="view-all-btn">View all ❯</span>
             </div>
             <div class="carousel-wrapper">
               <button class="carousel-nav-btn prev" onclick="scrollCarousel('carousel-${cleanId}', -350)">❮</button>
