@@ -20,7 +20,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-RMZDGK7R4G');
   </script>
 
@@ -1276,6 +1275,53 @@
       border-top: 1px solid var(--glass-border);
       margin-top: 20px;
     }
+
+    /* FAVORITES CONTROLS */
+    .favorites-controls {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .favorites-controls button {
+      background: var(--glass-card);
+      color: var(--text);
+      border: 1px solid var(--glass-border);
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .favorites-controls button:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .favorites-controls button.active-shuffle {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+      box-shadow: 0 0 14px var(--accent-glow);
+    }
+
+    .favorites-controls button.play-all {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+    }
+
+    .favorites-controls button.play-all:hover {
+      box-shadow: 0 0 14px var(--accent-glow);
+    }
   </style>
 </head>
 <body>
@@ -1291,12 +1337,10 @@
     </div>
     
     <div class="header-actions">
-      <!-- Theme Switcher (Cycle 8 Themes) -->
       <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Switch Glass Theme">
         <svg id="themeIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
       </button>
 
-      <!-- Social Links -->
       <a href="https://open.spotify.com/artist/05anJA6CE7Afkn0hYyVMRV?si=GXVqJJr7Q9-kmuiWPmz_JQ&utm_source=copy-link" target="_blank" class="social-btn spotify" title="Spotify">
         <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.503 17.308c-.218.358-.684.47-1.042.252-2.855-1.744-6.448-2.14-10.679-1.173-.408.093-.812-.162-.905-.57-.093-.408.162-.812.57-.905 4.636-1.06 8.604-.609 11.804 1.354.358.218.47.684.252 1.042zm1.47-3.267c-.274.446-.856.587-1.302.313-3.268-2.008-8.25-2.59-12.114-1.416-.502.152-1.037-.133-1.189-.635-.152-.502.133-1.037.635-1.189 4.417-1.34 9.907-.69 13.657 1.625.446.274.587.856.313 1.302zm.126-3.41c-3.918-2.327-10.375-2.542-14.11-1.408-.6.182-1.24-.165-1.422-.765-.182-.6.165-1.24.765-1.422 4.292-1.303 11.42-1.05 15.894 1.606.54.321.716 1.02.395 1.56-.321.54-1.02.716-1.522.429z"/></svg>
       </a>
@@ -1314,7 +1358,6 @@
 
   <div class="container">
     
-    <!-- SLIM HORIZONTAL SINGLE-ROW HUB BAR -->
     <div class="compact-hub-bar">
       <a href="https://youtube.com/@naldoamusic?si=NhBGNUKl8piB9yt_" target="_blank" class="hub-btn">
         <svg class="hub-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -1329,7 +1372,6 @@
       </button>
     </div>
 
-    <!-- SEARCH BAR -->
     <div class="search-box-wrapper">
       <svg class="search-icon-left" viewBox="0 0 24 24">
         <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
@@ -1338,7 +1380,6 @@
       <button class="search-clear-btn" id="searchClearBtn" onclick="clearSearch()">✕</button>
     </div>
 
-    <!-- DYNAMIC CATEGORY TABS -->
     <div class="rhythm-scroll" id="rhythmTabsContainer">
       <div class="rhythm-pill active" id="tab-all" onclick="showAllContent()">All Tracks</div>
       <div class="rhythm-pill" id="tab-favorites" onclick="openCategoryView('favorites')">❤️ Favorites</div>
@@ -1347,9 +1388,7 @@
       <div class="rhythm-pill" id="tab-albums" onclick="openCategoryView('albums')">Albums</div>
     </div>
 
-    <!-- MAIN CAROUSEL VIEW -->
     <div id="mainCarouselView">
-      <!-- DISCOVERY CAROUSEL -->
       <div id="sec-discovery">
         <div class="section-header" onclick="openCategoryView('discovery')">
           <div class="section-title purple">✨ Discovery & Highlights</div>
@@ -1362,7 +1401,6 @@
         </div>
       </div>
 
-      <!-- TOP 10 HITS -->
       <div id="sec-top10">
         <div class="section-header" onclick="openCategoryView('top10')">
           <div class="section-title gold">★ Top 10 Hits (Most Played)</div>
@@ -1377,7 +1415,6 @@
         </div>
       </div>
 
-      <!-- ALBUMS -->
       <div id="sec-Albums" style="display:none;">
         <div class="section-header" onclick="openCategoryView('albums')">
           <div class="section-title">Official Albums</div>
@@ -1390,10 +1427,8 @@
         </div>
       </div>
 
-      <!-- DYNAMIC GENRE SECTIONS -->
       <div id="dynamicSections"></div>
 
-      <!-- FEATURED VIDEO (DISCREET AT THE BOTTOM) -->
       <div class="bottom-video-section">
         <div class="bottom-video-title">
           <svg style="width:16px; height:16px; fill:#ff3333;" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -1403,10 +1438,8 @@
           <iframe src="https://www.youtube.com/embed/3fDUloM-_Xs" title="NaldoA - EMBER (Official Music Video)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
         </div>
       </div>
-
     </div>
 
-    <!-- CATEGORY SINGLE VIEW -->
     <div id="categoryDedicatedView" style="display:none;">
       <div class="category-page-header">
         <button class="btn-back" onclick="showAllContent()">← Back to Home</button>
@@ -1419,10 +1452,8 @@
       <p>© 2026 NaldoA Digital Music • All Rights Reserved</p>
       <p style="margin-top: 4px; opacity: 0.7;">Official High-Fidelity Audio Stream</p>
     </footer>
-
   </div>
 
-  <!-- Album Modal -->
   <div class="album-modal" id="albumModal">
     <div class="modal-header">
       <span id="albumModalHeaderTag" style="font-size: 0.75rem; letter-spacing: 2px; color: var(--text-dim); text-transform: uppercase;">Album View</span>
@@ -1442,7 +1473,6 @@
     <div class="tracklist-container" id="albumTracklist"></div>
   </div>
 
-  <!-- Mini Player Bar -->
   <div class="player-bar" id="miniPlayer">
     <div class="player-left" onclick="openFullPlayer()">
       <img src="" id="miniCover" class="mini-cover">
@@ -1458,18 +1488,15 @@
     </div>
   </div>
 
-  <!-- Full Player Modal -->
   <div class="full-player" id="fullPlayer">
     <div class="full-header">
       <button class="btn-close" onclick="closeFullPlayer()">✕</button>
       <span style="font-size: 0.75rem; letter-spacing: 2px; color: var(--text-dim); text-transform: uppercase; position: absolute; left: 50%; transform: translateX(-50%);">PLAYING NOW</span>
       
       <div class="full-header-right">
-        <!-- BOTÃO DA LISTA (Hambúrguer) -->
         <button class="btn-ctrl" onclick="openCurrentQueueModal()" title="View Tracklist">
           <svg width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
         </button>
-        <!-- BOTÃO COMPARTILHAR -->
         <button class="btn-ctrl" onclick="shareCurrentTrack()" title="Share Track">
           <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
         </button>
@@ -1495,7 +1522,6 @@
       </div>
     </div>
 
-    <!-- MODERN CONTROLS -->
     <div class="full-controls">
       <button class="btn-ctrl" id="btnShuffle" onclick="toggleShuffle()" title="Shuffle Mode">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
@@ -1518,7 +1544,6 @@
       </button>
     </div>
 
-    <!-- ACTION BUTTONS -->
     <div class="player-action-row">
       <button class="btn-action-pill" id="fullPlayerLikeBtn" onclick="toggleLikeCurrentTrack()">
         <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
@@ -1530,7 +1555,6 @@
     </div>
   </div>
 
-  <!-- DONATION MODAL -->
   <div class="donation-modal" id="donationModal" onclick="closeDonationModal(event)">
     <div class="donation-card" onclick="event.stopPropagation()">
       <button class="btn-close" style="position:absolute; top:16px; right:16px;" onclick="closeDonationModalDirect()">✕</button>
@@ -1540,7 +1564,6 @@
         Enjoying the music? Support the production of new tracks with any amount!
       </p>
       
-      <!-- Brazil Pix -->
       <div class="pix-box">
         <span style="font-size:0.72rem; color:var(--text-dim); text-transform:uppercase; font-weight:700; display:block; margin-bottom:4px;">
           🇧🇷 Brazil • Pix Key (E-mail):
@@ -1552,7 +1575,6 @@
         </button>
       </div>
 
-      <!-- Worldwide / Mercado Pago -->
       <a href="https://link.mercadopago.com.br/supportnaldoamusic" target="_blank" class="mp-link-btn" id="mpDonationLink">
         🌎 International Cards / Mercado Pago
       </a>
@@ -1600,6 +1622,7 @@
     let selectedAlbum = null;
     let discoveryTracks = [];
     let favoriteTrackIds = JSON.parse(localStorage.getItem('naldoa_favs') || '[]');
+    let isShuffleFavorites = false;
 
     const audio = document.getElementById('audioElement');
     const discoveryCarousel = document.getElementById('discoveryCarousel');
@@ -1664,7 +1687,6 @@
       renderApp();
     }
 
-    /* FAVORITES LOGIC */
     function isFavorite(trackId) {
       return favoriteTrackIds.includes(trackId);
     }
@@ -1702,11 +1724,32 @@
       }
     }
 
-    /* SHUFFLE & REPEAT */
+    function shuffleArray(array) {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    }
+
     function toggleShuffle() {
-      isShuffle = !isShuffle;
-      btnShuffle.classList.toggle('active', isShuffle);
-      showToast(isShuffle ? 'Shuffle Mode: ON 🔀' : 'Shuffle Mode: OFF');
+      const isFavoritesView = document.getElementById('catViewTitle') && 
+                              document.getElementById('catViewTitle').innerText.includes('Favorite');
+      
+      if (isFavoritesView) {
+        toggleFavoritesShuffle();
+      } else {
+        isShuffle = !isShuffle;
+        btnShuffle.classList.toggle('active', isShuffle);
+        showToast(isShuffle ? '🔀 Shuffle Mode: ON' : '🔀 Shuffle Mode: OFF');
+      }
+    }
+
+    function toggleFavoritesShuffle() {
+      isShuffleFavorites = !isShuffleFavorites;
+      showToast(isShuffleFavorites ? '🔀 Shuffle ON - Favorites' : '🔀 Shuffle OFF - Favorites');
+      openCategoryView('favorites');
     }
 
     function toggleRepeat() {
@@ -1715,7 +1758,6 @@
       showToast(isRepeat ? 'Repeat Track: ON 🔁' : 'Repeat Track: OFF');
     }
 
-    /* SHARE */
     function copyToClipboardFallback(text) {
       const tempInput = document.createElement('textarea');
       tempInput.value = text;
@@ -1780,7 +1822,6 @@
       return false;
     }
 
-    /* DETECÇÃO INTELIGENTE DE RITMOS */
     function detectRhythm(name) {
       const lower = name.toLowerCase();
       if (lower.includes('love') || lower.includes('romantic') || lower.includes('slow') || lower.includes('ballad')) {
@@ -1926,14 +1967,44 @@
         const t = document.getElementById('tab-favorites');
         if (t) t.classList.add('active');
         document.getElementById('catViewTitle').innerText = '❤️ My Favorite Tracks';
-        const favs = allTracks.filter(tr => isFavorite(tr.id));
+        
+        let favs = allTracks.filter(tr => isFavorite(tr.id));
+        
         if (favs.length === 0) {
           categoryGrid.innerHTML = `<div style="color:var(--text-dim); padding:30px; grid-column: 1 / -1; text-align:center;">No favorite tracks added yet.<br>Click the heart icon on any track to save it here!</div>`;
           return;
         }
+
+        if (isShuffleFavorites) {
+          favs = shuffleArray([...favs]);
+        }
+
+        const controls = document.createElement('div');
+        controls.className = 'favorites-controls';
+        controls.innerHTML = `
+          <button class="${isShuffleFavorites ? 'active-shuffle' : ''}" onclick="toggleFavoritesShuffle()">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+              <polyline points="16 3 21 3 21 8"></polyline>
+              <line x1="4" y1="20" x2="21" y2="3"></line>
+              <polyline points="21 16 21 21 16 21"></polyline>
+              <line x1="15" y1="15" x2="21" y2="21"></line>
+              <line x1="4" y1="4" x2="9" y2="9"></line>
+            </svg>
+            ${isShuffleFavorites ? '🔀 Shuffle ON' : '🔀 Shuffle OFF'}
+          </button>
+          <button class="play-all" onclick="playAllFavorites()">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            Play All (${favs.length})
+          </button>
+        `;
+        categoryGrid.appendChild(controls);
+
         favs.forEach(track => {
           categoryGrid.appendChild(createTrackCard(track));
         });
+        
       } else if (categoryKey === 'discovery') {
         const t = document.getElementById('tab-discovery');
         if (t) t.classList.add('active');
@@ -1971,6 +2042,25 @@
       }
     }
 
+    function playAllFavorites() {
+      const favs = allTracks.filter(tr => isFavorite(tr.id));
+      if (favs.length === 0) {
+        showToast('No favorites to play');
+        return;
+      }
+      
+      let playlist = [...favs];
+      if (isShuffleFavorites) {
+        playlist = shuffleArray(playlist);
+      }
+      
+      activeQueue = playlist;
+      currentQueueIndex = 0;
+      setTrackDetails(0, true);
+      openFullPlayer();
+      showToast(`▶ Playing ${playlist.length} favorites`);
+    }
+
     function openSupportModal() { donationModal.classList.add('open'); }
     function closeDonationModal(e) { if (e.target === donationModal) donationModal.classList.remove('open'); }
     function closeDonationModalDirect() { donationModal.classList.remove('open'); }
@@ -1989,7 +2079,6 @@
       }
     }
 
-    /* RENDERIZA LISTA DO ÁLBUM COM EQUALIZADOR ANIMADO */
     function renderTracklistItems(tracksArray, isAlbumMode = true) {
       const listContainer = document.getElementById('albumTracklist');
       listContainer.innerHTML = '';
@@ -2141,7 +2230,6 @@
 
         allTracks = Array.from(uniqueMap.values());
         
-        // Foco em Discovery para EDM
         const edmPool = allTracks.filter(t => t.rhythm === 'Electronic / EDM');
         discoveryTracks = (edmPool.length > 0 ? edmPool : allTracks).sort(() => 0.5 - Math.random()).slice(0, 10);
         
@@ -2179,7 +2267,7 @@
       
       card.onclick = () => {
         playTrackRespectingGenre(track);
-        openFullPlayer(); // ABRE TELA CHEIA AUTOMATICAMENTE
+        openFullPlayer();
       };
 
       const rankBadge = rankNumber ? `<div class="badge-tag gold">#${rankNumber}</div>` : '';
@@ -2229,7 +2317,6 @@
       return card;
     }
 
-    /* FILA POR ESTILO: Respeita o ritmo a menos que o Shuffle esteja ligado */
     function playTrackRespectingGenre(track) {
       if (isShuffle) {
         activeQueue = [...allTracks];
@@ -2353,7 +2440,7 @@
         currentQueueIndex = 0;
         setTrackDetails(0, true);
         closeAlbumModal();
-        openFullPlayer(); 
+        openFullPlayer();
       }
     }
 
@@ -2510,15 +2597,11 @@
       return `${m}:${sec < 10 ? '0' : ''}${sec}`;
     }
 
-    initTheme();
-    loadCatalog();
-
-        function openCurrentQueueModal() {
+    function openCurrentQueueModal() {
       const track = activeQueue[currentQueueIndex];
       if (track && track.isAlbum && track.albumKey && allAlbums[track.albumKey]) {
         openAlbumModal(track.albumKey);
       } else {
-        // Filtra para mostrar na fila apenas as músicas do mesmo ritmo/estilo atual
         const currentGenreTracks = allTracks.filter(t => t.rhythm === track.rhythm);
         
         document.getElementById('albumModalHeaderTag').innerText = "Playing Queue (" + track.rhythm + ")";
@@ -2527,12 +2610,13 @@
         document.getElementById('modalAlbumMeta').innerText = `NaldoA • ${currentGenreTracks.length} Tracks`;
         document.getElementById('modalAlbumCover').src = track ? track.cover : `${ARCHIVE_DOWNLOAD_BASE}/cover.jpg`;
         
-        // Renderiza na lista modal apenas as faixas do mesmo estilo
         renderTracklistItems(currentGenreTracks, false);
         albumModal.classList.add('open');
       }
     }
 
+    initTheme();
+    loadCatalog();
   </script>
 </body>
 </html>
