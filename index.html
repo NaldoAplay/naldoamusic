@@ -1208,6 +1208,7 @@
     </div>
 
     <div id="mainCarouselView">
+      <!-- 1. DISCOVERY -->
       <div id="sec-discovery">
         <div class="section-header" onclick="openCategoryView('discovery')">
           <div class="section-title purple">✨ Discovery & Highlights</div>
@@ -1220,6 +1221,7 @@
         </div>
       </div>
 
+      <!-- 2. TOP 10 -->
       <div id="sec-top10">
         <div class="section-header" onclick="openCategoryView('top10')">
           <div class="section-title gold">★ Top 10 Hits (Most Played)</div>
@@ -1232,6 +1234,20 @@
         </div>
       </div>
 
+      <!-- 3. ALL TRACKS (RANDOM) - NOVO -->
+      <div id="sec-alltracks">
+        <div class="section-header" onclick="reloadAllTracksCarousel()">
+          <div class="section-title" style="color: #ff6b6b;">🎲 All Tracks (Random)</div>
+          <span class="view-all-btn" onclick="reloadAllTracksCarousel(); event.stopPropagation();">🔄 Shuffle</span>
+        </div>
+        <div class="carousel-wrapper">
+          <button class="carousel-nav-btn prev" onclick="scrollCarousel('allTracksCarousel', -350)">❮</button>
+          <div class="carousel-container" id="allTracksCarousel"></div>
+          <button class="carousel-nav-btn next" onclick="scrollCarousel('allTracksCarousel', 350)">❯</button>
+        </div>
+      </div>
+
+      <!-- 4. ALBUMS -->
       <div id="sec-Albums" style="display:none;">
         <div class="section-header" onclick="openCategoryView('albums')">
           <div class="section-title">Official Albums</div>
@@ -1244,8 +1260,10 @@
         </div>
       </div>
 
+      <!-- 5. SEÇÕES DINÂMICAS (GÊNEROS) -->
       <div id="dynamicSections"></div>
 
+      <!-- 6. FEATURED VIDEO -->
       <div class="bottom-video-section">
         <div class="bottom-video-title">
           <svg style="width:16px; height:16px; fill:#ff3333;" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -1782,6 +1800,22 @@
       showToast(`▶ Playing ${activeQueue.length} favorites`);
     }
 
+    // --- NOVA FUNÇÃO PARA ALL TRACKS (RANDOM) ---
+    function renderAllTracksCarousel() {
+      const container = document.getElementById('allTracksCarousel');
+      if (!container) return;
+      container.innerHTML = '';
+      const shuffled = shuffleArray([...allTracks]);
+      shuffled.forEach(track => {
+        container.appendChild(createTrackCard(track));
+      });
+    }
+
+    function reloadAllTracksCarousel() {
+      renderAllTracksCarousel();
+      showToast('🔄 All Tracks shuffled!');
+    }
+
     // --- MODAIS ---
     function openSupportModal() { donationModal.classList.add('open'); }
     function closeDonationModal(e) { if (e.target === donationModal) donationModal.classList.remove('open'); }
@@ -1946,9 +1980,7 @@
 
     // --- REPRODUÇÃO ---
     function playTrackRespectingGenre(track) {
-      // Se estiver na aba de favoritos, mantém a fila de favoritos
       if (currentGenre === 'favorites') {
-        // Se a música não estiver na fila de favoritos, recria
         if (!activeQueue.some(t => t.id === track.id)) {
           const favs = allTracks.filter(tr => isFavorite(tr.id));
           activeQueue = isShuffleFavorites ? shuffleArray([...favs]) : [...favs];
@@ -1961,7 +1993,6 @@
         return;
       }
 
-      // Para outras categorias: fila por estilo
       const genre = track.rhythm;
       let genreTracks = allTracks.filter(t => t.rhythm === genre);
       if (genreTracks.length === 0) genreTracks = [...allTracks];
@@ -1983,7 +2014,6 @@
       
       setTrackDetails(currentQueueIndex, true);
       
-      // Atualiza UI
       document.querySelectorAll('.rhythm-pill').forEach(el => el.classList.remove('active'));
       const cleanId = 'tab-' + genre.replace(/[\s\/]+/g, '-');
       const pill = document.getElementById(cleanId);
@@ -2143,11 +2173,10 @@
       });
     }
 
-    // --- QUEUE MODAL (HAMBÚRGUER) - CORRIGIDO ---
+    // --- QUEUE MODAL (HAMBÚRGUER) ---
     function openCurrentQueueModal() {
       const track = activeQueue[currentQueueIndex];
       
-      // SE ESTIVER NA ABA DE FAVORITOS, MOSTRA APENAS OS FAVORITOS
       if (currentGenre === 'favorites') {
         const queueToShow = activeQueue.length ? activeQueue : allTracks.filter(tr => isFavorite(tr.id));
         document.getElementById('albumModalHeaderTag').innerText = "❤️ Favorites Queue";
@@ -2160,13 +2189,11 @@
         return;
       }
 
-      // Caso contrário, verifica se é um álbum (só em outras categorias)
       if (track && track.isAlbum && track.albumKey && allAlbums[track.albumKey]) {
         openAlbumModal(track.albumKey);
         return;
       }
       
-      // Fila normal (estilo atual)
       const queueToShow = activeQueue.length ? activeQueue : allTracks;
       
       document.getElementById('albumModalHeaderTag').innerText = "Playing Queue";
@@ -2248,6 +2275,9 @@
       } else {
         secAlbums.style.display = 'none';
       }
+
+      // === RENDERIZA O NOVO CARROSSEL ALL TRACKS (RANDOM) ===
+      renderAllTracksCarousel();
 
       const detectedGenres = Array.from(new Set(allTracks.map(t => t.rhythm))).filter(Boolean);
       const priorityOrder = ['Electronic / EDM', 'Reggaeton', 'Forro', 'Gospel', 'Love Songs', 'Other'];
