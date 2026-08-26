@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>NaldoA Digital Music • Official Web Player</title>
   
-  <!-- PWA & App Icons -->
   <meta name="theme-color" content="#06080d">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -14,7 +13,6 @@
   <link rel="icon" type="image/png" href="icon.png">
   <meta name="google-site-verification" content="PZFFJm_Wbf1_G96H6vLLwWTxFwV8BVkNG5f26izxQ_g" />
   
-  <!-- Google Analytics 4 (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RMZDGK7R4G"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -23,16 +21,13 @@
     gtag('config', 'G-RMZDGK7R4G');
   </script>
 
-  <!-- Adsterra Social Bar Monetization -->
   <script type="text/javascript" src="https://pl31015149.profitableratecpmnetwork.com/97/fe/b2/97feb20b78f4ee46620f73cb39af51b3.js" async></script>
   
-  <!-- SEO & Google Search Snippet -->
   <meta name="description" content="Stream official electronic music, albums, trance, EDM, reggaeton and gospel tracks by NaldoA. High-fidelity audio player.">
   <meta name="keywords" content="NaldoA, NaldoA Digital Music, Electronic, EDM, Trance, Progressive House, Music Stream">
   <meta name="author" content="NaldoA">
   <meta name="robots" content="index, follow">
 
-  <!-- Open Graph / Social / Google Preview -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://naldoaplay.github.io/naldoamusic/">
   <meta property="og:site_name" content="NaldoA Digital Music">
@@ -40,14 +35,12 @@
   <meta property="og:description" content="Listen to official releases, albums, and exclusive tracks by electronic music producer NaldoA.">
   <meta property="og:image" content="https://archive.org/download/naldoa-digital-music-stream/cover.jpg">
 
-  <!-- Twitter Preview -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="NaldoA Digital Music • Official Web Player">
   <meta name="twitter:description" content="Listen to official releases, albums, and exclusive tracks by electronic music producer NaldoA.">
   <meta name="twitter:image" content="https://archive.org/download/naldoa-digital-music-stream/cover.jpg">
 
   <style>
-    /* 1. CLASSIC DARK (CYAN NEON) */
     :root, [data-theme="dark"] {
       --bg: #06080d;
       --bg-gradient-1: rgba(0, 210, 255, 0.12);
@@ -64,8 +57,6 @@
       --card-bg-hover: rgba(0, 210, 255, 0.1);
       --heart-active: #ff4757;
     }
-
-    /* 2. PURPLE VIOLET GLASS (DARK) */
     [data-theme="purple"] {
       --bg: #090514;
       --bg-gradient-1: rgba(187, 134, 252, 0.16);
@@ -82,8 +73,6 @@
       --card-bg-hover: rgba(187, 134, 252, 0.12);
       --heart-active: #ff2a7a;
     }
-
-    /* 3. EMERALD CYBER GLASS (DARK) */
     [data-theme="emerald"] {
       --bg: #030d0a;
       --bg-gradient-1: rgba(0, 255, 170, 0.14);
@@ -100,8 +89,6 @@
       --card-bg-hover: rgba(0, 255, 170, 0.10);
       --heart-active: #ff4757;
     }
-
-    /* 4. SUNSET AMBER GLASS (DARK) */
     [data-theme="sunset"] {
       --bg: #120904;
       --bg-gradient-1: rgba(255, 154, 0, 0.15);
@@ -118,8 +105,6 @@
       --card-bg-hover: rgba(255, 154, 0, 0.12);
       --heart-active: #ff0055;
     }
-
-    /* 5. CLASSIC LIGHT (FROST BLUE) */
     [data-theme="light"] {
       --bg: #f2f5fa;
       --bg-gradient-1: rgba(0, 180, 255, 0.14);
@@ -136,8 +121,6 @@
       --card-bg-hover: rgba(0, 136, 204, 0.08);
       --heart-active: #ff4757;
     }
-
-    /* 6. ROSE PASTEL GLASS (LIGHT) */
     [data-theme="light-rose"] {
       --bg: #fcf4f7;
       --bg-gradient-1: rgba(255, 64, 129, 0.15);
@@ -154,8 +137,6 @@
       --card-bg-hover: rgba(233, 30, 99, 0.08);
       --heart-active: #e91e63;
     }
-
-    /* 7. EMERALD FRESH GLASS (LIGHT) */
     [data-theme="light-emerald"] {
       --bg: #f2faf6;
       --bg-gradient-1: rgba(0, 200, 117, 0.15);
@@ -172,8 +153,6 @@
       --card-bg-hover: rgba(0, 168, 107, 0.08);
       --heart-active: #ff4757;
     }
-
-    /* 8. SUNSET GOLD GLASS (LIGHT) */
     [data-theme="light-gold"] {
       --bg: #faf6f0;
       --bg-gradient-1: rgba(255, 145, 0, 0.15);
@@ -200,7 +179,6 @@
       user-select: none;
       transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     }
-
     body {
       background-color: var(--bg);
       color: var(--text);
@@ -211,7 +189,6 @@
         radial-gradient(circle at 90% 80%, var(--bg-gradient-2), transparent 45%);
       background-attachment: fixed;
     }
-
     header {
       padding: 12px 18px;
       background: var(--header-bg);
@@ -225,20 +202,17 @@
       justify-content: space-between;
       align-items: center;
     }
-
     .brand-container {
       display: flex;
       flex-direction: column;
       cursor: pointer;
     }
-
     .brand-main {
       font-size: 1.25rem;
       font-weight: 900;
       letter-spacing: 2px;
       color: var(--text);
     }
-
     .brand-sub {
       font-size: 0.52rem;
       font-weight: 700;
@@ -247,13 +221,11 @@
       text-transform: uppercase;
       margin-top: 1px;
     }
-
     .header-actions {
       display: flex;
       align-items: center;
       gap: 8px;
     }
-
     .social-btn, .theme-toggle-btn {
       display: flex;
       align-items: center;
@@ -267,13 +239,11 @@
       text-decoration: none;
       cursor: pointer;
     }
-
     .social-btn svg, .theme-toggle-btn svg {
       width: 16px;
       height: 16px;
       fill: currentColor;
     }
-
     .social-btn.spotify:hover { color: #1DB954; border-color: #1DB954; }
     .social-btn.apple:hover { color: #FA243C; border-color: #FA243C; }
     .social-btn.instagram:hover { color: #E1306C; border-color: #E1306C; }
@@ -285,8 +255,6 @@
       margin: 0 auto;
       padding: 16px;
     }
-
-    /* SLIM HORIZONTAL SINGLE-ROW HUB BAR */
     .compact-hub-bar {
       display: flex;
       align-items: center;
@@ -301,15 +269,10 @@
       white-space: nowrap;
       scrollbar-width: none;
     }
-
     .compact-hub-bar::-webkit-scrollbar { display: none; }
-
     @media (min-width: 768px) {
-      .compact-hub-bar {
-        justify-content: center;
-      }
+      .compact-hub-bar { justify-content: center; }
     }
-
     .hub-btn {
       display: inline-flex;
       align-items: center;
@@ -327,40 +290,34 @@
       flex-shrink: 0;
       transition: all 0.2s ease;
     }
-
     .hub-btn:hover {
       border-color: #ff0000;
       color: #ff0000;
       transform: translateY(-1px);
     }
-
     .hub-btn.support {
       background: rgba(255, 82, 82, 0.12);
       border-color: rgba(255, 82, 82, 0.35);
       color: #ff5252;
     }
-
     .hub-btn.support:hover {
       background: #ff5252;
       color: #fff;
       border-color: #ff5252;
       box-shadow: 0 0 12px rgba(255, 82, 82, 0.35);
     }
-
     .hub-icon {
       width: 14px;
       height: 14px;
       fill: #ff0000;
       flex-shrink: 0;
     }
-
     .search-box-wrapper {
       margin: 8px 0 10px;
       position: relative;
       display: flex;
       align-items: center;
     }
-
     .search-input {
       width: 100%;
       padding: 12px 42px 12px 42px;
@@ -375,17 +332,14 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
       transition: all 0.25s ease;
     }
-
     .search-input:focus {
       border-color: var(--accent);
       box-shadow: 0 0 18px var(--accent-glow);
     }
-
     .search-input::placeholder {
       color: var(--text-dim);
       font-weight: 500;
     }
-
     .search-icon-left {
       position: absolute;
       left: 16px;
@@ -394,7 +348,6 @@
       fill: var(--text-dim);
       pointer-events: none;
     }
-
     .search-clear-btn {
       position: absolute;
       right: 14px;
@@ -410,12 +363,10 @@
       font-size: 0.75rem;
       cursor: pointer;
     }
-
     .search-clear-btn:hover {
       color: var(--text);
       background: var(--accent);
     }
-
     .rhythm-scroll {
       display: flex;
       gap: 8px;
@@ -425,7 +376,6 @@
       scrollbar-width: none;
     }
     .rhythm-scroll::-webkit-scrollbar { display: none; }
-
     .rhythm-pill {
       background: var(--glass-card);
       border: 1px solid var(--glass-border);
@@ -439,14 +389,12 @@
       color: var(--text-dim);
       flex-shrink: 0;
     }
-
     .rhythm-pill.active {
       background: var(--accent);
       color: #000;
       border-color: var(--accent);
       box-shadow: 0 0 14px var(--accent-glow);
     }
-
     .section-header {
       display: flex;
       justify-content: space-between;
@@ -454,7 +402,6 @@
       margin: 22px 0 10px;
       cursor: pointer;
     }
-
     .section-title {
       font-size: 0.95rem;
       font-weight: 800;
@@ -465,22 +412,18 @@
       align-items: center;
       gap: 6px;
     }
-
     .section-title:hover { color: var(--accent); }
     .section-title.gold { color: #e6a100; }
     .section-title.gold:hover { color: #ffd700; }
     .section-title.purple { color: #bb86fc; }
     .section-title.purple:hover { color: #d7b5ff; }
-
     .view-all-btn {
       font-size: 0.75rem;
       color: var(--accent);
       font-weight: 700;
       cursor: pointer;
     }
-
     .carousel-wrapper { position: relative; }
-
     .carousel-nav-btn {
       display: none;
       position: absolute;
@@ -497,15 +440,12 @@
       align-items: center;
       justify-content: center;
     }
-
     @media (min-width: 900px) {
       .carousel-nav-btn { display: flex; }
       .carousel-wrapper:hover .carousel-nav-btn { border-color: var(--accent); }
     }
-
     .carousel-nav-btn.prev { left: -14px; }
     .carousel-nav-btn.next { right: -14px; }
-
     .carousel-container {
       display: flex;
       gap: 14px;
@@ -515,28 +455,24 @@
       scroll-behavior: smooth;
     }
     .carousel-container::-webkit-scrollbar { display: none; }
-
     .category-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       gap: 14px;
       padding: 10px 0;
     }
-
     @media (min-width: 600px) {
       .category-grid {
         grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
         gap: 18px;
       }
     }
-
     .category-page-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin: 10px 0 20px;
     }
-
     .btn-back {
       background: var(--glass-card);
       border: 1px solid var(--glass-border);
@@ -550,12 +486,10 @@
       align-items: center;
       gap: 6px;
     }
-
     .btn-back:hover {
       border-color: var(--accent);
       color: var(--accent);
     }
-
     .track-card {
       background: var(--glass-card);
       backdrop-filter: blur(20px);
@@ -569,12 +503,10 @@
       max-width: 150px;
       flex-shrink: 0;
     }
-
     .category-grid .track-card {
       min-width: 100%;
       max-width: 100%;
     }
-
     @media (min-width: 600px) {
       .track-card {
         min-width: 175px;
@@ -582,13 +514,11 @@
         padding: 12px;
       }
     }
-
     .track-card:hover {
       transform: translateY(-4px);
       border-color: var(--accent);
       box-shadow: 0 10px 22px var(--accent-glow);
     }
-
     .cover-box {
       width: 100%;
       aspect-ratio: 1/1;
@@ -598,13 +528,11 @@
       margin-bottom: 8px;
       position: relative;
     }
-
     .cover-box img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-
     .badge-tag {
       position: absolute;
       top: 6px;
@@ -619,12 +547,10 @@
       backdrop-filter: blur(8px);
       text-transform: uppercase;
     }
-
     .badge-tag.gold {
       border-color: #ffd700;
       color: #ffd700;
     }
-
     .card-heart-btn {
       position: absolute;
       top: 6px;
@@ -643,19 +569,15 @@
       transition: all 0.2s ease;
       z-index: 5;
     }
-
     .card-heart-btn.active {
       color: var(--heart-active);
       border-color: var(--heart-active);
     }
-
     .card-heart-btn svg {
       width: 14px;
       height: 14px;
       fill: currentColor;
     }
-
-    /* EQUALIZER ANIMATION */
     .card-visualizer {
       position: absolute;
       bottom: 6px;
@@ -669,33 +591,27 @@
       border-radius: 6px;
       backdrop-filter: blur(4px);
     }
-
     .track-card.is-playing .card-visualizer {
       display: flex;
     }
-
     .eq-bar {
       width: 2px;
       background: var(--accent);
       border-radius: 1px;
       animation: eqBounce 1s infinite ease-in-out;
     }
-
     .eq-bar:nth-child(1) { height: 6px; animation-delay: 0.1s; }
     .eq-bar:nth-child(2) { height: 12px; animation-delay: 0.3s; }
     .eq-bar:nth-child(3) { height: 8px; animation-delay: 0.2s; }
-
     @keyframes eqBounce {
       0%, 100% { transform: scaleY(0.3); }
       50% { transform: scaleY(1); }
     }
-
     .track-info {
       display: flex;
       flex-direction: column;
       gap: 2px;
     }
-
     .track-title {
       font-size: 0.85rem;
       font-weight: 700;
@@ -703,26 +619,21 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-
     .track-sub-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-size: 0.65rem;
     }
-
     .track-badge {
       color: var(--accent);
       font-weight: 700;
       text-transform: uppercase;
     }
-
     .track-plays {
       color: var(--text-dim);
       font-weight: 600;
     }
-
-    /* FEATURED VIDEO SECTION (BOTTOM) */
     .bottom-video-section {
       margin: 35px auto 10px;
       padding: 18px;
@@ -733,7 +644,6 @@
       text-align: center;
       max-width: 650px;
     }
-
     .bottom-video-title {
       font-size: 0.9rem;
       font-weight: 800;
@@ -746,7 +656,6 @@
       justify-content: center;
       gap: 6px;
     }
-
     .bottom-video-box {
       width: 100%;
       aspect-ratio: 16/9;
@@ -756,13 +665,11 @@
       border: 1px solid var(--glass-border);
       box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     }
-
     .bottom-video-box iframe {
       width: 100%;
       height: 100%;
       border: none;
     }
-
     .album-modal {
       position: fixed;
       inset: 0;
@@ -777,23 +684,19 @@
       transition: transform 0.35s cubic-bezier(0.15, 0.9, 0.2, 1);
       overflow-y: auto;
     }
-
     .album-modal.open { transform: translateY(0); }
-
     .modal-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 20px;
     }
-
     .album-hero {
       display: flex;
       gap: 20px;
       align-items: center;
       margin-bottom: 24px;
     }
-
     .album-hero-cover {
       width: 120px;
       height: 120px;
@@ -801,18 +704,15 @@
       object-fit: cover;
       box-shadow: 0 10px 30px var(--accent-glow);
     }
-
     .album-hero-info h2 {
       font-size: 1.35rem;
       font-weight: 800;
       margin-bottom: 4px;
     }
-
     .album-hero-info p {
       font-size: 0.8rem;
       color: var(--text-dim);
     }
-
     .btn-play-all {
       margin-top: 10px;
       background: var(--accent);
@@ -827,13 +727,11 @@
       align-items: center;
       gap: 6px;
     }
-
     .tracklist-container {
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
-
     .tracklist-item {
       display: flex;
       justify-content: space-between;
@@ -845,24 +743,19 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
-
     .tracklist-item:hover {
       border-color: var(--accent);
       background: var(--card-bg-hover);
     }
-
     .tracklist-item.is-playing-item {
       border-color: var(--accent);
       background: var(--card-bg-hover);
       box-shadow: 0 0 15px var(--accent-glow);
     }
-
     .tracklist-item.is-playing-item .track-title-text {
       color: var(--accent);
       font-weight: 800;
     }
-
-    /* MINI EQUALIZADOR NA LISTA */
     .list-equalizer {
       display: none;
       align-items: flex-end;
@@ -870,26 +763,21 @@
       height: 12px;
       width: 14px;
     }
-
     .tracklist-item.is-playing-item .list-equalizer {
       display: flex;
     }
-
     .tracklist-item.is-playing-item .track-num-digit {
       display: none;
     }
-
     .list-eq-bar {
       width: 2px;
       background: var(--accent);
       border-radius: 1px;
       animation: eqBounce 1s infinite ease-in-out;
     }
-
     .list-eq-bar:nth-child(1) { height: 4px; animation-delay: 0.1s; }
     .list-eq-bar:nth-child(2) { height: 10px; animation-delay: 0.3s; }
     .list-eq-bar:nth-child(3) { height: 7px; animation-delay: 0.2s; }
-
     .track-num-title {
       display: flex;
       align-items: center;
@@ -897,13 +785,11 @@
       font-size: 0.88rem;
       font-weight: 600;
     }
-
     .track-num {
       color: var(--text-dim);
       font-size: 0.8rem;
       width: 24px;
     }
-
     .player-bar {
       position: fixed;
       bottom: 12px;
@@ -924,7 +810,6 @@
       z-index: 80;
       box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
     }
-
     .player-left {
       display: flex;
       align-items: center;
@@ -933,7 +818,6 @@
       flex: 1;
       cursor: pointer;
     }
-
     .mini-cover {
       width: 44px;
       height: 44px;
@@ -941,9 +825,7 @@
       object-fit: cover;
       background: #141a24;
     }
-
     .mini-meta { min-width: 0; }
-
     .mini-title {
       font-size: 0.85rem;
       font-weight: 700;
@@ -951,18 +833,15 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-
     .mini-rhythm {
       font-size: 0.7rem;
       color: var(--text-dim);
     }
-
     .mini-controls {
       display: flex;
       align-items: center;
       gap: 8px;
     }
-
     .btn-play-round {
       background: var(--accent);
       border: none;
@@ -975,7 +854,6 @@
       cursor: pointer;
       box-shadow: 0 0 14px var(--accent-glow);
     }
-
     .full-player {
       position: fixed;
       inset: 0;
@@ -990,9 +868,7 @@
       transform: translateY(100%);
       transition: transform 0.35s cubic-bezier(0.15, 0.9, 0.2, 1);
     }
-
     .full-player.open { transform: translateY(0); }
-
     .full-header {
       display: flex;
       justify-content: space-between;
@@ -1000,13 +876,11 @@
       position: relative;
       width: 100%;
     }
-
     .full-header-right {
       display: flex;
       align-items: center;
       gap: 4px;
     }
-
     .btn-close {
       background: none;
       border: none;
@@ -1014,7 +888,6 @@
       font-size: 1.5rem;
       cursor: pointer;
     }
-
     .full-cover-container {
       width: 100%;
       max-width: 320px;
@@ -1024,36 +897,30 @@
       overflow: hidden;
       box-shadow: 0 20px 45px var(--accent-glow);
     }
-
     .full-cover-container img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-
     .full-meta {
       text-align: center;
       margin: 16px 0 6px;
     }
-
     .full-title {
       font-size: 1.25rem;
       font-weight: 800;
       margin-bottom: 4px;
     }
-
     .full-rhythm {
       font-size: 0.85rem;
       color: var(--accent);
       font-weight: 700;
     }
-
     .progress-wrapper {
       width: 100%;
       max-width: 360px;
       margin: 0 auto;
     }
-
     .progress-bar-bg {
       width: 100%;
       height: 6px;
@@ -1061,7 +928,6 @@
       border-radius: 10px;
       cursor: pointer;
     }
-
     .progress-bar-fill {
       width: 0%;
       height: 100%;
@@ -1069,7 +935,6 @@
       border-radius: 10px;
       box-shadow: 0 0 10px var(--accent-glow);
     }
-
     .time-box {
       display: flex;
       justify-content: space-between;
@@ -1077,8 +942,6 @@
       color: var(--text-dim);
       margin-top: 6px;
     }
-
-    /* MODERN CONTROLS */
     .full-controls {
       display: flex;
       justify-content: center;
@@ -1086,7 +949,6 @@
       gap: 22px;
       margin-bottom: 10px;
     }
-
     .btn-ctrl {
       background: none;
       border: none;
@@ -1097,10 +959,8 @@
       justify-content: center;
       padding: 6px;
     }
-
     .btn-ctrl:hover { color: var(--text); }
     .btn-ctrl.active { color: var(--accent); }
-
     .btn-full-play {
       width: 68px;
       height: 68px;
@@ -1113,7 +973,6 @@
       cursor: pointer;
       box-shadow: 0 0 22px var(--accent-glow);
     }
-
     .player-action-row {
       display: flex;
       justify-content: center;
@@ -1121,7 +980,6 @@
       gap: 12px;
       margin-bottom: 14px;
     }
-
     .btn-action-pill {
       background: var(--glass-card);
       border: 1px solid var(--glass-border);
@@ -1136,24 +994,19 @@
       gap: 6px;
       text-decoration: none;
     }
-
     .btn-action-pill.heart-active {
       color: var(--heart-active);
       border-color: var(--heart-active);
     }
-
     .btn-action-pill.support {
       background: rgba(255, 82, 82, 0.12);
       border-color: rgba(255, 82, 82, 0.35);
       color: #ff5252;
     }
-
     .btn-action-pill.support:hover {
       background: #ff5252;
       color: #fff;
     }
-
-    /* TOAST NOTIFICATION */
     .toast-box {
       position: fixed;
       top: 20px;
@@ -1174,9 +1027,7 @@
       align-items: center;
       gap: 8px;
     }
-
     .toast-box.show { transform: translateX(-50%) translateY(0); }
-
     .donation-modal {
       position: fixed;
       inset: 0;
@@ -1189,9 +1040,7 @@
       justify-content: center;
       padding: 20px;
     }
-
     .donation-modal.open { display: flex; }
-
     .donation-card {
       background: var(--glass-card);
       border: 1px solid var(--glass-border);
@@ -1203,21 +1052,18 @@
       position: relative;
       box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     }
-
     .donation-card h3 {
       font-size: 1.25rem;
       font-weight: 800;
       margin-bottom: 6px;
       color: var(--text);
     }
-
     .donation-card p {
       font-size: 0.82rem;
       color: var(--text-dim);
       margin-bottom: 16px;
       line-height: 1.4;
     }
-
     .pix-box {
       background: rgba(0,0,0,0.35);
       border: 1px dashed var(--accent);
@@ -1225,7 +1071,6 @@
       border-radius: 14px;
       margin-bottom: 14px;
     }
-
     .pix-key {
       font-size: 0.85rem;
       font-weight: 800;
@@ -1234,7 +1079,6 @@
       margin-bottom: 8px;
       user-select: text;
     }
-
     .btn-copy-pix {
       background: var(--accent);
       color: #000;
@@ -1248,7 +1092,6 @@
       align-items: center;
       gap: 5px;
     }
-
     .mp-link-btn {
       display: block;
       width: 100%;
@@ -1261,12 +1104,10 @@
       border-radius: 14px;
       margin-top: 8px;
     }
-
     .mp-link-btn:hover {
       background: #0088cc;
       box-shadow: 0 0 15px rgba(0, 158, 227, 0.4);
     }
-
     footer {
       text-align: center;
       padding: 24px 10px 10px;
@@ -1275,8 +1116,6 @@
       border-top: 1px solid var(--glass-border);
       margin-top: 20px;
     }
-
-    /* FAVORITES CONTROLS */
     .favorites-controls {
       grid-column: 1 / -1;
       display: flex;
@@ -1285,7 +1124,6 @@
       margin-bottom: 16px;
       flex-wrap: wrap;
     }
-
     .favorites-controls button {
       background: var(--glass-card);
       color: var(--text);
@@ -1300,25 +1138,21 @@
       gap: 8px;
       transition: all 0.3s ease;
     }
-
     .favorites-controls button:hover {
       border-color: var(--accent);
       color: var(--accent);
     }
-
     .favorites-controls button.active-shuffle {
       background: var(--accent);
       color: #000;
       border-color: var(--accent);
       box-shadow: 0 0 14px var(--accent-glow);
     }
-
     .favorites-controls button.play-all {
       background: var(--accent);
       color: #000;
       border-color: var(--accent);
     }
-
     .favorites-controls button.play-all:hover {
       box-shadow: 0 0 14px var(--accent-glow);
     }
@@ -1335,29 +1169,18 @@
       <div class="brand-main">NALDOA</div>
       <div class="brand-sub">DIGITAL MUSIC</div>
     </div>
-    
     <div class="header-actions">
       <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Switch Glass Theme">
         <svg id="themeIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
       </button>
-
-      <a href="https://open.spotify.com/artist/05anJA6CE7Afkn0hYyVMRV?si=GXVqJJr7Q9-kmuiWPmz_JQ&utm_source=copy-link" target="_blank" class="social-btn spotify" title="Spotify">
-        <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.503 17.308c-.218.358-.684.47-1.042.252-2.855-1.744-6.448-2.14-10.679-1.173-.408.093-.812-.162-.905-.57-.093-.408.162-.812.57-.905 4.636-1.06 8.604-.609 11.804 1.354.358.218.47.684.252 1.042zm1.47-3.267c-.274.446-.856.587-1.302.313-3.268-2.008-8.25-2.59-12.114-1.416-.502.152-1.037-.133-1.189-.635-.152-.502.133-1.037.635-1.189 4.417-1.34 9.907-.69 13.657 1.625.446.274.587.856.313 1.302zm.126-3.41c-3.918-2.327-10.375-2.542-14.11-1.408-.6.182-1.24-.165-1.422-.765-.182-.6.165-1.24.765-1.422 4.292-1.303 11.42-1.05 15.894 1.606.54.321.716 1.02.395 1.56-.321.54-1.02.716-1.522.429z"/></svg>
-      </a>
-      <a href="https://music.apple.com/br/artist/naldoa/1782398892" target="_blank" class="social-btn apple" title="Apple Music">
-        <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.63-.77 1.06-1.84.95-2.91-.92.04-2.03.62-2.69 1.39-.58.67-1.09 1.76-.95 2.8.03 0 .07.01.1.01.95 0 1.96-.52 2.59-1.29z"/></svg>
-      </a>
-      <a href="https://instagram.com/naldoamusic" target="_blank" class="social-btn instagram" title="Instagram">
-        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      </a>
-      <a href="https://tiktok.com/@naldoamusic" target="_blank" class="social-btn tiktok" title="TikTok">
-        <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-      </a>
+      <a href="https://open.spotify.com/artist/05anJA6CE7Afkn0hYyVMRV?si=GXVqJJr7Q9-kmuiWPmz_JQ&utm_source=copy-link" target="_blank" class="social-btn spotify" title="Spotify"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.503 17.308c-.218.358-.684.47-1.042.252-2.855-1.744-6.448-2.14-10.679-1.173-.408.093-.812-.162-.905-.57-.093-.408.162-.812.57-.905 4.636-1.06 8.604-.609 11.804 1.354.358.218.47.684.252 1.042zm1.47-3.267c-.274.446-.856.587-1.302.313-3.268-2.008-8.25-2.59-12.114-1.416-.502.152-1.037-.133-1.189-.635-.152-.502.133-1.037.635-1.189 4.417-1.34 9.907-.69 13.657 1.625.446.274.587.856.313 1.302zm.126-3.41c-3.918-2.327-10.375-2.542-14.11-1.408-.6.182-1.24-.165-1.422-.765-.182-.6.165-1.24.765-1.422 4.292-1.303 11.42-1.05 15.894 1.606.54.321.716 1.02.395 1.56-.321.54-1.02.716-1.522.429z"/></svg></a>
+      <a href="https://music.apple.com/br/artist/naldoa/1782398892" target="_blank" class="social-btn apple" title="Apple Music"><svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.63-.77 1.06-1.84.95-2.91-.92.04-2.03.62-2.69 1.39-.58.67-1.09 1.76-.95 2.8.03 0 .07.01.1.01.95 0 1.96-.52 2.59-1.29z"/></svg></a>
+      <a href="https://instagram.com/naldoamusic" target="_blank" class="social-btn instagram" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      <a href="https://tiktok.com/@naldoamusic" target="_blank" class="social-btn tiktok" title="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
     </div>
   </header>
 
   <div class="container">
-    
     <div class="compact-hub-bar">
       <a href="https://youtube.com/@naldoamusic?si=NhBGNUKl8piB9yt_" target="_blank" class="hub-btn">
         <svg class="hub-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -1367,15 +1190,11 @@
         <svg class="hub-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
         Digital Music Videos
       </a>
-      <button class="hub-btn support" onclick="openSupportModal()">
-        ❤️ Support NaldoA (Pix)
-      </button>
+      <button class="hub-btn support" onclick="openSupportModal()">❤️ Support NaldoA (Pix)</button>
     </div>
 
     <div class="search-box-wrapper">
-      <svg class="search-icon-left" viewBox="0 0 24 24">
-        <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-      </svg>
+      <svg class="search-icon-left" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
       <input type="text" id="searchInput" class="search-input" placeholder="Search tracks, albums or genres..." oninput="handleSearch(this.value)">
       <button class="search-clear-btn" id="searchClearBtn" onclick="clearSearch()">✕</button>
     </div>
@@ -1408,9 +1227,7 @@
         </div>
         <div class="carousel-wrapper">
           <button class="carousel-nav-btn prev" onclick="scrollCarousel('top10Carousel', -350)">❮</button>
-          <div class="carousel-container" id="top10Carousel">
-            <div style="color: var(--text-dim); font-size: 0.8rem;">Loading Top 10...</div>
-          </div>
+          <div class="carousel-container" id="top10Carousel"><div style="color: var(--text-dim); font-size: 0.8rem;">Loading Top 10...</div></div>
           <button class="carousel-nav-btn next" onclick="scrollCarousel('top10Carousel', 350)">❯</button>
         </div>
       </div>
@@ -1492,7 +1309,6 @@
     <div class="full-header">
       <button class="btn-close" onclick="closeFullPlayer()">✕</button>
       <span style="font-size: 0.75rem; letter-spacing: 2px; color: var(--text-dim); text-transform: uppercase; position: absolute; left: 50%; transform: translateX(-50%);">PLAYING NOW</span>
-      
       <div class="full-header-right">
         <button class="btn-ctrl" onclick="openCurrentQueueModal()" title="View Tracklist">
           <svg width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
@@ -1526,19 +1342,15 @@
       <button class="btn-ctrl" id="btnShuffle" onclick="toggleShuffle()" title="Shuffle Mode">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
       </button>
-      
       <button class="btn-ctrl" onclick="prevTrack()" title="Previous Track">
         <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg>
       </button>
-      
       <button class="btn-full-play" onclick="togglePlay()" title="Play / Pause">
         <svg id="fullPlayIcon" width="24" height="24" fill="#000" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
       </button>
-      
       <button class="btn-ctrl" onclick="nextTrack()" title="Next Track">
         <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
       </button>
-
       <button class="btn-ctrl" id="btnRepeat" onclick="toggleRepeat()" title="Repeat Track">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
       </button>
@@ -1549,38 +1361,25 @@
         <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
         <span id="fullPlayerLikeText">Favorite</span>
       </button>
-      <button class="btn-action-pill support" onclick="openSupportModal()">
-        ❤️ Support NaldoA
-      </button>
+      <button class="btn-action-pill support" onclick="openSupportModal()">❤️ Support NaldoA</button>
     </div>
   </div>
 
   <div class="donation-modal" id="donationModal" onclick="closeDonationModal(event)">
     <div class="donation-card" onclick="event.stopPropagation()">
       <button class="btn-close" style="position:absolute; top:16px; right:16px;" onclick="closeDonationModalDirect()">✕</button>
-      
       <h3>Support NaldoA ❤️</h3>
-      <p style="margin-bottom: 12px;">
-        Enjoying the music? Support the production of new tracks with any amount!
-      </p>
-      
+      <p style="margin-bottom: 12px;">Enjoying the music? Support the production of new tracks with any amount!</p>
       <div class="pix-box">
-        <span style="font-size:0.72rem; color:var(--text-dim); text-transform:uppercase; font-weight:700; display:block; margin-bottom:4px;">
-          🇧🇷 Brazil • Pix Key (E-mail):
-        </span>
+        <span style="font-size:0.72rem; color:var(--text-dim); text-transform:uppercase; font-weight:700; display:block; margin-bottom:4px;">🇧🇷 Brazil • Pix Key (E-mail):</span>
         <div class="pix-key" id="pixKeyValue">naldoamusic@gmail.com</div>
         <button class="btn-copy-pix" onclick="copyPixKey()">
           <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
           <span id="copyBtnText">Copy Pix Key</span>
         </button>
       </div>
-
-      <a href="https://link.mercadopago.com.br/supportnaldoamusic" target="_blank" class="mp-link-btn" id="mpDonationLink">
-        🌎 International Cards / Mercado Pago
-      </a>
-      <span style="font-size:0.68rem; color:var(--text-dim); display:block; margin-top:6px;">
-        Accepts USD ($), EUR (€), BRL (R$) and credit cards worldwide.
-      </span>
+      <a href="https://link.mercadopago.com.br/supportnaldoamusic" target="_blank" class="mp-link-btn" id="mpDonationLink">🌎 International Cards / Mercado Pago</a>
+      <span style="font-size:0.68rem; color:var(--text-dim); display:block; margin-top:6px;">Accepts USD ($), EUR (€), BRL (R$) and credit cards worldwide.</span>
     </div>
   </div>
 
@@ -1590,26 +1389,11 @@
     const ARCHIVE_ITEM_ID = 'naldoa-digital-music-stream';
     const ARCHIVE_DOWNLOAD_BASE = `https://archive.org/download/${ARCHIVE_ITEM_ID}`;
 
-    const THEME_LIST = [
-      'dark',
-      'light',
-      'purple',
-      'light-rose',
-      'emerald',
-      'light-emerald',
-      'sunset',
-      'light-gold'
-    ];
-
+    const THEME_LIST = ['dark','light','purple','light-rose','emerald','light-emerald','sunset','light-gold'];
     const THEME_NAMES = {
-      'dark': 'Classic Dark (Cyan)',
-      'light': 'Classic Light (Frost)',
-      'purple': 'Purple Violet Glass',
-      'light-rose': 'Rose Pastel Glass',
-      'emerald': 'Emerald Cyber Glass',
-      'light-emerald': 'Emerald Fresh Glass',
-      'sunset': 'Sunset Amber Glass',
-      'light-gold': 'Sunset Gold Glass'
+      'dark':'Classic Dark (Cyan)','light':'Classic Light (Frost)','purple':'Purple Violet Glass',
+      'light-rose':'Rose Pastel Glass','emerald':'Emerald Cyber Glass','light-emerald':'Emerald Fresh Glass',
+      'sunset':'Sunset Amber Glass','light-gold':'Sunset Gold Glass'
     };
 
     let allTracks = [];
@@ -1623,6 +1407,7 @@
     let discoveryTracks = [];
     let favoriteTrackIds = JSON.parse(localStorage.getItem('naldoa_favs') || '[]');
     let isShuffleFavorites = false;
+    let currentGenre = 'all';
 
     const audio = document.getElementById('audioElement');
     const discoveryCarousel = document.getElementById('discoveryCarousel');
@@ -1645,26 +1430,20 @@
     const toastBox = document.getElementById('toastBox');
     const toastMsg = document.getElementById('toastMsg');
 
+    // --- UTILITÁRIOS ---
     function showToast(msg) {
       toastMsg.innerText = msg;
       toastBox.classList.add('show');
       setTimeout(() => toastBox.classList.remove('show'), 2500);
     }
 
-    function initTheme() {
-      const savedTheme = localStorage.getItem('theme_mode') || 'dark';
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    }
-
-    function toggleTheme() {
-      const current = document.documentElement.getAttribute('data-theme') || 'dark';
-      const currentIndex = THEME_LIST.indexOf(current);
-      const nextIndex = (currentIndex + 1) % THEME_LIST.length;
-      const nextTheme = THEME_LIST[nextIndex];
-      
-      document.documentElement.setAttribute('data-theme', nextTheme);
-      localStorage.setItem('theme_mode', nextTheme);
-      showToast(`Theme: ${THEME_NAMES[nextTheme]}`);
+    function shuffleArray(array) {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
     }
 
     function getStoredPlays(id) {
@@ -1675,14 +1454,8 @@
       let plays = getStoredPlays(track.id) + 1;
       localStorage.setItem(`plays_${track.id}`, plays);
       track.plays = plays;
-      
       if (typeof gtag === 'function') {
-        gtag('event', 'play_music', {
-          'track_name': track.title,
-          'genre': track.rhythm,
-          'artist': 'NaldoA',
-          'platform': 'NaldoA Digital Music'
-        });
+        gtag('event', 'play_music', { 'track_name': track.title, 'genre': track.rhythm, 'artist': 'NaldoA', 'platform': 'NaldoA Digital Music' });
       }
       renderApp();
     }
@@ -1724,40 +1497,6 @@
       }
     }
 
-    function shuffleArray(array) {
-      const shuffled = [...array];
-      for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-      }
-      return shuffled;
-    }
-
-    function toggleShuffle() {
-      const isFavoritesView = document.getElementById('catViewTitle') && 
-                              document.getElementById('catViewTitle').innerText.includes('Favorite');
-      
-      if (isFavoritesView) {
-        toggleFavoritesShuffle();
-      } else {
-        isShuffle = !isShuffle;
-        btnShuffle.classList.toggle('active', isShuffle);
-        showToast(isShuffle ? '🔀 Shuffle Mode: ON' : '🔀 Shuffle Mode: OFF');
-      }
-    }
-
-    function toggleFavoritesShuffle() {
-      isShuffleFavorites = !isShuffleFavorites;
-      showToast(isShuffleFavorites ? '🔀 Shuffle ON - Favorites' : '🔀 Shuffle OFF - Favorites');
-      openCategoryView('favorites');
-    }
-
-    function toggleRepeat() {
-      isRepeat = !isRepeat;
-      btnRepeat.classList.toggle('active', isRepeat);
-      showToast(isRepeat ? 'Repeat Track: ON 🔁' : 'Repeat Track: OFF');
-    }
-
     function copyToClipboardFallback(text) {
       const tempInput = document.createElement('textarea');
       tempInput.value = text;
@@ -1779,66 +1518,23 @@
     function shareCurrentTrack() {
       const track = activeQueue[currentQueueIndex];
       if (!track) return;
-      
       const shareUrl = `https://naldoaplay.github.io/naldoamusic/?track=${encodeURIComponent(track.id)}`;
-      
       if (navigator.share) {
-        navigator.share({
-          title: `${track.title} - NaldoA`,
-          url: shareUrl
-        }).catch(() => {
-          copyToClipboardFallback(shareUrl);
-        });
+        navigator.share({ title: `${track.title} - NaldoA`, url: shareUrl }).catch(() => copyToClipboardFallback(shareUrl));
       } else if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(shareUrl).then(() => {
-          showToast('Track link copied! ✓');
-        }).catch(() => {
-          copyToClipboardFallback(shareUrl);
-        });
+        navigator.clipboard.writeText(shareUrl).then(() => showToast('Track link copied! ✓')).catch(() => copyToClipboardFallback(shareUrl));
       } else {
         copyToClipboardFallback(shareUrl);
       }
     }
 
-    function checkDirectUrlTrack() {
-      const params = new URLSearchParams(window.location.search);
-      const trackParam = params.get('track');
-      const hashParam = window.location.hash ? window.location.hash.substring(1) : null;
-      const targetTrackId = trackParam || hashParam;
-
-      if (targetTrackId && allTracks.length > 0) {
-        const decoded = decodeURIComponent(targetTrackId).toLowerCase();
-        const foundIndex = allTracks.findIndex(t => 
-          t.id.toLowerCase() === decoded || 
-          t.title.toLowerCase() === decoded.replaceAll('_', ' ')
-        );
-
-        if (foundIndex !== -1) {
-          playTrackRespectingGenre(allTracks[foundIndex]);
-          openFullPlayer();
-          return true;
-        }
-      }
-      return false;
-    }
-
     function detectRhythm(name) {
       const lower = name.toLowerCase();
-      if (lower.includes('love') || lower.includes('romantic') || lower.includes('slow') || lower.includes('ballad')) {
-        return 'Love Songs';
-      }
+      if (lower.includes('love') || lower.includes('romantic') || lower.includes('slow') || lower.includes('ballad')) return 'Love Songs';
       if (lower.includes('reggaeton')) return 'Reggaeton';
       if (lower.includes('forro') || lower.includes('forró')) return 'Forro';
       if (lower.includes('gospel') || lower.includes('worship') || lower.includes('louvor')) return 'Gospel';
-      if (
-        lower.includes('edm') || 
-        lower.includes('trance') || 
-        lower.includes('house') || 
-        lower.includes('progressive') || 
-        lower.includes('electronic') ||
-        lower.includes('dance') ||
-        lower.includes('electro')
-      ) {
+      if (lower.includes('edm') || lower.includes('trance') || lower.includes('house') || lower.includes('progressive') || lower.includes('electronic') || lower.includes('dance') || lower.includes('electro')) {
         return 'Electronic / EDM';
       }
       return 'Other';
@@ -1846,10 +1542,7 @@
 
     function updateMediaSession(track) {
       if ('mediaSession' in navigator && track) {
-        const albumName = track.isAlbum && track.albumKey 
-          ? track.albumKey.replaceAll('_', ' ') 
-          : 'NaldoA Digital Music';
-
+        const albumName = track.isAlbum && track.albumKey ? track.albumKey.replaceAll('_', ' ') : 'NaldoA Digital Music';
         navigator.mediaSession.metadata = new MediaMetadata({
           title: track.title,
           artist: 'NaldoA',
@@ -1861,22 +1554,8 @@
             { src: track.cover, sizes: '512x512', type: 'image/jpeg' }
           ]
         });
-
-        navigator.mediaSession.setActionHandler('play', () => {
-          audio.play().then(() => {
-            isPlaying = true;
-            navigator.mediaSession.playbackState = 'playing';
-            updatePlayIcons();
-          }).catch(() => {});
-        });
-
-        navigator.mediaSession.setActionHandler('pause', () => {
-          audio.pause();
-          isPlaying = false;
-          navigator.mediaSession.playbackState = 'paused';
-          updatePlayIcons();
-        });
-
+        navigator.mediaSession.setActionHandler('play', () => { audio.play().then(() => { isPlaying = true; navigator.mediaSession.playbackState = 'playing'; updatePlayIcons(); }).catch(() => {}); });
+        navigator.mediaSession.setActionHandler('pause', () => { audio.pause(); isPlaying = false; navigator.mediaSession.playbackState = 'paused'; updatePlayIcons(); });
         navigator.mediaSession.setActionHandler('previoustrack', () => prevTrack());
         navigator.mediaSession.setActionHandler('nexttrack', () => nextTrack());
       }
@@ -1884,9 +1563,7 @@
 
     function scrollCarousel(id, amount) {
       const container = document.getElementById(id);
-      if (container) {
-        container.scrollBy({ left: amount, behavior: 'smooth' });
-      }
+      if (container) container.scrollBy({ left: amount, behavior: 'smooth' });
     }
 
     function setupPcWheelScroll() {
@@ -1900,39 +1577,84 @@
       });
     }
 
+    // --- TEMAS ---
+    function initTheme() {
+      const savedTheme = localStorage.getItem('theme_mode') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const currentIndex = THEME_LIST.indexOf(current);
+      const nextIndex = (currentIndex + 1) % THEME_LIST.length;
+      const nextTheme = THEME_LIST[nextIndex];
+      document.documentElement.setAttribute('data-theme', nextTheme);
+      localStorage.setItem('theme_mode', nextTheme);
+      showToast(`Theme: ${THEME_NAMES[nextTheme]}`);
+    }
+
+    // --- SHUFFLE ---
+    function toggleShuffle() {
+      if (currentGenre === 'favorites') {
+        isShuffleFavorites = !isShuffleFavorites;
+        showToast(isShuffleFavorites ? '🔀 Shuffle ON - Favorites' : '🔀 Shuffle OFF - Favorites');
+        openCategoryView('favorites');
+        return;
+      }
+      isShuffle = !isShuffle;
+      btnShuffle.classList.toggle('active', isShuffle);
+      
+      if (isShuffle && activeQueue.length > 0) {
+        const currentTrack = activeQueue[currentQueueIndex];
+        const otherTracks = activeQueue.filter((_, i) => i !== currentQueueIndex);
+        const shuffledOthers = shuffleArray(otherTracks);
+        activeQueue = [currentTrack, ...shuffledOthers];
+        currentQueueIndex = 0;
+      } else if (!isShuffle) {
+        const genre = currentGenre === 'all' ? 'all' : currentGenre;
+        const tracks = genre === 'all' ? allTracks : allTracks.filter(t => t.rhythm === genre);
+        const currentTrack = activeQueue[currentQueueIndex];
+        const newIndex = tracks.findIndex(t => t.id === currentTrack.id);
+        activeQueue = [...tracks];
+        currentQueueIndex = newIndex !== -1 ? newIndex : 0;
+      }
+      showToast(isShuffle ? '🔀 Shuffle ON' : '🔀 Shuffle OFF');
+      updatePlayIcons();
+    }
+
+    function toggleRepeat() {
+      isRepeat = !isRepeat;
+      btnRepeat.classList.toggle('active', isRepeat);
+      showToast(isRepeat ? 'Repeat Track: ON 🔁' : 'Repeat Track: OFF');
+    }
+
+    // --- NAVEGAÇÃO ---
     function handleSearch(query) {
       const clean = query.trim().toLowerCase();
-      
       if (!clean) {
         searchClearBtn.style.display = 'none';
         showAllContent();
         return;
       }
-
       searchClearBtn.style.display = 'flex';
       document.querySelectorAll('.rhythm-pill').forEach(el => el.classList.remove('active'));
-
       mainCarouselView.style.display = 'none';
       categoryDedicatedView.style.display = 'block';
       categoryGrid.innerHTML = '';
-
       document.getElementById('catViewTitle').innerText = `Search: "${query}"`;
-
       const results = allTracks.filter(track => {
         const titleMatch = track.title.toLowerCase().includes(clean);
         const rhythmMatch = track.rhythm.toLowerCase().includes(clean);
         const albumMatch = track.albumKey && track.albumKey.toLowerCase().includes(clean);
         return titleMatch || rhythmMatch || albumMatch;
       });
-
       if (results.length === 0) {
         categoryGrid.innerHTML = `<div style="color:var(--text-dim); padding:20px; grid-column: 1 / -1; text-align:center;">No tracks found for "${query}".</div>`;
         return;
       }
-
-      results.forEach(track => {
-        categoryGrid.appendChild(createTrackCard(track));
-      });
+      currentGenre = 'search';
+      activeQueue = [...results];
+      currentQueueIndex = 0;
+      results.forEach(track => categoryGrid.appendChild(createTrackCard(track)));
     }
 
     function clearSearch() {
@@ -1947,10 +1669,19 @@
       document.querySelectorAll('.rhythm-pill').forEach(el => el.classList.remove('active'));
       const allTab = document.getElementById('tab-all');
       if (allTab) allTab.classList.add('active');
-
       mainCarouselView.style.display = 'block';
       categoryDedicatedView.style.display = 'none';
       window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      currentGenre = 'all';
+      activeQueue = [...allTracks];
+      currentQueueIndex = 0;
+      if (isShuffle) {
+        const currentTrack = activeQueue[0];
+        const others = shuffleArray(activeQueue.slice(1));
+        activeQueue = [currentTrack, ...others];
+      }
+      updatePlayIcons();
     }
 
     function openCategoryView(categoryKey) {
@@ -1963,83 +1694,79 @@
       categoryGrid.innerHTML = '';
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
+      let trackList = [];
+      let title = '';
+
       if (categoryKey === 'favorites') {
         const t = document.getElementById('tab-favorites');
         if (t) t.classList.add('active');
-        document.getElementById('catViewTitle').innerText = '❤️ My Favorite Tracks';
-        
-        let favs = allTracks.filter(tr => isFavorite(tr.id));
-        
-        if (favs.length === 0) {
+        title = '❤️ My Favorite Tracks';
+        trackList = allTracks.filter(tr => isFavorite(tr.id));
+        if (trackList.length === 0) {
           categoryGrid.innerHTML = `<div style="color:var(--text-dim); padding:30px; grid-column: 1 / -1; text-align:center;">No favorite tracks added yet.<br>Click the heart icon on any track to save it here!</div>`;
           return;
         }
-
-        if (isShuffleFavorites) {
-          favs = shuffleArray([...favs]);
-        }
+        currentGenre = 'favorites';
+        activeQueue = isShuffleFavorites ? shuffleArray([...trackList]) : [...trackList];
+        currentQueueIndex = 0;
 
         const controls = document.createElement('div');
         controls.className = 'favorites-controls';
         controls.innerHTML = `
-          <button class="${isShuffleFavorites ? 'active-shuffle' : ''}" onclick="toggleFavoritesShuffle()">
-            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-              <polyline points="16 3 21 3 21 8"></polyline>
-              <line x1="4" y1="20" x2="21" y2="3"></line>
-              <polyline points="21 16 21 21 16 21"></polyline>
-              <line x1="15" y1="15" x2="21" y2="21"></line>
-              <line x1="4" y1="4" x2="9" y2="9"></line>
-            </svg>
+          <button class="${isShuffleFavorites ? 'active-shuffle' : ''}" onclick="toggleShuffle()">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
             ${isShuffleFavorites ? '🔀 Shuffle ON' : '🔀 Shuffle OFF'}
           </button>
           <button class="play-all" onclick="playAllFavorites()">
-            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-            Play All (${favs.length})
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            Play All (${trackList.length})
           </button>
         `;
         categoryGrid.appendChild(controls);
 
-        favs.forEach(track => {
-          categoryGrid.appendChild(createTrackCard(track));
-        });
-        
       } else if (categoryKey === 'discovery') {
         const t = document.getElementById('tab-discovery');
         if (t) t.classList.add('active');
-        document.getElementById('catViewTitle').innerText = '✨ Discovery & Highlights (EDM)';
-        discoveryTracks.forEach(track => {
-          categoryGrid.appendChild(createTrackCard(track));
-        });
+        title = '✨ Discovery & Highlights (EDM)';
+        trackList = [...discoveryTracks];
+        currentGenre = 'discovery';
+        activeQueue = isShuffle ? shuffleArray([...trackList]) : [...trackList];
+        currentQueueIndex = 0;
+
       } else if (categoryKey === 'top10') {
         const t = document.getElementById('tab-top10');
         if (t) t.classList.add('active');
-        document.getElementById('catViewTitle').innerText = '★ Top 10 EDM Hits';
-        const top10 = allTracks
-          .filter(tr => tr.rhythm === 'Electronic / EDM')
-          .sort((a, b) => b.plays - a.plays)
-          .slice(0, 10);
-        top10.forEach((track, index) => {
-          categoryGrid.appendChild(createTrackCard(track, index + 1));
-        });
+        title = '★ Top 10 EDM Hits';
+        trackList = allTracks.filter(tr => tr.rhythm === 'Electronic / EDM').sort((a,b) => b.plays - a.plays).slice(0,10);
+        currentGenre = 'top10';
+        activeQueue = isShuffle ? shuffleArray([...trackList]) : [...trackList];
+        currentQueueIndex = 0;
+
       } else if (categoryKey === 'albums') {
         const t = document.getElementById('tab-albums');
         if (t) t.classList.add('active');
-        document.getElementById('catViewTitle').innerText = 'Official Albums';
+        title = 'Official Albums';
+        trackList = [];
+        currentGenre = 'albums';
         Object.keys(allAlbums).forEach(k => {
           categoryGrid.appendChild(createAlbumCard(allAlbums[k], k));
         });
+        return;
+
       } else {
         const cleanPillId = 'tab-' + categoryKey.replace(/[\s\/]+/g, '-');
-        const t = document.getElementById(cleanPillId);
-        if (t) t.classList.add('active');
-        document.getElementById('catViewTitle').innerText = categoryKey;
-        const filtered = allTracks.filter(tr => tr.rhythm.toLowerCase() === categoryKey.toLowerCase());
-        filtered.forEach(track => {
-          categoryGrid.appendChild(createTrackCard(track));
-        });
+        const pill = document.getElementById(cleanPillId);
+        if (pill) pill.classList.add('active');
+        title = categoryKey;
+        trackList = allTracks.filter(tr => tr.rhythm === categoryKey);
+        currentGenre = categoryKey;
+        activeQueue = isShuffle ? shuffleArray([...trackList]) : [...trackList];
+        currentQueueIndex = 0;
       }
+
+      document.getElementById('catViewTitle').innerText = title;
+      trackList.forEach(track => categoryGrid.appendChild(createTrackCard(track)));
+      updatePlayIcons();
     }
 
     function playAllFavorites() {
@@ -2048,45 +1775,346 @@
         showToast('No favorites to play');
         return;
       }
-      
-      let playlist = [...favs];
-      if (isShuffleFavorites) {
-        playlist = shuffleArray(playlist);
-      }
-      
-      activeQueue = playlist;
+      activeQueue = isShuffleFavorites ? shuffleArray([...favs]) : [...favs];
       currentQueueIndex = 0;
       setTrackDetails(0, true);
       openFullPlayer();
-      showToast(`▶ Playing ${playlist.length} favorites`);
+      showToast(`▶ Playing ${activeQueue.length} favorites`);
     }
 
+    // --- MODAIS ---
     function openSupportModal() { donationModal.classList.add('open'); }
     function closeDonationModal(e) { if (e.target === donationModal) donationModal.classList.remove('open'); }
     function closeDonationModalDirect() { donationModal.classList.remove('open'); }
-
     function copyPixKey() {
       const pixKey = document.getElementById('pixKeyValue').innerText;
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(pixKey).then(() => {
           document.getElementById('copyBtnText').innerText = 'Key Copied! ✓';
-          setTimeout(() => {
-            document.getElementById('copyBtnText').innerText = 'Copy Pix Key';
-          }, 2500);
+          setTimeout(() => document.getElementById('copyBtnText').innerText = 'Copy Pix Key', 2500);
         }).catch(() => copyToClipboardFallback(pixKey));
       } else {
         copyToClipboardFallback(pixKey);
       }
     }
 
+    // --- CATÁLOGO ---
+    async function loadCatalog() {
+      try {
+        const response = await fetch(`https://archive.org/metadata/${ARCHIVE_ITEM_ID}`);
+        const data = await response.json();
+        const files = data.files || [];
+        const allAudioFiles = files.filter(f => f.name && (f.name.toLowerCase().endsWith('.mp3') || f.name.toLowerCase().endsWith('.wav') || f.name.toLowerCase().endsWith('.flac') || f.name.toLowerCase().endsWith('.aac') || f.name.toLowerCase().endsWith('.ogg')));
+        const realImages = files.filter(f => f.name && (f.name.toLowerCase().endsWith('.jpg') || f.name.toLowerCase().endsWith('.png')) && !f.name.toLowerCase().includes('_waveform') && !f.name.toLowerCase().includes('_spectrogram') && !f.name.toLowerCase().includes('_thumb'));
+
+        const uniqueMap = new Map();
+        allAlbums = {};
+
+        allAudioFiles.forEach(file => {
+          let rawName = file.name.replace(/\.(mp3|wav|flac|aac|ogg)$/i, '').replace(/_vbr$/i, '');
+          if (!uniqueMap.has(rawName)) {
+            let isAlbum = false, albumKey = null, trackNumber = "", songTitle = rawName;
+            if (rawName.toLowerCase().startsWith("album_")) {
+              isAlbum = true;
+              const withoutPrefix = rawName.substring(6);
+              const numberMatch = withoutPrefix.match(/_(\d{1,3})_/);
+              if (numberMatch) {
+                const numIndex = withoutPrefix.indexOf(numberMatch[0]);
+                albumKey = withoutPrefix.substring(0, numIndex);
+                trackNumber = numberMatch[1];
+                songTitle = withoutPrefix.substring(numIndex + numberMatch[0].length);
+              } else {
+                const parts = withoutPrefix.split("_");
+                albumKey = parts[0];
+                songTitle = parts.slice(1).join("_");
+              }
+            }
+            let matchingImg = null;
+            if (isAlbum && albumKey) {
+              matchingImg = realImages.find(f => f.name.toLowerCase().startsWith(`album_${albumKey.toLowerCase()}`));
+            }
+            if (!matchingImg) {
+              matchingImg = realImages.find(f => f.name.toLowerCase().startsWith(rawName.toLowerCase()));
+            }
+            const coverUrl = matchingImg ? `${ARCHIVE_DOWNLOAD_BASE}/${encodeURIComponent(matchingImg.name)}` : `${ARCHIVE_DOWNLOAD_BASE}/cover.jpg`;
+            const mp3Version = files.find(f => f.name.startsWith(rawName) && f.name.endsWith('.mp3'));
+            const fileToStream = mp3Version ? mp3Version.name : file.name;
+            const detectedGenre = file.genre || detectRhythm(rawName);
+            let cleanTitle = songTitle.replace(/\.(mp3|wav|flac|aac|ogg)$/i, '').replace(/_?(EDM|Progressive_House|Trance|Reggaeton|Forro|Forró|Gospel|Electronic|Love_Songs|Other)$/gi, '').replaceAll('_', ' ').trim();
+
+            const trackObj = {
+              id: rawName,
+              title: cleanTitle || songTitle.replaceAll('_', ' '),
+              rhythm: detectedGenre,
+              url: `${ARCHIVE_DOWNLOAD_BASE}/${encodeURIComponent(fileToStream)}`,
+              cover: coverUrl,
+              plays: getStoredPlays(rawName),
+              isAlbum: isAlbum,
+              albumKey: albumKey,
+              trackNum: trackNumber
+            };
+            uniqueMap.set(rawName, trackObj);
+            if (isAlbum && albumKey) {
+              if (!allAlbums[albumKey]) {
+                allAlbums[albumKey] = { title: albumKey.replaceAll('_', ' '), cover: coverUrl, tracks: [] };
+              }
+              allAlbums[albumKey].tracks.push(trackObj);
+            }
+          }
+        });
+
+        allTracks = Array.from(uniqueMap.values());
+        const edmPool = allTracks.filter(t => t.rhythm === 'Electronic / EDM');
+        discoveryTracks = (edmPool.length > 0 ? edmPool : allTracks).sort(() => 0.5 - Math.random()).slice(0, 10);
+        
+        activeQueue = [...allTracks];
+        currentGenre = 'all';
+        renderApp();
+
+        const params = new URLSearchParams(window.location.search);
+        const trackParam = params.get('track');
+        const hashParam = window.location.hash ? window.location.hash.substring(1) : null;
+        const targetTrackId = trackParam || hashParam;
+        if (targetTrackId && allTracks.length > 0) {
+          const decoded = decodeURIComponent(targetTrackId).toLowerCase();
+          const foundIndex = allTracks.findIndex(t => t.id.toLowerCase() === decoded || t.title.toLowerCase() === decoded.replaceAll('_', ' '));
+          if (foundIndex !== -1) {
+            playTrackRespectingGenre(allTracks[foundIndex]);
+            openFullPlayer();
+          }
+        } else {
+          const lastSavedId = localStorage.getItem('naldoa_last_track_id');
+          const lastSavedTime = parseFloat(localStorage.getItem('naldoa_last_track_time')) || 0;
+          let targetIndex = 0;
+          if (lastSavedId) {
+            const foundIdx = allTracks.findIndex(t => t.id === lastSavedId);
+            if (foundIdx !== -1) targetIndex = foundIdx;
+          }
+          setTrackDetails(targetIndex, false);
+          if (lastSavedTime > 0) audio.currentTime = lastSavedTime;
+        }
+      } catch (err) {
+        top10Carousel.innerHTML = '<div style="color:#ff4d4d; padding:10px;">Error loading audio catalogue.</div>';
+      }
+    }
+
+    // --- CRIAÇÃO DE CARDS ---
+    function createTrackCard(track, rankNumber = null) {
+      const card = document.createElement('div');
+      const isCurrentPlaying = activeQueue[currentQueueIndex] && activeQueue[currentQueueIndex].id === track.id && isPlaying;
+      card.className = `track-card ${isCurrentPlaying ? 'is-playing' : ''}`;
+      card.id = `card-${track.id}`;
+      card.onclick = () => {
+        playTrackRespectingGenre(track);
+        openFullPlayer();
+      };
+      const rankBadge = rankNumber ? `<div class="badge-tag gold">#${rankNumber}</div>` : '';
+      const favClass = isFavorite(track.id) ? 'active' : '';
+      card.innerHTML = `
+        <div class="cover-box">
+          ${rankBadge}
+          <button class="card-heart-btn ${favClass}" onclick="toggleLike('${track.id}', event)" title="Favorite">
+            <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          </button>
+          <div class="card-visualizer"><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div></div>
+          <img src="${track.cover}" onerror="this.src='${ARCHIVE_DOWNLOAD_BASE}/cover.jpg'" loading="lazy">
+        </div>
+        <div class="track-info">
+          <div class="track-title">${track.title}</div>
+          <div class="track-sub-row"><span class="track-badge">${track.rhythm}</span><span class="track-plays">▶ ${track.plays}</span></div>
+        </div>
+      `;
+      return card;
+    }
+
+    function createAlbumCard(album, key) {
+      const card = document.createElement('div');
+      card.className = 'track-card';
+      card.onclick = () => openAlbumModal(key);
+      card.innerHTML = `
+        <div class="cover-box">
+          <div class="badge-tag">ALBUM</div>
+          <img src="${album.cover}" onerror="this.src='${ARCHIVE_DOWNLOAD_BASE}/cover.jpg'" loading="lazy">
+        </div>
+        <div class="track-info">
+          <div class="track-title">${album.title}</div>
+          <div class="track-sub-row"><span class="track-badge">${album.tracks.length} TRACKS</span></div>
+        </div>
+      `;
+      return card;
+    }
+
+    // --- REPRODUÇÃO ---
+    function playTrackRespectingGenre(track) {
+      // Se estiver na aba de favoritos, mantém a fila de favoritos
+      if (currentGenre === 'favorites') {
+        // Se a música não estiver na fila de favoritos, recria
+        if (!activeQueue.some(t => t.id === track.id)) {
+          const favs = allTracks.filter(tr => isFavorite(tr.id));
+          activeQueue = isShuffleFavorites ? shuffleArray([...favs]) : [...favs];
+        }
+        const index = activeQueue.findIndex(t => t.id === track.id);
+        if (index !== -1) {
+          currentQueueIndex = index;
+          setTrackDetails(currentQueueIndex, true);
+        }
+        return;
+      }
+
+      // Para outras categorias: fila por estilo
+      const genre = track.rhythm;
+      let genreTracks = allTracks.filter(t => t.rhythm === genre);
+      if (genreTracks.length === 0) genreTracks = [...allTracks];
+      
+      if (isShuffle) {
+        genreTracks = shuffleArray([...genreTracks]);
+      }
+      
+      activeQueue = genreTracks;
+      currentGenre = genre;
+      
+      const newIndex = activeQueue.findIndex(t => t.id === track.id);
+      if (newIndex !== -1) {
+        currentQueueIndex = newIndex;
+      } else {
+        activeQueue = [track, ...activeQueue.filter(t => t.id !== track.id)];
+        currentQueueIndex = 0;
+      }
+      
+      setTrackDetails(currentQueueIndex, true);
+      
+      // Atualiza UI
+      document.querySelectorAll('.rhythm-pill').forEach(el => el.classList.remove('active'));
+      const cleanId = 'tab-' + genre.replace(/[\s\/]+/g, '-');
+      const pill = document.getElementById(cleanId);
+      if (pill) pill.classList.add('active');
+      document.getElementById('catViewTitle').innerText = genre;
+      
+      categoryGrid.innerHTML = '';
+      activeQueue.forEach(t => categoryGrid.appendChild(createTrackCard(t)));
+      mainCarouselView.style.display = 'none';
+      categoryDedicatedView.style.display = 'block';
+    }
+
+    function setTrackDetails(index, autoplay = true) {
+      const track = activeQueue[index];
+      if (!track) return;
+      currentQueueIndex = index;
+      audio.src = track.url;
+      updateMediaSession(track);
+      updateFullPlayerLikeBtn();
+      localStorage.setItem('naldoa_last_track_id', track.id);
+      document.getElementById('miniTitle').innerText = track.title;
+      document.getElementById('miniRhythm').innerText = `NaldoA • ${track.rhythm}`;
+      document.getElementById('miniCover').src = track.cover;
+      document.getElementById('fullTitle').innerText = track.title;
+      document.getElementById('fullRhythm').innerText = `NaldoA • ${track.rhythm}`;
+      document.getElementById('fullCover').src = track.cover;
+
+      if (autoplay) {
+        audio.play().then(() => {
+          isPlaying = true;
+          if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
+          updatePlayIcons();
+          incrementPlay(track);
+        }).catch(err => console.log('Playback error:', err));
+      }
+    }
+
+    function togglePlay() {
+      if (!audio.src && allTracks.length > 0) {
+        if (activeQueue.length === 0) {
+          activeQueue = [...allTracks];
+          currentQueueIndex = 0;
+        }
+        setTrackDetails(0, true);
+        openFullPlayer();
+        return;
+      }
+      if (isPlaying) {
+        audio.pause();
+      } else {
+        audio.play().then(() => {
+          isPlaying = true;
+          if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
+          updatePlayIcons();
+        }).catch(() => {});
+      }
+    }
+
+    function prevTrack() {
+      if (activeQueue.length === 0) return;
+      if (isShuffle || (currentGenre === 'favorites' && isShuffleFavorites)) {
+        const newIndex = Math.floor(Math.random() * activeQueue.length);
+        currentQueueIndex = newIndex;
+      } else {
+        currentQueueIndex = (currentQueueIndex - 1 + activeQueue.length) % activeQueue.length;
+      }
+      setTrackDetails(currentQueueIndex, true);
+      openFullPlayer();
+    }
+
+    function nextTrack() {
+      if (activeQueue.length === 0) return;
+      if (isShuffle || (currentGenre === 'favorites' && isShuffleFavorites)) {
+        const newIndex = Math.floor(Math.random() * activeQueue.length);
+        currentQueueIndex = newIndex;
+      } else {
+        currentQueueIndex = (currentQueueIndex + 1) % activeQueue.length;
+      }
+      setTrackDetails(currentQueueIndex, true);
+      openFullPlayer();
+    }
+
+    function updatePlayIcons() {
+      const playSvg = '<polygon points="5 3 19 12 5 21 5 3"></polygon>';
+      const pauseSvg = '<rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>';
+      document.getElementById('miniPlayIcon').innerHTML = isPlaying ? pauseSvg : playSvg;
+      document.getElementById('fullPlayIcon').innerHTML = isPlaying ? pauseSvg : playSvg;
+      
+      document.querySelectorAll('.track-card').forEach(card => card.classList.remove('is-playing'));
+      const currentTrack = activeQueue[currentQueueIndex];
+      if (currentTrack && isPlaying) {
+        document.querySelectorAll(`[id="card-${currentTrack.id}"]`).forEach(card => card.classList.add('is-playing'));
+      }
+      if (albumModal.classList.contains('open')) {
+        document.querySelectorAll('.tracklist-item').forEach((item, idx) => {
+          if (idx === currentQueueIndex && isPlaying) item.classList.add('is-playing-item');
+          else item.classList.remove('is-playing-item');
+        });
+      }
+    }
+
+    function openFullPlayer() { fullPlayer.classList.add('open'); }
+    function closeFullPlayer() { fullPlayer.classList.remove('open'); }
+
+    // --- ÁLBUM MODAL ---
+    function openAlbumModal(key) {
+      selectedAlbum = allAlbums[key];
+      document.getElementById('albumModalHeaderTag').innerText = 'Album View';
+      document.getElementById('albumHeroBox').style.display = 'flex';
+      document.getElementById('modalAlbumTitle').innerText = selectedAlbum.title;
+      document.getElementById('modalAlbumCover').src = selectedAlbum.cover;
+      document.getElementById('modalAlbumMeta').innerText = `NaldoA • ${selectedAlbum.tracks.length} Tracks`;
+      renderTracklistItems(selectedAlbum.tracks, true);
+      albumModal.classList.add('open');
+    }
+    function closeAlbumModal() { albumModal.classList.remove('open'); }
+    function playCurrentAlbum() {
+      if (selectedAlbum && selectedAlbum.tracks.length > 0) {
+        activeQueue = [...selectedAlbum.tracks];
+        currentQueueIndex = 0;
+        setTrackDetails(0, true);
+        closeAlbumModal();
+        openFullPlayer();
+      }
+    }
     function renderTracklistItems(tracksArray, isAlbumMode = true) {
       const listContainer = document.getElementById('albumTracklist');
       listContainer.innerHTML = '';
-
       tracksArray.forEach((t, i) => {
         const currentTrack = activeQueue[currentQueueIndex];
         const isCurrentActive = currentTrack && currentTrack.id === t.id;
-        
         const item = document.createElement('div');
         item.className = `tracklist-item ${isCurrentActive && isPlaying ? 'is-playing-item' : ''}`;
         item.onclick = () => {
@@ -2100,18 +2128,12 @@
           closeAlbumModal();
           openFullPlayer();
         };
-
         const displayNum = t.trackNum || (i + 1 < 10 ? '0' + (i + 1) : i + 1);
-
         item.innerHTML = `
           <div class="track-num-title">
             <span class="track-num">
               <span class="track-num-digit">${displayNum}</span>
-              <div class="list-equalizer">
-                <div class="list-eq-bar"></div>
-                <div class="list-eq-bar"></div>
-                <div class="list-eq-bar"></div>
-              </div>
+              <div class="list-equalizer"><div class="list-eq-bar"></div><div class="list-eq-bar"></div><div class="list-eq-bar"></div></div>
             </span>
             <span class="track-title-text">${t.title}</span>
           </div>
@@ -2121,244 +2143,113 @@
       });
     }
 
-    async function loadCatalog() {
-      try {
-        const response = await fetch(`https://archive.org/metadata/${ARCHIVE_ITEM_ID}`);
-        const data = await response.json();
-        
-        const files = data.files || [];
-        
-        const allAudioFiles = files.filter(f => 
-          f.name && (
-            f.name.toLowerCase().endsWith('.mp3') || 
-            f.name.toLowerCase().endsWith('.wav') || 
-            f.name.toLowerCase().endsWith('.flac') ||
-            f.name.toLowerCase().endsWith('.aac') ||
-            f.name.toLowerCase().endsWith('.ogg')
-          )
-        );
-
-        const realImages = files.filter(f => 
-          f.name && 
-          (f.name.toLowerCase().endsWith('.jpg') || f.name.toLowerCase().endsWith('.png')) &&
-          !f.name.toLowerCase().includes('_waveform') &&
-          !f.name.toLowerCase().includes('_spectrogram') &&
-          !f.name.toLowerCase().includes('_thumb')
-        );
-
-        const uniqueMap = new Map();
-        allAlbums = {};
-
-        allAudioFiles.forEach(file => {
-          let rawName = file.name
-            .replace(/\.(mp3|wav|flac|aac|ogg)$/i, '')
-            .replace(/_vbr$/i, '');
-
-          if (!uniqueMap.has(rawName)) {
-            let isAlbum = false;
-            let albumKey = null;
-            let trackNumber = "";
-            let songTitle = rawName;
-
-            if (rawName.toLowerCase().startsWith("album_")) {
-              isAlbum = true;
-              const withoutPrefix = rawName.substring(6);
-              
-              const numberMatch = withoutPrefix.match(/_(\d{1,3})_/);
-              
-              if (numberMatch) {
-                const numIndex = withoutPrefix.indexOf(numberMatch[0]);
-                albumKey = withoutPrefix.substring(0, numIndex); 
-                trackNumber = numberMatch[1]; 
-                songTitle = withoutPrefix.substring(numIndex + numberMatch[0].length);
-              } else {
-                const parts = withoutPrefix.split("_");
-                albumKey = parts[0];
-                songTitle = parts.slice(1).join("_");
-              }
-            }
-
-            let matchingImg = null;
-            if (isAlbum && albumKey) {
-              matchingImg = realImages.find(f => f.name.toLowerCase().startsWith(`album_${albumKey.toLowerCase()}`));
-            }
-            if (!matchingImg) {
-              matchingImg = realImages.find(f => f.name.toLowerCase().startsWith(rawName.toLowerCase()));
-            }
-
-            const coverUrl = matchingImg 
-              ? `${ARCHIVE_DOWNLOAD_BASE}/${encodeURIComponent(matchingImg.name)}`
-              : `${ARCHIVE_DOWNLOAD_BASE}/cover.jpg`;
-
-            const mp3Version = files.find(f => f.name.startsWith(rawName) && f.name.endsWith('.mp3'));
-            const fileToStream = mp3Version ? mp3Version.name : file.name;
-
-            const detectedGenre = file.genre || detectRhythm(rawName);
-            
-            let cleanTitle = songTitle
-              .replace(/\.(mp3|wav|flac|aac|ogg)$/i, '')
-              .replace(/_?(EDM|Progressive_House|Trance|Reggaeton|Forro|Forró|Gospel|Electronic|Love_Songs|Other)$/gi, '')
-              .replaceAll('_', ' ')
-              .trim();
-
-            const trackObj = {
-              id: rawName,
-              title: cleanTitle || songTitle.replaceAll('_', ' '),
-              rhythm: detectedGenre,
-              url: `${ARCHIVE_DOWNLOAD_BASE}/${encodeURIComponent(fileToStream)}`,
-              cover: coverUrl,
-              plays: getStoredPlays(rawName),
-              isAlbum: isAlbum,
-              albumKey: albumKey,
-              trackNum: trackNumber
-            };
-
-            uniqueMap.set(rawName, trackObj);
-
-            if (isAlbum && albumKey) {
-              if (!allAlbums[albumKey]) {
-                allAlbums[albumKey] = {
-                  title: albumKey.replaceAll('_', ' '),
-                  cover: coverUrl,
-                  tracks: []
-                };
-              }
-              allAlbums[albumKey].tracks.push(trackObj);
-            }
-          }
-        });
-
-        allTracks = Array.from(uniqueMap.values());
-        
-        const edmPool = allTracks.filter(t => t.rhythm === 'Electronic / EDM');
-        discoveryTracks = (edmPool.length > 0 ? edmPool : allTracks).sort(() => 0.5 - Math.random()).slice(0, 10);
-        
-        activeQueue = [...allTracks];
-        renderApp();
-
-        const hasUrlTrack = checkDirectUrlTrack();
-
-        if (!hasUrlTrack && allTracks.length > 0) {
-          const lastSavedId = localStorage.getItem('naldoa_last_track_id');
-          const lastSavedTime = parseFloat(localStorage.getItem('naldoa_last_track_time')) || 0;
-          
-          let targetIndex = 0;
-          if (lastSavedId) {
-            const foundIdx = allTracks.findIndex(t => t.id === lastSavedId);
-            if (foundIdx !== -1) targetIndex = foundIdx;
-          }
-
-          setTrackDetails(targetIndex, false);
-
-          if (lastSavedTime > 0) {
-            audio.currentTime = lastSavedTime;
-          }
-        }
-      } catch (err) {
-        top10Carousel.innerHTML = '<div style="color:#ff4d4d; padding:10px;">Error loading audio catalogue.</div>';
-      }
-    }
-
-    function createTrackCard(track, rankNumber = null) {
-      const card = document.createElement('div');
-      const isCurrentPlaying = activeQueue[currentQueueIndex] && activeQueue[currentQueueIndex].id === track.id && isPlaying;
-      card.className = `track-card ${isCurrentPlaying ? 'is-playing' : ''}`;
-      card.id = `card-${track.id}`;
+    // --- QUEUE MODAL (HAMBÚRGUER) - CORRIGIDO ---
+    function openCurrentQueueModal() {
+      const track = activeQueue[currentQueueIndex];
       
-      card.onclick = () => {
-        playTrackRespectingGenre(track);
-        openFullPlayer();
-      };
-
-      const rankBadge = rankNumber ? `<div class="badge-tag gold">#${rankNumber}</div>` : '';
-      const favClass = isFavorite(track.id) ? 'active' : '';
-
-      card.innerHTML = `
-        <div class="cover-box">
-          ${rankBadge}
-          <button class="card-heart-btn ${favClass}" onclick="toggleLike('${track.id}', event)" title="Favorite">
-            <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-          </button>
-          <div class="card-visualizer">
-            <div class="eq-bar"></div>
-            <div class="eq-bar"></div>
-            <div class="eq-bar"></div>
-          </div>
-          <img src="${track.cover}" onerror="this.src='${ARCHIVE_DOWNLOAD_BASE}/cover.jpg'" loading="lazy">
-        </div>
-        <div class="track-info">
-          <div class="track-title">${track.title}</div>
-          <div class="track-sub-row">
-            <span class="track-badge">${track.rhythm}</span>
-            <span class="track-plays">▶ ${track.plays}</span>
-          </div>
-        </div>
-      `;
-      return card;
-    }
-
-    function createAlbumCard(album, key) {
-      const card = document.createElement('div');
-      card.className = 'track-card';
-      card.onclick = () => openAlbumModal(key);
-
-      card.innerHTML = `
-        <div class="cover-box">
-          <div class="badge-tag">ALBUM</div>
-          <img src="${album.cover}" onerror="this.src='${ARCHIVE_DOWNLOAD_BASE}/cover.jpg'" loading="lazy">
-        </div>
-        <div class="track-info">
-          <div class="track-title">${album.title}</div>
-          <div class="track-sub-row">
-            <span class="track-badge">${album.tracks.length} TRACKS</span>
-          </div>
-        </div>
-      `;
-      return card;
-    }
-
-    function playTrackRespectingGenre(track) {
-      if (isShuffle) {
-        activeQueue = [...allTracks];
-        currentQueueIndex = activeQueue.findIndex(t => t.id === track.id);
-      } else {
-        const sameGenre = allTracks.filter(t => t.rhythm === track.rhythm && t.id !== track.id);
-        const otherGenres = allTracks.filter(t => t.rhythm !== track.rhythm);
-        activeQueue = [track, ...sameGenre, ...otherGenres];
-        currentQueueIndex = 0;
+      // SE ESTIVER NA ABA DE FAVORITOS, MOSTRA APENAS OS FAVORITOS
+      if (currentGenre === 'favorites') {
+        const queueToShow = activeQueue.length ? activeQueue : allTracks.filter(tr => isFavorite(tr.id));
+        document.getElementById('albumModalHeaderTag').innerText = "❤️ Favorites Queue";
+        document.getElementById('albumHeroBox').style.display = 'none';
+        document.getElementById('modalAlbumTitle').innerText = "❤️ Favorites Queue";
+        document.getElementById('modalAlbumMeta').innerText = `NaldoA • ${queueToShow.length} Tracks`;
+        document.getElementById('modalAlbumCover').src = track ? track.cover : `${ARCHIVE_DOWNLOAD_BASE}/cover.jpg`;
+        renderTracklistItems(queueToShow, false);
+        albumModal.classList.add('open');
+        return;
       }
-      setTrackDetails(currentQueueIndex, true);
+
+      // Caso contrário, verifica se é um álbum (só em outras categorias)
+      if (track && track.isAlbum && track.albumKey && allAlbums[track.albumKey]) {
+        openAlbumModal(track.albumKey);
+        return;
+      }
+      
+      // Fila normal (estilo atual)
+      const queueToShow = activeQueue.length ? activeQueue : allTracks;
+      
+      document.getElementById('albumModalHeaderTag').innerText = "Playing Queue";
+      document.getElementById('albumHeroBox').style.display = 'none';
+      
+      let title = currentGenre === 'all' ? 'All Tracks' : currentGenre;
+      if (currentGenre === 'discovery') title = '✨ Discovery';
+      else if (currentGenre === 'top10') title = '★ Top 10';
+      else if (currentGenre === 'albums') title = 'Albums';
+      
+      document.getElementById('modalAlbumTitle').innerText = title + " Queue";
+      document.getElementById('modalAlbumMeta').innerText = `NaldoA • ${queueToShow.length} Tracks`;
+      document.getElementById('modalAlbumCover').src = track ? track.cover : `${ARCHIVE_DOWNLOAD_BASE}/cover.jpg`;
+      
+      renderTracklistItems(queueToShow, false);
+      albumModal.classList.add('open');
     }
 
+    // --- EVENTOS DO ÁUDIO ---
+    audio.onplay = () => {
+      isPlaying = true;
+      if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
+      updatePlayIcons();
+    };
+    audio.onpause = () => {
+      isPlaying = false;
+      if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
+      updatePlayIcons();
+    };
+    audio.onended = () => {
+      if (isRepeat) {
+        audio.currentTime = 0;
+        audio.play().catch(() => {});
+      } else {
+        nextTrack();
+      }
+    };
+    audio.ontimeupdate = () => {
+      if (audio.duration) {
+        const percent = (audio.currentTime / audio.duration) * 100;
+        progressFill.style.width = percent + '%';
+        document.getElementById('currentTime').innerText = fmt(audio.currentTime);
+        document.getElementById('durationTime').innerText = fmt(audio.duration);
+        localStorage.setItem('naldoa_last_track_time', audio.currentTime);
+        if ('mediaSession' in navigator && navigator.mediaSession.setPositionState) {
+          try {
+            navigator.mediaSession.setPositionState({ duration: audio.duration, playbackRate: audio.playbackRate, position: audio.currentTime });
+          } catch(e) {}
+        }
+      }
+    };
+    function seek(e) {
+      const bar = document.getElementById('progressBar');
+      const rect = bar.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      audio.currentTime = (clickX / rect.width) * audio.duration;
+      localStorage.setItem('naldoa_last_track_time', audio.currentTime);
+    }
+    function fmt(s) {
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60);
+      return `${m}:${sec < 10 ? '0' : ''}${sec}`;
+    }
+
+    // --- RENDERIZAÇÃO ---
     function renderApp() {
       discoveryCarousel.innerHTML = '';
-      discoveryTracks.forEach(track => {
-        discoveryCarousel.appendChild(createTrackCard(track));
-      });
+      discoveryTracks.forEach(track => discoveryCarousel.appendChild(createTrackCard(track)));
 
       top10Carousel.innerHTML = '';
-      const top10 = allTracks
-        .filter(t => t.rhythm === 'Electronic / EDM')
-        .sort((a, b) => b.plays - a.plays)
-        .slice(0, 10);
-      
-      top10.forEach((track, index) => {
-        top10Carousel.appendChild(createTrackCard(track, index + 1));
-      });
+      const top10 = allTracks.filter(t => t.rhythm === 'Electronic / EDM').sort((a,b) => b.plays - a.plays).slice(0,10);
+      top10.forEach((track, index) => top10Carousel.appendChild(createTrackCard(track, index + 1)));
 
       const albumKeys = Object.keys(allAlbums);
       if (albumKeys.length > 0) {
         secAlbums.style.display = 'block';
         albumsCarousel.innerHTML = '';
-        albumKeys.forEach(k => {
-          albumsCarousel.appendChild(createAlbumCard(allAlbums[k], k));
-        });
+        albumKeys.forEach(k => albumsCarousel.appendChild(createAlbumCard(allAlbums[k], k)));
       } else {
         secAlbums.style.display = 'none';
       }
 
       const detectedGenres = Array.from(new Set(allTracks.map(t => t.rhythm))).filter(Boolean);
-      
       const priorityOrder = ['Electronic / EDM', 'Reggaeton', 'Forro', 'Gospel', 'Love Songs', 'Other'];
       detectedGenres.sort((a, b) => {
         const iA = priorityOrder.indexOf(a);
@@ -2376,7 +2267,6 @@
         <div class="rhythm-pill" id="tab-top10" onclick="openCategoryView('top10')">★ Top 10 Hits</div>
         <div class="rhythm-pill" id="tab-albums" onclick="openCategoryView('albums')">Albums</div>
       `;
-
       detectedGenres.forEach(genre => {
         const cleanId = 'tab-' + genre.replace(/[\s\/]+/g, '-');
         const pill = document.createElement('div');
@@ -2389,14 +2279,11 @@
 
       dynamicSections.innerHTML = '';
       detectedGenres.forEach(rhythm => {
-        const rhythmTracks = allTracks.filter(t => t.rhythm.toLowerCase() === rhythm.toLowerCase());
-        
+        const rhythmTracks = allTracks.filter(t => t.rhythm === rhythm);
         if (rhythmTracks.length > 0) {
           const cleanId = rhythm.replace(/[\s\/]+/g, '-');
-          const sectionId = `sec-${cleanId}`;
           const sectionWrapper = document.createElement('div');
-          sectionWrapper.id = sectionId;
-
+          sectionWrapper.id = 'sec-' + cleanId;
           sectionWrapper.innerHTML = `
             <div class="section-header" onclick="openCategoryView('${rhythm}')">
               <div class="section-title">${rhythm}</div>
@@ -2408,213 +2295,15 @@
               <button class="carousel-nav-btn next" onclick="scrollCarousel('carousel-${cleanId}', 350)">❯</button>
             </div>
           `;
-
           dynamicSections.appendChild(sectionWrapper);
           const carContainer = sectionWrapper.querySelector(`#carousel-${cleanId}`);
-          rhythmTracks.forEach(track => {
-            carContainer.appendChild(createTrackCard(track));
-          });
+          rhythmTracks.forEach(track => carContainer.appendChild(createTrackCard(track)));
         }
       });
-
       setupPcWheelScroll();
     }
 
-    function openAlbumModal(key) {
-      selectedAlbum = allAlbums[key];
-      document.getElementById('albumModalHeaderTag').innerText = 'Album View';
-      document.getElementById('albumHeroBox').style.display = 'flex';
-      document.getElementById('modalAlbumTitle').innerText = selectedAlbum.title;
-      document.getElementById('modalAlbumCover').src = selectedAlbum.cover;
-      document.getElementById('modalAlbumMeta').innerText = `NaldoA • ${selectedAlbum.tracks.length} Tracks`;
-
-      renderTracklistItems(selectedAlbum.tracks, true);
-      albumModal.classList.add('open');
-    }
-
-    function closeAlbumModal() { albumModal.classList.remove('open'); }
-
-    function playCurrentAlbum() {
-      if (selectedAlbum && selectedAlbum.tracks.length > 0) {
-        activeQueue = [...selectedAlbum.tracks];
-        currentQueueIndex = 0;
-        setTrackDetails(0, true);
-        closeAlbumModal();
-        openFullPlayer();
-      }
-    }
-
-    function setTrackDetails(index, autoplay = true) {
-      const track = activeQueue[index];
-      if (!track) return;
-
-      currentQueueIndex = index;
-      audio.src = track.url;
-      updateMediaSession(track);
-      updateFullPlayerLikeBtn();
-
-      localStorage.setItem('naldoa_last_track_id', track.id);
-
-      document.getElementById('miniTitle').innerText = track.title;
-      document.getElementById('miniRhythm').innerText = `NaldoA • ${track.rhythm}`;
-      document.getElementById('miniCover').src = track.cover;
-
-      document.getElementById('fullTitle').innerText = track.title;
-      document.getElementById('fullRhythm').innerText = `NaldoA • ${track.rhythm}`;
-      document.getElementById('fullCover').src = track.cover;
-
-      if (autoplay) {
-        audio.play().then(() => {
-          isPlaying = true;
-          if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
-          updatePlayIcons();
-          incrementPlay(track);
-        }).catch(err => console.log('Playback error:', err));
-      }
-    }
-
-    function togglePlay() {
-      if (!audio.src && allTracks.length > 0) {
-        activeQueue = [...allTracks];
-        setTrackDetails(0, true);
-        openFullPlayer();
-        return;
-      }
-      if (isPlaying) {
-        audio.pause();
-      } else {
-        audio.play().then(() => {
-          isPlaying = true;
-          if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
-          updatePlayIcons();
-        }).catch(() => {});
-      }
-    }
-
-    function prevTrack() {
-      if (isShuffle) {
-        currentQueueIndex = Math.floor(Math.random() * activeQueue.length);
-      } else {
-        currentQueueIndex = (currentQueueIndex - 1 + activeQueue.length) % activeQueue.length;
-      }
-      setTrackDetails(currentQueueIndex, true);
-      openFullPlayer();
-    }
-
-    function nextTrack() {
-      if (isShuffle) {
-        currentQueueIndex = Math.floor(Math.random() * activeQueue.length);
-      } else {
-        currentQueueIndex = (currentQueueIndex + 1) % activeQueue.length;
-      }
-      setTrackDetails(currentQueueIndex, true);
-      openFullPlayer();
-    }
-
-    function updatePlayIcons() {
-      const playSvg = '<polygon points="5 3 19 12 5 21 5 3"></polygon>';
-      const pauseSvg = '<rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>';
-      document.getElementById('miniPlayIcon').innerHTML = isPlaying ? pauseSvg : playSvg;
-      document.getElementById('fullPlayIcon').innerHTML = isPlaying ? pauseSvg : playSvg;
-      
-      document.querySelectorAll('.track-card').forEach(card => {
-        card.classList.remove('is-playing');
-      });
-      const currentTrack = activeQueue[currentQueueIndex];
-      if (currentTrack && isPlaying) {
-        document.querySelectorAll(`[id="card-${currentTrack.id}"]`).forEach(card => {
-          card.classList.add('is-playing');
-        });
-      }
-
-      if (albumModal.classList.contains('open')) {
-        document.querySelectorAll('.tracklist-item').forEach((item, idx) => {
-          if (idx === currentQueueIndex && isPlaying) {
-            item.classList.add('is-playing-item');
-          } else {
-            item.classList.remove('is-playing-item');
-          }
-        });
-      }
-    }
-
-    function openFullPlayer() { fullPlayer.classList.add('open'); }
-    function closeFullPlayer() { fullPlayer.classList.remove('open'); }
-
-    audio.onplay = () => {
-      isPlaying = true;
-      if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
-      updatePlayIcons();
-    };
-
-    audio.onpause = () => {
-      isPlaying = false;
-      if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
-      updatePlayIcons();
-    };
-
-    audio.onended = () => {
-      if (isRepeat) {
-        audio.currentTime = 0;
-        audio.play().catch(() => {});
-      } else {
-        nextTrack();
-      }
-    };
-
-    audio.ontimeupdate = () => {
-      if (audio.duration) {
-        const percent = (audio.currentTime / audio.duration) * 100;
-        progressFill.style.width = percent + '%';
-        document.getElementById('currentTime').innerText = fmt(audio.currentTime);
-        document.getElementById('durationTime').innerText = fmt(audio.duration);
-
-        localStorage.setItem('naldoa_last_track_time', audio.currentTime);
-
-        if ('mediaSession' in navigator && navigator.mediaSession.setPositionState) {
-          try {
-            navigator.mediaSession.setPositionState({
-              duration: audio.duration,
-              playbackRate: audio.playbackRate,
-              position: audio.currentTime
-            });
-          } catch(e) {}
-        }
-      }
-    };
-
-    function seek(e) {
-      const bar = document.getElementById('progressBar');
-      const rect = bar.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
-      audio.currentTime = (clickX / rect.width) * audio.duration;
-      localStorage.setItem('naldoa_last_track_time', audio.currentTime);
-    }
-
-    function fmt(s) {
-      const m = Math.floor(s / 60);
-      const sec = Math.floor(s % 60);
-      return `${m}:${sec < 10 ? '0' : ''}${sec}`;
-    }
-
-    function openCurrentQueueModal() {
-      const track = activeQueue[currentQueueIndex];
-      if (track && track.isAlbum && track.albumKey && allAlbums[track.albumKey]) {
-        openAlbumModal(track.albumKey);
-      } else {
-        const currentGenreTracks = allTracks.filter(t => t.rhythm === track.rhythm);
-        
-        document.getElementById('albumModalHeaderTag').innerText = "Playing Queue (" + track.rhythm + ")";
-        document.getElementById('albumHeroBox').style.display = 'none';
-        document.getElementById('modalAlbumTitle').innerText = track.rhythm + " Queue";
-        document.getElementById('modalAlbumMeta').innerText = `NaldoA • ${currentGenreTracks.length} Tracks`;
-        document.getElementById('modalAlbumCover').src = track ? track.cover : `${ARCHIVE_DOWNLOAD_BASE}/cover.jpg`;
-        
-        renderTracklistItems(currentGenreTracks, false);
-        albumModal.classList.add('open');
-      }
-    }
-
+    // --- INICIALIZAÇÃO ---
     initTheme();
     loadCatalog();
   </script>
