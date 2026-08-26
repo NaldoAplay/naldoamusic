@@ -1772,8 +1772,7 @@
         );
 
         if (foundIndex !== -1) {
-          activeQueue = [...allTracks];
-          loadAndPlay(foundIndex);
+          playTrackRespectingGenre(allTracks[foundIndex]);
           openFullPlayer();
           return true;
         }
@@ -1938,15 +1937,18 @@
       } else if (categoryKey === 'discovery') {
         const t = document.getElementById('tab-discovery');
         if (t) t.classList.add('active');
-        document.getElementById('catViewTitle').innerText = '✨ Discovery & Highlights';
+        document.getElementById('catViewTitle').innerText = '✨ Discovery & Highlights (EDM)';
         discoveryTracks.forEach(track => {
           categoryGrid.appendChild(createTrackCard(track));
         });
       } else if (categoryKey === 'top10') {
         const t = document.getElementById('tab-top10');
         if (t) t.classList.add('active');
-        document.getElementById('catViewTitle').innerText = '★ Top 10 Hits (Most Played)';
-        const top10 = [...allTracks].sort((a, b) => b.plays - a.plays).slice(0, 10);
+        document.getElementById('catViewTitle').innerText = '★ Top 10 EDM Hits';
+        const top10 = allTracks
+          .filter(tr => tr.rhythm === 'Electronic / EDM')
+          .sort((a, b) => b.plays - a.plays)
+          .slice(0, 10);
         top10.forEach((track, index) => {
           categoryGrid.appendChild(createTrackCard(track, index + 1));
         });
@@ -2138,7 +2140,11 @@
         });
 
         allTracks = Array.from(uniqueMap.values());
-        discoveryTracks = [...allTracks].sort(() => 0.5 - Math.random()).slice(0, 10);
+        
+        // Foco em Discovery para EDM
+        const edmPool = allTracks.filter(t => t.rhythm === 'Electronic / EDM');
+        discoveryTracks = (edmPool.length > 0 ? edmPool : allTracks).sort(() => 0.5 - Math.random()).slice(0, 10);
+        
         activeQueue = [...allTracks];
         renderApp();
 
@@ -2172,9 +2178,7 @@
       card.id = `card-${track.id}`;
       
       card.onclick = () => {
-        activeQueue = [...allTracks];
-        currentQueueIndex = activeQueue.findIndex(t => t.id === track.id);
-        setTrackDetails(currentQueueIndex, true);
+        playTrackRespectingGenre(track);
         openFullPlayer(); // ABRE TELA CHEIA AUTOMATICAMENTE
       };
 
@@ -2225,6 +2229,20 @@
       return card;
     }
 
+    /* FILA POR ESTILO: Respeita o ritmo a menos que o Shuffle esteja ligado */
+    function playTrackRespectingGenre(track) {
+      if (isShuffle) {
+        activeQueue = [...allTracks];
+        currentQueueIndex = activeQueue.findIndex(t => t.id === track.id);
+      } else {
+        const sameGenre = allTracks.filter(t => t.rhythm === track.rhythm && t.id !== track.id);
+        const otherGenres = allTracks.filter(t => t.rhythm !== track.rhythm);
+        activeQueue = [track, ...sameGenre, ...otherGenres];
+        currentQueueIndex = 0;
+      }
+      setTrackDetails(currentQueueIndex, true);
+    }
+
     function renderApp() {
       discoveryCarousel.innerHTML = '';
       discoveryTracks.forEach(track => {
@@ -2232,7 +2250,11 @@
       });
 
       top10Carousel.innerHTML = '';
-      const top10 = [...allTracks].sort((a, b) => b.plays - a.plays).slice(0, 10);
+      const top10 = allTracks
+        .filter(t => t.rhythm === 'Electronic / EDM')
+        .sort((a, b) => b.plays - a.plays)
+        .slice(0, 10);
+      
       top10.forEach((track, index) => {
         top10Carousel.appendChild(createTrackCard(track, index + 1));
       });
@@ -2331,7 +2353,7 @@
         currentQueueIndex = 0;
         setTrackDetails(0, true);
         closeAlbumModal();
-        openFullPlayer(); // ABRE TELA CHEIA AO TOCAR ÁLBUM INTEIRO
+        openFullPlayer(); 
       }
     }
 
@@ -2418,7 +2440,6 @@
         });
       }
 
-      // Atualiza o equalizador animado dentro da lista modal se ela estiver aberta
       if (albumModal.classList.contains('open')) {
         document.querySelectorAll('.tracklist-item').forEach((item, idx) => {
           if (idx === currentQueueIndex && isPlaying) {
@@ -2492,22 +2513,26 @@
     initTheme();
     loadCatalog();
 
-    /* FUNÇÃO PARA ABRIR A FILA ATUAL OU O ÁLBUM DO PLAYER COM EQUALIZADOR */
-    function openCurrentQueueModal() {
+        function openCurrentQueueModal() {
       const track = activeQueue[currentQueueIndex];
       if (track && track.isAlbum && track.albumKey && allAlbums[track.albumKey]) {
         openAlbumModal(track.albumKey);
       } else {
-        document.getElementById('albumModalHeaderTag').innerText = "Playing Queue";
+        // Filtra para mostrar na fila apenas as músicas do mesmo ritmo/estilo atual
+        const currentGenreTracks = allTracks.filter(t => t.rhythm === track.rhythm);
+        
+        document.getElementById('albumModalHeaderTag').innerText = "Playing Queue (" + track.rhythm + ")";
         document.getElementById('albumHeroBox').style.display = 'none';
-        document.getElementById('modalAlbumTitle').innerText = "Playing Queue";
-        document.getElementById('modalAlbumMeta').innerText = `NaldoA • ${activeQueue.length} Tracks`;
+        document.getElementById('modalAlbumTitle').innerText = track.rhythm + " Queue";
+        document.getElementById('modalAlbumMeta').innerText = `NaldoA • ${currentGenreTracks.length} Tracks`;
         document.getElementById('modalAlbumCover').src = track ? track.cover : `${ARCHIVE_DOWNLOAD_BASE}/cover.jpg`;
         
-        renderTracklistItems(activeQueue, false);
+        // Renderiza na lista modal apenas as faixas do mesmo estilo
+        renderTracklistItems(currentGenreTracks, false);
         albumModal.classList.add('open');
       }
     }
+
   </script>
 </body>
 </html>
