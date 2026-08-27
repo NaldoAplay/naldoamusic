@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecionando...</title>
+  <script>
+    // Pega o caminho da URL (ex: /naldoamusic/track/frozen)
+    const path = window.location.pathname;
+    const match = path.match(/\/track\/([^\/]+)/);
+    
+    if (match) {
+      const track = match[1];
+      // Redireciona para o index com o parâmetro
+      window.location.href = '/naldoamusic/?track=' + encodeURIComponent(track);
+    } else {
+      // Se não for uma música, vai para a página inicial
+      window.location.href = '/naldoamusic/';
+    }
+  </script>
+</head>
+<body>
+  <p>Redirecionando para a música...</p>
+</body>
+</html>
