@@ -1832,6 +1832,24 @@
       }
     }
 
+
+    // ----- AQUI EU ADICIONEI --------
+
+    // ============================================================
+// LER URL AMIGÁVEL (/track/nome)
+// ============================================================
+function getTrackFromURL() {
+  // Verifica se é URL amigável /track/...
+  const path = window.location.pathname;
+  const match = path.match(/\/track\/([^\/]+)/);
+  if (match) {
+    return decodeURIComponent(match[1]);
+  }
+  // Fallback para parâmetro antigo ?track= (compatibilidade)
+  const params = new URLSearchParams(window.location.search);
+  return params.get('track');
+}
+
     // --- CATÁLOGO ---
     async function loadCatalog() {
       try {
@@ -2335,6 +2353,28 @@
 
     // --- INICIALIZAÇÃO ---
     initTheme();
+
+    // ============================================================
+// TOCAR MÚSICA VINDA DA URL
+// ============================================================
+const trackName = getTrackFromURL();
+if (trackName) {
+  // Procura a música pelo ID ou título (removendo caracteres especiais)
+  const found = allTracks.find(t => {
+    const cleanTrack = trackName.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const cleanId = t.id.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const cleanTitle = t.title.toLowerCase().replace(/[^a-z0-9]/g, '');
+    return cleanId === cleanTrack || cleanTitle === cleanTrack;
+  });
+  
+  if (found) {
+    playTrackRespectingGenre(found);
+    openFullPlayer();
+    showToast('▶ ' + found.title);
+  } else {
+    console.log('Música não encontrada:', trackName);
+  }
+}
     loadCatalog();
   </script>
 </body>
