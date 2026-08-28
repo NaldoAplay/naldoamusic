@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dynamic-dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -28,7 +28,6 @@
   <meta name="author" content="NaldoA">
   <meta name="robots" content="index, follow">
 
-  <!-- Open Graph (serão atualizados dinamicamente) -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://naldoaplay.github.io/naldoamusic/">
   <meta property="og:site_name" content="NaldoA Digital Music">
@@ -59,18 +58,33 @@
       --card-bg-hover: rgba(0, 210, 255, 0.1);
       --heart-active: #ff4757;
     }
+    [data-theme="light"] {
+      --bg: #f2f5fa;
+      --bg-gradient-1: rgba(0, 180, 255, 0.14);
+      --bg-gradient-2: rgba(90, 140, 255, 0.09);
+      --header-bg: rgba(255, 255, 255, 0.85);
+      --glass-card: rgba(255, 255, 255, 0.75);
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --accent: #0088cc;
+      --accent-glow: rgba(0, 136, 204, 0.25);
+      --text: #0e1726;
+      --text-dim: #5c6b7d;
+      --player-glass: rgba(255, 255, 255, 0.95);
+      --modal-bg: rgba(245, 248, 252, 0.98);
+      --card-bg-hover: rgba(0, 136, 204, 0.08);
+      --heart-active: #ff4757;
+    }
     [data-theme="purple"] { --bg: #090514; --bg-gradient-1: rgba(187, 134, 252, 0.16); --bg-gradient-2: rgba(255, 0, 128, 0.10); --header-bg: rgba(9, 5, 20, 0.85); --glass-card: rgba(26, 16, 48, 0.65); --glass-border: rgba(255, 255, 255, 0.10); --accent: #bb86fc; --accent-glow: rgba(187, 134, 252, 0.40); --text: #f6f0fd; --text-dim: #a192b8; --player-glass: rgba(15, 9, 30, 0.95); --modal-bg: rgba(9, 5, 20, 0.98); --card-bg-hover: rgba(187, 134, 252, 0.12); --heart-active: #ff2a7a; }
-    [data-theme="emerald"] { --bg: #030d0a; --bg-gradient-1: rgba(0, 255, 170, 0.14); --bg-gradient-2: rgba(0, 168, 255, 0.08); --header-bg: rgba(3, 13, 10, 0.85); --glass-card: rgba(12, 34, 28, 0.65); --glass-border: rgba(255, 255, 255, 0.09); --accent: #00ffaa; --accent-glow: rgba(0, 255, 170, 0.35); --text: #f0fdf7; --text-dim: #7da595; --player-glass: rgba(6, 20, 16, 0.95); --modal-bg: rgba(3, 13, 10, 0.98); --card-bg-hover: rgba(0, 255, 170, 0.10); --heart-active: #ff4757; }
-    [data-theme="sunset"] { --bg: #120904; --bg-gradient-1: rgba(255, 154, 0, 0.15); --bg-gradient-2: rgba(255, 0, 85, 0.10); --header-bg: rgba(18, 9, 4, 0.85); --glass-card: rgba(38, 20, 12, 0.65); --glass-border: rgba(255, 255, 255, 0.10); --accent: #ff9a00; --accent-glow: rgba(255, 154, 0, 0.40); --text: #fff6ee; --text-dim: #b89882; --player-glass: rgba(26, 13, 6, 0.95); --modal-bg: rgba(18, 9, 4, 0.98); --card-bg-hover: rgba(255, 154, 0, 0.12); --heart-active: #ff0055; }
-    [data-theme="light"] { --bg: #f2f5fa; --bg-gradient-1: rgba(0, 180, 255, 0.14); --bg-gradient-2: rgba(90, 140, 255, 0.09); --header-bg: rgba(255, 255, 255, 0.85); --glass-card: rgba(255, 255, 255, 0.75); --glass-border: rgba(0, 0, 0, 0.08); --accent: #0088cc; --accent-glow: rgba(0, 136, 204, 0.25); --text: #0e1726; --text-dim: #5c6b7d; --player-glass: rgba(255, 255, 255, 0.95); --modal-bg: rgba(245, 248, 252, 0.98); --card-bg-hover: rgba(0, 136, 204, 0.08); --heart-active: #ff4757; }
     [data-theme="light-rose"] { --bg: #fcf4f7; --bg-gradient-1: rgba(255, 64, 129, 0.15); --bg-gradient-2: rgba(186, 104, 200, 0.10); --header-bg: rgba(255, 255, 255, 0.88); --glass-card: rgba(255, 255, 255, 0.80); --glass-border: rgba(255, 64, 129, 0.12); --accent: #e91e63; --accent-glow: rgba(233, 30, 99, 0.25); --text: #2a111a; --text-dim: #785a67; --player-glass: rgba(255, 255, 255, 0.96); --modal-bg: rgba(254, 246, 249, 0.98); --card-bg-hover: rgba(233, 30, 99, 0.08); --heart-active: #e91e63; }
+    [data-theme="emerald"] { --bg: #030d0a; --bg-gradient-1: rgba(0, 255, 170, 0.14); --bg-gradient-2: rgba(0, 168, 255, 0.08); --header-bg: rgba(3, 13, 10, 0.85); --glass-card: rgba(12, 34, 28, 0.65); --glass-border: rgba(255, 255, 255, 0.09); --accent: #00ffaa; --accent-glow: rgba(0, 255, 170, 0.35); --text: #f0fdf7; --text-dim: #7da595; --player-glass: rgba(6, 20, 16, 0.95); --modal-bg: rgba(3, 13, 10, 0.98); --card-bg-hover: rgba(0, 255, 170, 0.10); --heart-active: #ff4757; }
     [data-theme="light-emerald"] { --bg: #f2faf6; --bg-gradient-1: rgba(0, 200, 117, 0.15); --bg-gradient-2: rgba(0, 184, 212, 0.10); --header-bg: rgba(255, 255, 255, 0.88); --glass-card: rgba(255, 255, 255, 0.80); --glass-border: rgba(0, 200, 117, 0.12); --accent: #00a86b; --accent-glow: rgba(0, 168, 107, 0.25); --text: #0e241b; --text-dim: #547366; --player-glass: rgba(255, 255, 255, 0.96); --modal-bg: rgba(244, 252, 248, 0.98); --card-bg-hover: rgba(0, 168, 107, 0.08); --heart-active: #ff4757; }
+    [data-theme="sunset"] { --bg: #120904; --bg-gradient-1: rgba(255, 154, 0, 0.15); --bg-gradient-2: rgba(255, 0, 85, 0.10); --header-bg: rgba(18, 9, 4, 0.85); --glass-card: rgba(38, 20, 12, 0.65); --glass-border: rgba(255, 255, 255, 0.10); --accent: #ff9a00; --accent-glow: rgba(255, 154, 0, 0.40); --text: #fff6ee; --text-dim: #b89882; --player-glass: rgba(26, 13, 6, 0.95); --modal-bg: rgba(18, 9, 4, 0.98); --card-bg-hover: rgba(255, 154, 0, 0.12); --heart-active: #ff0055; }
     [data-theme="light-gold"] { --bg: #faf6f0; --bg-gradient-1: rgba(255, 145, 0, 0.15); --bg-gradient-2: rgba(255, 87, 34, 0.10); --header-bg: rgba(255, 255, 255, 0.88); --glass-card: rgba(255, 255, 255, 0.80); --glass-border: rgba(255, 145, 0, 0.12); --accent: #e67e00; --accent-glow: rgba(230, 126, 0, 0.25); --text: #26190a; --text-dim: #796652; --player-glass: rgba(255, 255, 255, 0.96); --modal-bg: rgba(254, 250, 245, 0.98); --card-bg-hover: rgba(230, 126, 0, 0.08); --heart-active: #ff3838; }
 
     /* ===== TEMAS DINÂMICOS (9 e 10) ===== */
-    [data-theme="dynamic-light"],
-    [data-theme="dynamic-dark"] {
-      --bg: #06080d;
+    [data-theme="dynamic-dark"],
+    [data-theme="dynamic-light"] {
+      --bg: #000000;
       --bg-gradient-1: rgba(0, 210, 255, 0.12);
       --bg-gradient-2: rgba(0, 110, 255, 0.08);
       --header-bg: rgba(6, 8, 13, 0.85);
@@ -86,9 +100,28 @@
       --heart-active: #ff4757;
     }
 
-    /* ===== RESET E BASE ===== */
+    /* ============================================================
+       RESET E BASE (com suporte a temas dinâmicos)
+       ============================================================ */
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; user-select: none; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
-    body { background-color: var(--bg); color: var(--text); padding-bottom: 120px; overflow-x: hidden; background-image: radial-gradient(circle at 10% 10%, var(--bg-gradient-1), transparent 45%), radial-gradient(circle at 90% 80%, var(--bg-gradient-2), transparent 45%); background-attachment: fixed; }
+    body { 
+      background-color: var(--bg); 
+      color: var(--text); 
+      padding-bottom: 120px; 
+      overflow-x: hidden; 
+      background-image: radial-gradient(circle at 10% 10%, var(--bg-gradient-1), transparent 45%), radial-gradient(circle at 90% 80%, var(--bg-gradient-2), transparent 45%); 
+      background-attachment: fixed; 
+    }
+    body.dynamic-theme {
+      background-image: none !important;
+    }
+    body.dynamic-dark-theme {
+      background-color: #000000 !important;
+    }
+    /* ============================================================
+       O RESTO DO CSS (HEADER, CARDS, PLAYER, MODAIS, ETC.)
+       É IDÊNTICO AO SEU CÓDIGO ORIGINAL
+       ============================================================ */
     header { padding: 12px 18px; background: var(--header-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; }
     .brand-container { display: flex; flex-direction: column; cursor: pointer; }
     .brand-main { font-size: 1.25rem; font-weight: 900; letter-spacing: 2px; color: var(--text); }
@@ -245,13 +278,13 @@
   </style>
 </head>
 <body>
-
-  <!-- ===== TOAST ===== -->
+  <!-- ============================================================
+       HTML – MESMO DE ANTES (TOAST, HEADER, CONTAINER, MODAIS, PLAYER)
+       ============================================================ -->
   <div class="toast-box" id="toastBox">
     <span id="toastMsg">Track link copied!</span>
   </div>
 
-  <!-- ===== HEADER ===== -->
   <header>
     <div class="brand-container" onclick="showAllContent()">
       <div class="brand-main">NALDOA</div>
@@ -268,7 +301,6 @@
     </div>
   </header>
 
-  <!-- ===== CONTAINER PRINCIPAL ===== -->
   <div class="container">
     <div class="compact-hub-bar">
       <a href="https://youtube.com/@naldoamusic?si=NhBGNUKl8piB9yt_" target="_blank" class="hub-btn">
@@ -297,6 +329,7 @@
     </div>
 
     <div id="mainCarouselView">
+      <!-- DISCOVERY -->
       <div id="sec-discovery">
         <div class="section-header" onclick="openCategoryView('discovery')">
           <div class="section-title purple">✨ Discovery & Highlights</div>
@@ -309,6 +342,7 @@
         </div>
       </div>
 
+      <!-- TOP 10 -->
       <div id="sec-top10">
         <div class="section-header" onclick="openCategoryView('top10')">
           <div class="section-title gold">★ Top 10 Hits (Most Played)</div>
@@ -321,6 +355,7 @@
         </div>
       </div>
 
+      <!-- ALL TRACKS (RANDOM) -->
       <div id="sec-alltracks">
         <div class="section-header" onclick="reloadAllTracksCarousel()">
           <div class="section-title" style="color: #ff6b6b;">🎲 All Tracks (Random)</div>
@@ -333,6 +368,7 @@
         </div>
       </div>
 
+      <!-- ALBUMS -->
       <div id="sec-Albums" style="display:none;">
         <div class="section-header" onclick="openCategoryView('albums')">
           <div class="section-title">Official Albums</div>
@@ -345,8 +381,10 @@
         </div>
       </div>
 
+      <!-- SEÇÕES DINÂMICAS (GÊNEROS) -->
       <div id="dynamicSections"></div>
 
+      <!-- VÍDEO -->
       <div class="bottom-video-section">
         <div class="bottom-video-title">
           <svg style="width:16px; height:16px; fill:#ff3333;" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -372,7 +410,7 @@
     </footer>
   </div>
 
-  <!-- ===== MODAL ÁLBUM ===== -->
+  <!-- ===== MODAIS ===== -->
   <div class="album-modal" id="albumModal">
     <div class="modal-header">
       <span id="albumModalHeaderTag" style="font-size: 0.75rem; letter-spacing: 2px; color: var(--text-dim); text-transform: uppercase;">Album View</span>
@@ -392,7 +430,6 @@
     <div class="tracklist-container" id="albumTracklist"></div>
   </div>
 
-  <!-- ===== MINI PLAYER BAR ===== -->
   <div class="player-bar" id="miniPlayer">
     <div class="player-left" onclick="openFullPlayer()">
       <img src="" id="miniCover" class="mini-cover">
@@ -408,7 +445,6 @@
     </div>
   </div>
 
-  <!-- ===== FULL PLAYER ===== -->
   <div class="full-player" id="fullPlayer">
     <div class="full-header">
       <button class="btn-close" onclick="closeFullPlayer()">✕</button>
@@ -469,7 +505,6 @@
     </div>
   </div>
 
-  <!-- ===== MODAL DOAÇÃO ===== -->
   <div class="donation-modal" id="donationModal" onclick="closeDonationModal(event)">
     <div class="donation-card" onclick="event.stopPropagation()">
       <button class="btn-close" style="position:absolute; top:16px; right:16px;" onclick="closeDonationModalDirect()">✕</button>
@@ -497,14 +532,23 @@
     const ARCHIVE_ITEM_ID = 'naldoa-digital-music-stream';
     const ARCHIVE_DOWNLOAD_BASE = `https://archive.org/download/${ARCHIVE_ITEM_ID}`;
 
+    // NOVA ORDEM: Dynamic Dark primeiro, depois Dynamic Light, depois os 8 originais
     const THEME_LIST = [
-      'dark','light','purple','light-rose','emerald','light-emerald','sunset','light-gold',
-      'dynamic-light','dynamic-dark'
+      'dynamic-dark',
+      'dynamic-light',
+      'dark',
+      'light',
+      'purple',
+      'light-rose',
+      'emerald',
+      'light-emerald',
+      'sunset',
+      'light-gold'
     ];
 
     const THEME_NAMES = {
-      'dynamic-light': '🎨 Dynamic Light',
-      'dynamic-dark': '🎨 Dynamic Dark',
+      'dynamic-dark': '🌙 Dynamic Dark',
+      'dynamic-light': '☀️ Dynamic Light',
       'dark': 'Classic Dark (Cyan)',
       'light': 'Classic Light (Frost)',
       'purple': 'Purple Violet Glass',
@@ -516,7 +560,7 @@
     };
 
     // ============================================================
-    // ESTADO
+    // ESTADO GLOBAL
     // ============================================================
     let allTracks = [];
     let allAlbums = {};
@@ -555,105 +599,7 @@
     const toastMsg = document.getElementById('toastMsg');
 
     // ============================================================
-    // ========== NOVAS FUNÇÕES PARA URLs AMIGÁVEIS E SEO ==========
-    // ============================================================
-
-    // 1. Ler a URL amigável (/track/nome)
-    function getTrackFromURL() {
-      const path = window.location.pathname;
-      const match = path.match(/\/track\/([^\/]+)/);
-      if (match) {
-        return decodeURIComponent(match[1]);
-      }
-      // Fallback para ?track= (compatibilidade)
-      const params = new URLSearchParams(window.location.search);
-      return params.get('track');
-    }
-
-    // 2. Atualizar meta tags dinamicamente (para aparecer capa e descrição no Google)
-    function updateMetaTagsForTrack(track) {
-      if (!track) return;
-
-      // Título da página
-      document.title = `${track.title} - NaldoA Digital Music`;
-
-      // Meta description
-      let metaDesc = document.querySelector('meta[name="description"]');
-      if (!metaDesc) {
-        metaDesc = document.createElement('meta');
-        metaDesc.name = 'description';
-        document.head.appendChild(metaDesc);
-      }
-      metaDesc.content = `Ouça "${track.title}" por NaldoA. Música ${track.rhythm} de alta qualidade.`;
-
-      // Open Graph: título
-      let ogTitle = document.querySelector('meta[property="og:title"]');
-      if (!ogTitle) {
-        ogTitle = document.createElement('meta');
-        ogTitle.setAttribute('property', 'og:title');
-        document.head.appendChild(ogTitle);
-      }
-      ogTitle.content = `${track.title} - NaldoA`;
-
-      // Open Graph: descrição
-      let ogDesc = document.querySelector('meta[property="og:description"]');
-      if (!ogDesc) {
-        ogDesc = document.createElement('meta');
-        ogDesc.setAttribute('property', 'og:description');
-        document.head.appendChild(ogDesc);
-      }
-      ogDesc.content = `Ouça "${track.title}" por NaldoA. Música ${track.rhythm}.`;
-
-      // Open Graph: imagem (CAPA)
-      let ogImage = document.querySelector('meta[property="og:image"]');
-      if (!ogImage) {
-        ogImage = document.createElement('meta');
-        ogImage.setAttribute('property', 'og:image');
-        document.head.appendChild(ogImage);
-      }
-      ogImage.content = track.cover;
-
-      // Open Graph: URL
-      let ogUrl = document.querySelector('meta[property="og:url"]');
-      if (!ogUrl) {
-        ogUrl = document.createElement('meta');
-        ogUrl.setAttribute('property', 'og:url');
-        document.head.appendChild(ogUrl);
-      }
-      ogUrl.content = window.location.href;
-
-      // Twitter Card
-      let twitterCard = document.querySelector('meta[name="twitter:card"]');
-      if (!twitterCard) {
-        twitterCard = document.createElement('meta');
-        twitterCard.name = 'twitter:card';
-        document.head.appendChild(twitterCard);
-      }
-      twitterCard.content = 'summary_large_image';
-
-      let twitterTitle = document.querySelector('meta[name="twitter:title"]');
-      if (!twitterTitle) {
-        twitterTitle = document.createElement('meta');
-        twitterTitle.name = 'twitter:title';
-        document.head.appendChild(twitterTitle);
-      }
-      twitterTitle.content = `${track.title} - NaldoA`;
-
-      let twitterImage = document.querySelector('meta[name="twitter:image"]');
-      if (!twitterImage) {
-        twitterImage = document.createElement('meta');
-        twitterImage.name = 'twitter:image';
-        document.head.appendChild(twitterImage);
-      }
-      twitterImage.content = track.cover;
-    }
-
-    // ============================================================
-    // ========== FIM DAS NOVAS FUNÇÕES ============================
-    // ============================================================
-
-    // ============================================================
-    // UTILITÁRIOS (mantidos)
+    // FUNÇÕES AUXILIARES
     // ============================================================
     function showToast(msg) {
       toastMsg.innerText = msg;
@@ -802,7 +748,7 @@
     }
 
     // ============================================================
-    // TEMA DINÂMICO – EXTRAÇÃO DE COR E APLICAÇÃO (ESTILO GLASS)
+    // TEMA DINÂMICO – EXTRAÇÃO E APLICAÇÃO (CORRIGIDO)
     // ============================================================
     function extractColorsFromImage(imgElement) {
       return new Promise((resolve) => {
@@ -836,32 +782,41 @@
       if (!rgb) return;
       const { r, g, b } = rgb;
       const root = document.documentElement;
+      const body = document.body;
       const isLight = (mode === 'light');
 
-      const bg = isLight
-        ? `radial-gradient(circle at 50% 50%, rgba(${r}, ${g}, ${b}, 0.08), rgba(255,255,255,0.95) 70%, rgba(255,255,255,1) 100%)`
-        : `radial-gradient(circle at 50% 50%, rgba(${r}, ${g}, ${b}, 0.15), rgba(0,0,0,0.95) 70%, rgba(0,0,0,1) 100%)`;
+      // FUNDO: preto (dark) ou branco (light) com leve brilho da cor
+      const bgColor = isLight ? '#ffffff' : '#000000';
+      const bgGradient = isLight
+        ? `radial-gradient(circle at 50% 50%, rgba(${r}, ${g}, ${b}, 0.10), ${bgColor} 70%, ${bgColor} 100%)`
+        : `radial-gradient(circle at 50% 50%, rgba(${r}, ${g}, ${b}, 0.08), ${bgColor} 70%, ${bgColor} 100%)`;
 
-      const bgGrad1 = isLight ? `rgba(${r}, ${g}, ${b}, 0.10)` : `rgba(${r}, ${g}, ${b}, 0.18)`;
-      const bgGrad2 = isLight ? `rgba(${r}, ${g}, ${b}, 0.05)` : `rgba(${r}, ${g}, ${b}, 0.08)`;
+      body.style.backgroundColor = bgColor;
+      body.style.backgroundImage = 'none';
+      body.classList.add('dynamic-theme');
+      if (!isLight) body.classList.add('dynamic-dark-theme');
+      else body.classList.remove('dynamic-dark-theme');
 
+      // VARIÁVEIS GLASS (transparência e brilho)
+      const bgGrad1 = isLight ? `rgba(${r}, ${g}, ${b}, 0.06)` : `rgba(${r}, ${g}, ${b}, 0.06)`;
+      const bgGrad2 = isLight ? `rgba(${r}, ${g}, ${b}, 0.03)` : `rgba(${r}, ${g}, ${b}, 0.03)`;
       const headerBg = isLight ? `rgba(255,255,255,0.85)` : `rgba(0,0,0,0.85)`;
       const glassCard = isLight ? `rgba(255,255,255,0.75)` : `rgba(18,24,38,0.65)`;
       const modalBg = isLight ? `rgba(255,255,255,0.98)` : `rgba(6,8,13,0.96)`;
       const playerGlass = isLight ? `rgba(255,255,255,0.95)` : `rgba(10,14,22,0.94)`;
-      const cardHover = isLight ? `rgba(${r}, ${g}, ${b}, 0.08)` : `rgba(${r}, ${g}, ${b}, 0.10)`;
+      const cardHover = isLight ? `rgba(${r}, ${g}, ${b}, 0.10)` : `rgba(${r}, ${g}, ${b}, 0.15)`;
       const border = isLight ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.08)';
 
-      const accentR = Math.min(255, r + 90);
-      const accentG = Math.min(255, g + 90);
-      const accentB = Math.min(255, b + 90);
+      const accentR = Math.min(255, r + 80);
+      const accentG = Math.min(255, g + 80);
+      const accentB = Math.min(255, b + 80);
       const accent = `rgb(${accentR}, ${accentG}, ${accentB})`;
-      const accentGlow = `rgba(${r}, ${g}, ${b}, ${isLight ? 0.30 : 0.40})`;
+      const accentGlow = `rgba(${r}, ${g}, ${b}, ${isLight ? 0.30 : 0.60})`;
 
       const textColor = isLight ? '#0e1726' : '#f0f4f8';
       const textDim = isLight ? '#5c6b7d' : '#8b99aa';
 
-      root.style.setProperty('--bg', bg);
+      root.style.setProperty('--bg', bgGradient);
       root.style.setProperty('--bg-gradient-1', bgGrad1);
       root.style.setProperty('--bg-gradient-2', bgGrad2);
       root.style.setProperty('--header-bg', headerBg);
@@ -878,14 +833,12 @@
     }
 
     function removeDynamicTheme() {
+      const body = document.body;
+      body.classList.remove('dynamic-theme', 'dynamic-dark-theme');
+      body.style.backgroundColor = '';
+      body.style.backgroundImage = '';
       const root = document.documentElement;
-      const vars = [
-        '--bg', '--bg-gradient-1', '--bg-gradient-2',
-        '--header-bg', '--glass-card', '--glass-border',
-        '--accent', '--accent-glow',
-        '--text', '--text-dim',
-        '--player-glass', '--modal-bg', '--card-bg-hover'
-      ];
+      const vars = ['--bg','--bg-gradient-1','--bg-gradient-2','--header-bg','--glass-card','--glass-border','--accent','--accent-glow','--text','--text-dim','--player-glass','--modal-bg','--card-bg-hover'];
       vars.forEach(v => root.style.removeProperty(v));
     }
 
@@ -893,7 +846,6 @@
       const currentTheme = document.documentElement.getAttribute('data-theme');
       if (currentTheme !== 'dynamic-light' && currentTheme !== 'dynamic-dark') return;
       const mode = currentTheme === 'dynamic-light' ? 'light' : 'dark';
-
       const img = new Image();
       img.crossOrigin = 'anonymous';
       img.onload = function() {
@@ -906,10 +858,11 @@
     }
 
     // ============================================================
-    // TEMA – INICIALIZAÇÃO E ALTERNÂNCIA
+    // TEMA – INICIALIZAÇÃO E ALTERNÂNCIA (PADRÃO = dynamic-dark)
     // ============================================================
     function initTheme() {
-      const saved = localStorage.getItem('theme_mode') || 'dark';
+      // TEMA PADRÃO: dynamic-dark
+      const saved = localStorage.getItem('theme_mode') || 'dynamic-dark';
       document.documentElement.setAttribute('data-theme', saved);
       updateThemeIcon(saved);
       if (saved === 'dynamic-light' || saved === 'dynamic-dark') {
@@ -919,7 +872,7 @@
     }
 
     function toggleTheme() {
-      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const current = document.documentElement.getAttribute('data-theme') || 'dynamic-dark';
       const idx = THEME_LIST.indexOf(current);
       const next = THEME_LIST[(idx + 1) % THEME_LIST.length];
       document.documentElement.setAttribute('data-theme', next);
@@ -1009,7 +962,7 @@
     }
 
     // ============================================================
-    // NAVEGAÇÃO
+    // NAVEGAÇÃO (handleSearch, clearSearch, showAllContent, openCategoryView, playAllFavorites)
     // ============================================================
     function handleSearch(query) {
       const clean = query.trim().toLowerCase();
@@ -1208,7 +1161,7 @@
     }
 
     // ============================================================
-    // CATÁLOGO (MODIFICADO PARA INCLUIR LEITURA DA URL)
+    // CATÁLOGO
     // ============================================================
     async function loadCatalog() {
       try {
@@ -1249,7 +1202,6 @@
             }
             const coverUrl = matchingImg ? `${ARCHIVE_DOWNLOAD_BASE}/${encodeURIComponent(matchingImg.name)}` : `${ARCHIVE_DOWNLOAD_BASE}/cover.jpg`;
 
-            // PRIORIZA MP3
             const mp3Files = files.filter(f => 
               f.name.startsWith(rawName) && 
               f.name.toLowerCase().endsWith('.mp3')
@@ -1303,41 +1255,19 @@
 
         initTheme();
 
-        // ============================================================
-        // ========== NOVO: TOCAR MÚSICA VINDA DA URL ==========
-        // ============================================================
-        const trackName = getTrackFromURL();
-        if (trackName) {
-          const found = allTracks.find(t => {
-            const cleanTrack = trackName.toLowerCase().replace(/[^a-z0-9]/g, '');
-            const cleanId = t.id.toLowerCase().replace(/[^a-z0-9]/g, '');
-            const cleanTitle = t.title.toLowerCase().replace(/[^a-z0-9]/g, '');
-            return cleanId === cleanTrack || cleanTitle === cleanTrack;
-          });
-          
-          if (found) {
-            // Atualiza meta tags para SEO
-            updateMetaTagsForTrack(found);
-            // Toca a música
-            playTrackRespectingGenre(found);
+        // Toca a música se vier da URL (compatibilidade)
+        const params = new URLSearchParams(window.location.search);
+        const trackParam = params.get('track');
+        const hashParam = window.location.hash ? window.location.hash.substring(1) : null;
+        const targetTrackId = trackParam || hashParam;
+        if (targetTrackId && allTracks.length > 0) {
+          const decoded = decodeURIComponent(targetTrackId).toLowerCase();
+          const foundIndex = allTracks.findIndex(t => t.id.toLowerCase() === decoded || t.title.toLowerCase() === decoded.replaceAll('_', ' '));
+          if (foundIndex !== -1) {
+            playTrackRespectingGenre(allTracks[foundIndex]);
             openFullPlayer();
-            showToast('▶ ' + found.title);
-            
-            // Atualiza a URL (opcional, para manter a URL amigável sem recarregar)
-            if (history.pushState) {
-              const cleanUrl = '/naldoamusic/track/' + encodeURIComponent(trackName);
-              history.pushState(null, '', cleanUrl);
-            }
-          } else {
-            console.log('Música não encontrada:', trackName);
           }
-        }
-        // ============================================================
-        // ========== FIM DA NOVA PARTE ================================
-        // ============================================================
-
-        // Fallback para a última música tocada (caso não venha da URL)
-        if (!trackName) {
+        } else {
           const lastSavedId = localStorage.getItem('naldoa_last_track_id');
           const lastSavedTime = parseFloat(localStorage.getItem('naldoa_last_track_time')) || 0;
           let targetIndex = 0;
@@ -1387,9 +1317,7 @@
     function createAlbumCard(album, key) {
       const card = document.createElement('div');
       card.className = 'track-card';
-      card.onclick = () => {
-        openAlbumModal(key);
-      };
+      card.onclick = () => openAlbumModal(key);
       card.innerHTML = `
         <div class="cover-box">
           <div class="badge-tag">ALBUM</div>
@@ -1481,7 +1409,7 @@
       document.getElementById('fullRhythm').innerText = `NaldoA • ${track.rhythm}`;
       document.getElementById('fullCover').src = track.cover;
 
-      // Atualiza tema dinâmico
+      // Atualiza tema dinâmico se aplicável
       const currentTheme = document.documentElement.getAttribute('data-theme');
       if (currentTheme === 'dynamic-light' || currentTheme === 'dynamic-dark') {
         updateDynamicTheme(track.cover);
