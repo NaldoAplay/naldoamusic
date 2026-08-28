@@ -81,13 +81,12 @@
     [data-theme="sunset"] { --bg: #120904; --bg-gradient-1: rgba(255, 154, 0, 0.15); --bg-gradient-2: rgba(255, 0, 85, 0.10); --header-bg: rgba(18, 9, 4, 0.85); --glass-card: rgba(38, 20, 12, 0.65); --glass-border: rgba(255, 255, 255, 0.10); --accent: #ff9a00; --accent-glow: rgba(255, 154, 0, 0.40); --text: #fff6ee; --text-dim: #b89882; --player-glass: rgba(26, 13, 6, 0.95); --modal-bg: rgba(18, 9, 4, 0.98); --card-bg-hover: rgba(255, 154, 0, 0.12); --heart-active: #ff0055; }
     [data-theme="light-gold"] { --bg: #faf6f0; --bg-gradient-1: rgba(255, 145, 0, 0.15); --bg-gradient-2: rgba(255, 87, 34, 0.10); --header-bg: rgba(255, 255, 255, 0.88); --glass-card: rgba(255, 255, 255, 0.80); --glass-border: rgba(255, 145, 0, 0.12); --accent: #e67e00; --accent-glow: rgba(230, 126, 0, 0.25); --text: #26190a; --text-dim: #796652; --player-glass: rgba(255, 255, 255, 0.96); --modal-bg: rgba(254, 250, 245, 0.98); --card-bg-hover: rgba(230, 126, 0, 0.08); --heart-active: #ff3838; }
 
-    /* ===== TEMAS DINÂMICOS (9 e 10) ===== */
-    [data-theme="dynamic-dark"],
-    [data-theme="dynamic-light"] {
+    /* ===== TEMAS DINÂMICOS (9 e 10) – fallback imediato ===== */
+    [data-theme="dynamic-dark"] {
       --bg: #000000;
-      --bg-gradient-1: rgba(0, 210, 255, 0.12);
-      --bg-gradient-2: rgba(0, 110, 255, 0.08);
-      --header-bg: rgba(6, 8, 13, 0.85);
+      --bg-gradient-1: rgba(0, 0, 0, 0.1);
+      --bg-gradient-2: rgba(0, 0, 0, 0.05);
+      --header-bg: rgba(0, 0, 0, 0.85);
       --glass-card: rgba(18, 24, 38, 0.65);
       --glass-border: rgba(255, 255, 255, 0.08);
       --accent: #00d2ff;
@@ -99,11 +98,27 @@
       --card-bg-hover: rgba(0, 210, 255, 0.1);
       --heart-active: #ff4757;
     }
+    [data-theme="dynamic-light"] {
+      --bg: #ffffff;
+      --bg-gradient-1: rgba(255, 255, 255, 0.1);
+      --bg-gradient-2: rgba(255, 255, 255, 0.05);
+      --header-bg: rgba(255, 255, 255, 0.85);
+      --glass-card: rgba(255, 255, 255, 0.75);
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --accent: #0088cc;
+      --accent-glow: rgba(0, 136, 204, 0.25);
+      --text: #0e1726;
+      --text-dim: #5c6b7d;
+      --player-glass: rgba(255, 255, 255, 0.95);
+      --modal-bg: rgba(255, 255, 255, 0.98);
+      --card-bg-hover: rgba(0, 136, 204, 0.08);
+      --heart-active: #ff4757;
+    }
 
     /* ============================================================
-       RESET E BASE (com suporte a temas dinâmicos)
+       RESET E BASE – SEM TRANSIÇÃO PARA EVITAR FLASH
        ============================================================ */
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; user-select: none; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; user-select: none; }
     body { 
       background-color: var(--bg); 
       color: var(--text); 
@@ -112,15 +127,9 @@
       background-image: radial-gradient(circle at 10% 10%, var(--bg-gradient-1), transparent 45%), radial-gradient(circle at 90% 80%, var(--bg-gradient-2), transparent 45%); 
       background-attachment: fixed; 
     }
-    body.dynamic-theme {
-      background-image: none !important;
-    }
-    body.dynamic-dark-theme {
-      background-color: #000000 !important;
-    }
+
     /* ============================================================
        O RESTO DO CSS (HEADER, CARDS, PLAYER, MODAIS, ETC.)
-       É IDÊNTICO AO SEU CÓDIGO ORIGINAL
        ============================================================ */
     header { padding: 12px 18px; background: var(--header-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; }
     .brand-container { display: flex; flex-direction: column; cursor: pointer; }
@@ -278,13 +287,13 @@
   </style>
 </head>
 <body>
-  <!-- ============================================================
-       HTML – MESMO DE ANTES (TOAST, HEADER, CONTAINER, MODAIS, PLAYER)
-       ============================================================ -->
+
+  <!-- ===== TOAST ===== -->
   <div class="toast-box" id="toastBox">
     <span id="toastMsg">Track link copied!</span>
   </div>
 
+  <!-- ===== HEADER ===== -->
   <header>
     <div class="brand-container" onclick="showAllContent()">
       <div class="brand-main">NALDOA</div>
@@ -301,6 +310,7 @@
     </div>
   </header>
 
+  <!-- ===== CONTAINER PRINCIPAL ===== -->
   <div class="container">
     <div class="compact-hub-bar">
       <a href="https://youtube.com/@naldoamusic?si=NhBGNUKl8piB9yt_" target="_blank" class="hub-btn">
@@ -314,12 +324,14 @@
       <button class="hub-btn support" onclick="openSupportModal()">❤️ Support NaldoA (Pix)</button>
     </div>
 
+    <!-- ===== SEARCH ===== -->
     <div class="search-box-wrapper">
       <svg class="search-icon-left" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
       <input type="text" id="searchInput" class="search-input" placeholder="Search tracks, albums or genres..." oninput="handleSearch(this.value)">
       <button class="search-clear-btn" id="searchClearBtn" onclick="clearSearch()">✕</button>
     </div>
 
+    <!-- ===== RHYTHM TABS ===== -->
     <div class="rhythm-scroll" id="rhythmTabsContainer">
       <div class="rhythm-pill active" id="tab-all" onclick="showAllContent()">All Tracks</div>
       <div class="rhythm-pill" id="tab-favorites" onclick="openCategoryView('favorites')">❤️ Favorites</div>
@@ -328,6 +340,7 @@
       <div class="rhythm-pill" id="tab-albums" onclick="openCategoryView('albums')">Albums</div>
     </div>
 
+    <!-- ===== MAIN CAROUSEL VIEW ===== -->
     <div id="mainCarouselView">
       <!-- DISCOVERY -->
       <div id="sec-discovery">
@@ -396,6 +409,7 @@
       </div>
     </div>
 
+    <!-- ===== CATEGORY DEDICATED VIEW ===== -->
     <div id="categoryDedicatedView" style="display:none;">
       <div class="category-page-header">
         <button class="btn-back" onclick="showAllContent()">← Back to Home</button>
@@ -410,7 +424,7 @@
     </footer>
   </div>
 
-  <!-- ===== MODAIS ===== -->
+  <!-- ===== MODAL ÁLBUM ===== -->
   <div class="album-modal" id="albumModal">
     <div class="modal-header">
       <span id="albumModalHeaderTag" style="font-size: 0.75rem; letter-spacing: 2px; color: var(--text-dim); text-transform: uppercase;">Album View</span>
@@ -430,6 +444,7 @@
     <div class="tracklist-container" id="albumTracklist"></div>
   </div>
 
+  <!-- ===== MINI PLAYER BAR ===== -->
   <div class="player-bar" id="miniPlayer">
     <div class="player-left" onclick="openFullPlayer()">
       <img src="" id="miniCover" class="mini-cover">
@@ -445,6 +460,7 @@
     </div>
   </div>
 
+  <!-- ===== FULL PLAYER ===== -->
   <div class="full-player" id="fullPlayer">
     <div class="full-header">
       <button class="btn-close" onclick="closeFullPlayer()">✕</button>
@@ -505,6 +521,7 @@
     </div>
   </div>
 
+  <!-- ===== MODAL DOAÇÃO ===== -->
   <div class="donation-modal" id="donationModal" onclick="closeDonationModal(event)">
     <div class="donation-card" onclick="event.stopPropagation()">
       <button class="btn-close" style="position:absolute; top:16px; right:16px;" onclick="closeDonationModalDirect()">✕</button>
@@ -532,7 +549,6 @@
     const ARCHIVE_ITEM_ID = 'naldoa-digital-music-stream';
     const ARCHIVE_DOWNLOAD_BASE = `https://archive.org/download/${ARCHIVE_ITEM_ID}`;
 
-    // NOVA ORDEM: Dynamic Dark primeiro, depois Dynamic Light, depois os 8 originais
     const THEME_LIST = [
       'dynamic-dark',
       'dynamic-light',
@@ -748,7 +764,7 @@
     }
 
     // ============================================================
-    // TEMA DINÂMICO – EXTRAÇÃO E APLICAÇÃO (CORRIGIDO)
+    // TEMA DINÂMICO – EXTRAÇÃO E APLICAÇÃO
     // ============================================================
     function extractColorsFromImage(imgElement) {
       return new Promise((resolve) => {
@@ -785,21 +801,17 @@
       const body = document.body;
       const isLight = (mode === 'light');
 
-      // FUNDO: preto (dark) ou branco (light) com leve brilho da cor
       const bgColor = isLight ? '#ffffff' : '#000000';
-      const bgGradient = isLight
-        ? `radial-gradient(circle at 50% 50%, rgba(${r}, ${g}, ${b}, 0.10), ${bgColor} 70%, ${bgColor} 100%)`
-        : `radial-gradient(circle at 50% 50%, rgba(${r}, ${g}, ${b}, 0.08), ${bgColor} 70%, ${bgColor} 100%)`;
+      const gradient = isLight
+        ? `radial-gradient(circle at 50% 50%, rgba(${r}, ${g}, ${b}, 0.12), ${bgColor} 70%, ${bgColor} 100%)`
+        : `radial-gradient(circle at 50% 50%, rgba(${r}, ${g}, ${b}, 0.10), ${bgColor} 70%, ${bgColor} 100%)`;
 
       body.style.backgroundColor = bgColor;
-      body.style.backgroundImage = 'none';
-      body.classList.add('dynamic-theme');
-      if (!isLight) body.classList.add('dynamic-dark-theme');
-      else body.classList.remove('dynamic-dark-theme');
+      body.style.backgroundImage = gradient;
 
-      // VARIÁVEIS GLASS (transparência e brilho)
       const bgGrad1 = isLight ? `rgba(${r}, ${g}, ${b}, 0.06)` : `rgba(${r}, ${g}, ${b}, 0.06)`;
       const bgGrad2 = isLight ? `rgba(${r}, ${g}, ${b}, 0.03)` : `rgba(${r}, ${g}, ${b}, 0.03)`;
+
       const headerBg = isLight ? `rgba(255,255,255,0.85)` : `rgba(0,0,0,0.85)`;
       const glassCard = isLight ? `rgba(255,255,255,0.75)` : `rgba(18,24,38,0.65)`;
       const modalBg = isLight ? `rgba(255,255,255,0.98)` : `rgba(6,8,13,0.96)`;
@@ -807,16 +819,16 @@
       const cardHover = isLight ? `rgba(${r}, ${g}, ${b}, 0.10)` : `rgba(${r}, ${g}, ${b}, 0.15)`;
       const border = isLight ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.08)';
 
-      const accentR = Math.min(255, r + 80);
-      const accentG = Math.min(255, g + 80);
-      const accentB = Math.min(255, b + 80);
+      const accentR = Math.min(255, r + 100);
+      const accentG = Math.min(255, g + 100);
+      const accentB = Math.min(255, b + 100);
       const accent = `rgb(${accentR}, ${accentG}, ${accentB})`;
-      const accentGlow = `rgba(${r}, ${g}, ${b}, ${isLight ? 0.30 : 0.60})`;
+      const accentGlow = `rgba(${r}, ${g}, ${b}, ${isLight ? 0.35 : 0.65})`;
 
       const textColor = isLight ? '#0e1726' : '#f0f4f8';
       const textDim = isLight ? '#5c6b7d' : '#8b99aa';
 
-      root.style.setProperty('--bg', bgGradient);
+      root.style.setProperty('--bg', bgColor);
       root.style.setProperty('--bg-gradient-1', bgGrad1);
       root.style.setProperty('--bg-gradient-2', bgGrad2);
       root.style.setProperty('--header-bg', headerBg);
@@ -834,7 +846,6 @@
 
     function removeDynamicTheme() {
       const body = document.body;
-      body.classList.remove('dynamic-theme', 'dynamic-dark-theme');
       body.style.backgroundColor = '';
       body.style.backgroundImage = '';
       const root = document.documentElement;
@@ -858,10 +869,9 @@
     }
 
     // ============================================================
-    // TEMA – INICIALIZAÇÃO E ALTERNÂNCIA (PADRÃO = dynamic-dark)
+    // TEMA – INICIALIZAÇÃO E ALTERNÂNCIA
     // ============================================================
     function initTheme() {
-      // TEMA PADRÃO: dynamic-dark
       const saved = localStorage.getItem('theme_mode') || 'dynamic-dark';
       document.documentElement.setAttribute('data-theme', saved);
       updateThemeIcon(saved);
@@ -912,10 +922,8 @@
         openCategoryView('favorites');
         return;
       }
-
       isShuffle = !isShuffle;
       btnShuffle.classList.toggle('active', isShuffle);
-
       if (isShuffle) {
         if (activeQueue.length > 0) {
           const currentTrack = activeQueue[currentQueueIndex];
@@ -962,7 +970,7 @@
     }
 
     // ============================================================
-    // NAVEGAÇÃO (handleSearch, clearSearch, showAllContent, openCategoryView, playAllFavorites)
+    // NAVEGAÇÃO
     // ============================================================
     function handleSearch(query) {
       const clean = query.trim().toLowerCase();
