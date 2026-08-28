@@ -1,11 +1,44 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dynamic-dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>NaldoA Digital Music • Official Web Player</title>
   
-  <meta name="theme-color" content="#06080d">
+  <!-- ===== SCRIPT INLINE - DEFINE O TEMA ANTES DO CSS ===== -->
+  <script>
+    (function() {
+      // Tenta ler o tema salvo
+      let theme = localStorage.getItem('theme_mode');
+      
+      // Se não houver tema salvo, detecta o sistema
+      if (!theme) {
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'black' : 'white';
+      }
+      
+      // Se for um dos antigos dinâmicos, substitui
+      if (theme === 'dynamic-dark') theme = 'black';
+      else if (theme === 'dynamic-light') theme = 'white';
+      
+      // Aplica o tema imediatamente
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme_mode', theme);
+      
+      // Escuta mudanças no sistema (quando o usuário alterna o modo escuro/claro)
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        const current = document.documentElement.getAttribute('data-theme');
+        // Só muda automaticamente se o tema atual for black ou white (temas do sistema)
+        if (current === 'black' || current === 'white') {
+          const newTheme = e.matches ? 'black' : 'white';
+          document.documentElement.setAttribute('data-theme', newTheme);
+          localStorage.setItem('theme_mode', newTheme);
+          updateThemeIcon(newTheme);
+        }
+      });
+    })();
+  </script>
+
+  <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="NaldoA Music">
@@ -81,8 +114,8 @@
     [data-theme="sunset"] { --bg: #120904; --bg-gradient-1: rgba(255, 154, 0, 0.15); --bg-gradient-2: rgba(255, 0, 85, 0.10); --header-bg: rgba(18, 9, 4, 0.85); --glass-card: rgba(38, 20, 12, 0.65); --glass-border: rgba(255, 255, 255, 0.10); --accent: #ff9a00; --accent-glow: rgba(255, 154, 0, 0.40); --text: #fff6ee; --text-dim: #b89882; --player-glass: rgba(26, 13, 6, 0.95); --modal-bg: rgba(18, 9, 4, 0.98); --card-bg-hover: rgba(255, 154, 0, 0.12); --heart-active: #ff0055; }
     [data-theme="light-gold"] { --bg: #faf6f0; --bg-gradient-1: rgba(255, 145, 0, 0.15); --bg-gradient-2: rgba(255, 87, 34, 0.10); --header-bg: rgba(255, 255, 255, 0.88); --glass-card: rgba(255, 255, 255, 0.80); --glass-border: rgba(255, 145, 0, 0.12); --accent: #e67e00; --accent-glow: rgba(230, 126, 0, 0.25); --text: #26190a; --text-dim: #796652; --player-glass: rgba(255, 255, 255, 0.96); --modal-bg: rgba(254, 250, 245, 0.98); --card-bg-hover: rgba(230, 126, 0, 0.08); --heart-active: #ff3838; }
 
-    /* ===== TEMAS DINÂMICOS (9 e 10) – fallback imediato ===== */
-    [data-theme="dynamic-dark"] {
+    /* ===== TEMAS FIXOS PRETO E BRANCO (adicionados ao final) ===== */
+    [data-theme="black"] {
       --bg: #000000;
       --bg-gradient-1: rgba(0, 0, 0, 0.1);
       --bg-gradient-2: rgba(0, 0, 0, 0.05);
@@ -94,11 +127,11 @@
       --text: #f0f4f8;
       --text-dim: #8b99aa;
       --player-glass: rgba(10, 14, 22, 0.94);
-      --modal-bg: rgba(6, 8, 13, 0.96);
+      --modal-bg: rgba(0, 0, 0, 0.96);
       --card-bg-hover: rgba(0, 210, 255, 0.1);
       --heart-active: #ff4757;
     }
-    [data-theme="dynamic-light"] {
+    [data-theme="white"] {
       --bg: #ffffff;
       --bg-gradient-1: rgba(255, 255, 255, 0.1);
       --bg-gradient-2: rgba(255, 255, 255, 0.05);
@@ -549,9 +582,10 @@
     const ARCHIVE_ITEM_ID = 'naldoa-digital-music-stream';
     const ARCHIVE_DOWNLOAD_BASE = `https://archive.org/download/${ARCHIVE_ITEM_ID}`;
 
+    // ============================================================
+    // LISTA DE TEMAS – 8 FIXOS + BLACK + WHITE (NO FINAL)
+    // ============================================================
     const THEME_LIST = [
-      'dynamic-dark',
-      'dynamic-light',
       'dark',
       'light',
       'purple',
@@ -559,12 +593,14 @@
       'emerald',
       'light-emerald',
       'sunset',
-      'light-gold'
+      'light-gold',
+      'black',
+      'white'
     ];
 
     const THEME_NAMES = {
-      'dynamic-dark': '🌙 Dynamic Dark',
-      'dynamic-light': '☀️ Dynamic Light',
+      'black': '⬛ Black (Auto)',
+      'white': '⬜ White (Auto)',
       'dark': 'Classic Dark (Cyan)',
       'light': 'Classic Light (Frost)',
       'purple': 'Purple Violet Glass',
@@ -764,152 +800,26 @@
     }
 
     // ============================================================
-    // TEMA DINÂMICO – EXTRAÇÃO E APLICAÇÃO
+    // TEMA – ATUALIZAÇÃO DO ÍCONE E TOGGLE
     // ============================================================
-    function extractColorsFromImage(imgElement) {
-      return new Promise((resolve) => {
-        if (!imgElement || !imgElement.complete || !imgElement.naturalWidth) {
-          resolve(null);
-          return;
-        }
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        const size = 10;
-        canvas.width = size;
-        canvas.height = size;
-        ctx.drawImage(imgElement, 0, 0, size, size);
-        const imageData = ctx.getImageData(0, 0, size, size);
-        const data = imageData.data;
-        let r = 0, g = 0, b = 0, count = 0;
-        for (let i = 0; i < data.length; i += 4) {
-          r += data[i];
-          g += data[i + 1];
-          b += data[i + 2];
-          count++;
-        }
-        r = Math.round(r / count);
-        g = Math.round(g / count);
-        b = Math.round(b / count);
-        resolve({ r, g, b });
-      });
-    }
-
-    function applyDynamicTheme(rgb, mode) {
-      if (!rgb) return;
-      const { r, g, b } = rgb;
-      const root = document.documentElement;
-      const body = document.body;
-      const isLight = (mode === 'light');
-
-      const bgColor = isLight ? '#ffffff' : '#000000';
-      const gradient = isLight
-        ? `radial-gradient(circle at 50% 50%, rgba(${r}, ${g}, ${b}, 0.12), ${bgColor} 70%, ${bgColor} 100%)`
-        : `radial-gradient(circle at 50% 50%, rgba(${r}, ${g}, ${b}, 0.10), ${bgColor} 70%, ${bgColor} 100%)`;
-
-      body.style.backgroundColor = bgColor;
-      body.style.backgroundImage = gradient;
-
-      const bgGrad1 = isLight ? `rgba(${r}, ${g}, ${b}, 0.06)` : `rgba(${r}, ${g}, ${b}, 0.06)`;
-      const bgGrad2 = isLight ? `rgba(${r}, ${g}, ${b}, 0.03)` : `rgba(${r}, ${g}, ${b}, 0.03)`;
-
-      const headerBg = isLight ? `rgba(255,255,255,0.85)` : `rgba(0,0,0,0.85)`;
-      const glassCard = isLight ? `rgba(255,255,255,0.75)` : `rgba(18,24,38,0.65)`;
-      const modalBg = isLight ? `rgba(255,255,255,0.98)` : `rgba(6,8,13,0.96)`;
-      const playerGlass = isLight ? `rgba(255,255,255,0.95)` : `rgba(10,14,22,0.94)`;
-      const cardHover = isLight ? `rgba(${r}, ${g}, ${b}, 0.10)` : `rgba(${r}, ${g}, ${b}, 0.15)`;
-      const border = isLight ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.08)';
-
-      const accentR = Math.min(255, r + 100);
-      const accentG = Math.min(255, g + 100);
-      const accentB = Math.min(255, b + 100);
-      const accent = `rgb(${accentR}, ${accentG}, ${accentB})`;
-      const accentGlow = `rgba(${r}, ${g}, ${b}, ${isLight ? 0.35 : 0.65})`;
-
-      const textColor = isLight ? '#0e1726' : '#f0f4f8';
-      const textDim = isLight ? '#5c6b7d' : '#8b99aa';
-
-      root.style.setProperty('--bg', bgColor);
-      root.style.setProperty('--bg-gradient-1', bgGrad1);
-      root.style.setProperty('--bg-gradient-2', bgGrad2);
-      root.style.setProperty('--header-bg', headerBg);
-      root.style.setProperty('--glass-card', glassCard);
-      root.style.setProperty('--glass-border', border);
-      root.style.setProperty('--accent', accent);
-      root.style.setProperty('--accent-glow', accentGlow);
-      root.style.setProperty('--text', textColor);
-      root.style.setProperty('--text-dim', textDim);
-      root.style.setProperty('--player-glass', playerGlass);
-      root.style.setProperty('--modal-bg', modalBg);
-      root.style.setProperty('--card-bg-hover', cardHover);
-      root.style.setProperty('--heart-active', '#ff4757');
-    }
-
-    function removeDynamicTheme() {
-      const body = document.body;
-      body.style.backgroundColor = '';
-      body.style.backgroundImage = '';
-      const root = document.documentElement;
-      const vars = ['--bg','--bg-gradient-1','--bg-gradient-2','--header-bg','--glass-card','--glass-border','--accent','--accent-glow','--text','--text-dim','--player-glass','--modal-bg','--card-bg-hover'];
-      vars.forEach(v => root.style.removeProperty(v));
-    }
-
-    function updateDynamicTheme(coverUrl) {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      if (currentTheme !== 'dynamic-light' && currentTheme !== 'dynamic-dark') return;
-      const mode = currentTheme === 'dynamic-light' ? 'light' : 'dark';
-      const img = new Image();
-      img.crossOrigin = 'anonymous';
-      img.onload = function() {
-        extractColorsFromImage(img).then(rgb => {
-          if (rgb) applyDynamicTheme(rgb, mode);
-        });
-      };
-      img.onerror = function() { /* fallback */ };
-      img.src = coverUrl;
-    }
-
-    // ============================================================
-    // TEMA – INICIALIZAÇÃO E ALTERNÂNCIA
-    // ============================================================
-    function initTheme() {
-      const saved = localStorage.getItem('theme_mode') || 'dynamic-dark';
-      document.documentElement.setAttribute('data-theme', saved);
-      updateThemeIcon(saved);
-      if (saved === 'dynamic-light' || saved === 'dynamic-dark') {
-        const track = activeQueue[currentQueueIndex];
-        if (track) updateDynamicTheme(track.cover);
-      }
+    function updateThemeIcon(theme) {
+      const icon = document.getElementById('themeIcon');
+      if (!icon) return;
+      const darkThemes = ['dark', 'purple', 'emerald', 'sunset', 'black'];
+      const isDark = darkThemes.includes(theme);
+      icon.innerHTML = isDark 
+        ? `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>`
+        : `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>`;
     }
 
     function toggleTheme() {
-      const current = document.documentElement.getAttribute('data-theme') || 'dynamic-dark';
+      const current = document.documentElement.getAttribute('data-theme') || 'black';
       const idx = THEME_LIST.indexOf(current);
       const next = THEME_LIST[(idx + 1) % THEME_LIST.length];
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('theme_mode', next);
       updateThemeIcon(next);
-      if (next === 'dynamic-light' || next === 'dynamic-dark') {
-        const track = activeQueue[currentQueueIndex];
-        if (track) updateDynamicTheme(track.cover);
-      } else {
-        removeDynamicTheme();
-      }
       showToast(`Theme: ${THEME_NAMES[next]}`);
-    }
-
-    function updateThemeIcon(theme) {
-      const icon = document.getElementById('themeIcon');
-      if (!icon) return;
-      if (theme === 'dynamic-light') {
-        icon.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>`;
-      } else if (theme === 'dynamic-dark') {
-        icon.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>`;
-      } else {
-        const isDark = ['dark','purple','emerald','sunset'].includes(theme);
-        icon.innerHTML = isDark 
-          ? `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>`
-          : `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>`;
-      }
     }
 
     // ============================================================
@@ -1261,7 +1171,9 @@
         currentQueueIndex = 0;
         renderApp();
 
-        initTheme();
+        // Atualiza o ícone do tema (o tema já foi definido no inline)
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'black';
+        updateThemeIcon(currentTheme);
 
         // Toca a música se vier da URL (compatibilidade)
         const params = new URLSearchParams(window.location.search);
@@ -1416,12 +1328,6 @@
       document.getElementById('fullTitle').innerText = track.title;
       document.getElementById('fullRhythm').innerText = `NaldoA • ${track.rhythm}`;
       document.getElementById('fullCover').src = track.cover;
-
-      // Atualiza tema dinâmico se aplicável
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      if (currentTheme === 'dynamic-light' || currentTheme === 'dynamic-dark') {
-        updateDynamicTheme(track.cover);
-      }
 
       if (autoplay) {
         audio.play().then(() => {
@@ -1604,6 +1510,15 @@
       
       renderTracklistItems(queueToShow, false);
       albumModal.classList.add('open');
+    }
+
+    // ============================================================
+    // REPEAT
+    // ============================================================
+    function toggleRepeat() {
+      isRepeat = !isRepeat;
+      btnRepeat.classList.toggle('active', isRepeat);
+      showToast(isRepeat ? '🔁 Repeat ON' : '🔁 Repeat OFF');
     }
 
     // ============================================================
