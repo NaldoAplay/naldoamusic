@@ -737,18 +737,30 @@
       document.body.removeChild(tempInput);
     }
 
+        // ============================================================
+    // COMPARTILHAR MÚSICA FORMATADA
+    // ============================================================
     function shareCurrentTrack() {
       const track = activeQueue[currentQueueIndex];
       if (!track) return;
       const shareUrl = `https://naldoaplay.github.io/naldoamusic/?track=${encodeURIComponent(track.id)}`;
+      const shareText = `🎵 Ouvindo "${track.title}" de NaldoA no Digital Music! Confira:`;
+      
       if (navigator.share) {
-        navigator.share({ title: `${track.title} - NaldoA`, url: shareUrl }).catch(() => copyToClipboardFallback(shareUrl));
+        navigator.share({ 
+          title: `${track.title} - NaldoA`, 
+          text: shareText,
+          url: shareUrl 
+        }).catch(() => copyToClipboardFallback(shareUrl));
       } else if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(shareUrl).then(() => showToast('Track link copied! ✓')).catch(() => copyToClipboardFallback(shareUrl));
+        navigator.clipboard.writeText(`${shareText} ${shareUrl}`).then(() => showToast('Track link copied! ✓')).catch(() => copyToClipboardFallback(shareUrl));
       } else {
         copyToClipboardFallback(shareUrl);
       }
     }
+
+
+    
 
     function detectRhythm(name) {
       const lower = name.toLowerCase();
