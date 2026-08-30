@@ -1161,6 +1161,41 @@
         });
 
         allTracks = Array.from(uniqueMap.values());
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const activeTrackId = urlParams.get('track');
+
+        if (activeTrackId && allTracks.length > 0) {
+          const currentTrack = allTracks.find(t => t.id.toLowerCase() === activeTrackId.toLowerCase());
+          if (currentTrack) {
+            document.title = `${currentTrack.title} • NaldoA Digital Music`;
+            
+            const updateMeta = (prop, content) => {
+              let el = document.querySelector(`meta[property="${prop}"]`) || document.querySelector(`meta[name="${prop}"]`);
+              if (el) el.setAttribute('content', content);
+            };
+            updateMeta('og:title', `${currentTrack.title} - NaldoA`);
+            updateMeta('og:image', currentTrack.cover);
+            updateMeta('og:url', `https://naldoaplay.github.io/naldoamusic/?track=${currentTrack.id}`);
+            updateMeta('description', `Listen to ${currentTrack.title} by electronic music producer NaldoA.`);
+
+            const schemaScript = document.createElement('script');
+            schemaScript.type = 'application/ld+json';
+            schemaScript.text = JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "MusicRecording",
+              "name": currentTrack.title,
+              "byArtist": {
+                "@type": "MusicGroup",
+                "name": "NaldoA"
+              },
+              "image": currentTrack.cover,
+              "url": `https://naldoaplay.github.io/naldoamusic/?track=${currentTrack.id}`
+            });
+            document.head.appendChild(schemaScript);
+          }
+        }
+
         const edmPool = allTracks.filter(t => t.rhythm === 'Electronic / EDM');
         discoveryTracks = (edmPool.length > 0 ? edmPool : allTracks).sort(() => 0.5 - Math.random()).slice(0, 10);
         
@@ -1202,6 +1237,7 @@
         top10Carousel.innerHTML = '<div style="color:#ff4d4d; padding:10px;">Error loading audio catalogue.</div>';
       }
     }
+
 
     // ============================================================
     // CRIAÇÃO DE CARDS
