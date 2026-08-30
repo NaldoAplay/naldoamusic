@@ -1170,14 +1170,13 @@
           if (currentTrack) {
             document.title = `${currentTrack.title} • NaldoA Digital Music`;
             
-            const updateMeta = (prop, content) => {
-              let el = document.querySelector(`meta[property="${prop}"]`) || document.querySelector(`meta[name="${prop}"]`);
-              if (el) el.setAttribute('content', content);
-            };
-            updateMeta('og:title', `${currentTrack.title} - NaldoA`);
-            updateMeta('og:image', currentTrack.cover);
-            updateMeta('og:url', `https://naldoaplay.github.io/naldoamusic/?track=${currentTrack.id}`);
-            updateMeta('description', `Listen to ${currentTrack.title} by electronic music producer NaldoA.`);
+            document.querySelector('meta[property="og:title"]').content = `${currentTrack.title} - NaldoA`;
+            document.querySelector('meta[property="og:image"]').content = currentTrack.cover;
+            document.querySelector('meta[property="og:url"]').content = `https://naldoaplay.github.io/naldoamusic/?track=${currentTrack.id}`;
+            document.querySelector('meta[name="description"]').content = `Listen to ${currentTrack.title} by electronic music producer NaldoA.`;
+            
+            document.querySelector('meta[name="twitter:title"]').content = `${currentTrack.title} - NaldoA`;
+            document.querySelector('meta[name="twitter:image"]').content = currentTrack.cover;
 
             const schemaScript = document.createElement('script');
             schemaScript.type = 'application/ld+json';
@@ -1237,6 +1236,7 @@
         top10Carousel.innerHTML = '<div style="color:#ff4d4d; padding:10px;">Error loading audio catalogue.</div>';
       }
     }
+
 
 
     // ============================================================
