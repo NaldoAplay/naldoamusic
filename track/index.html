@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    // Pega o caminho e extrai o nome da música da URL
+    const segments = window.location.pathname.split('/');
+    const trackId = segments[segments.length - 1] || segments[segments.length - 2];
+    
+    if (trackId && trackId !== 'track') {
+      window.location.replace('/naldoamusic/?track=' + encodeURIComponent(trackId));
+    } else {
+      window.location.replace('/naldoamusic/');
+    }
+  </script>
+</head>
+<body>
+  <p>Carregando música...</p>
+</body>
+</html>
