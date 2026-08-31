@@ -64,7 +64,6 @@
   <meta name="twitter:image" content="https://archive.org/download/naldoa-digital-music-stream/cover.jpg">
 
   <style>
-    /* ===== TEMAS ===== */
     :root, [data-theme="dark"] {
       --bg: #06080d;
       --bg-gradient-1: rgba(0, 210, 255, 0.12);
@@ -152,7 +151,7 @@
       padding: 0 0 120px 0;
     }
 
-    /* HEADER RESPONSIVO COM HAMBÚRGUER NA ESQUERDA */
+    /* HEADER */
     header { 
       padding: 8px 12px; 
       background: var(--header-bg); 
@@ -173,7 +172,6 @@
       align-items: center;
       gap: 10px;
       flex-shrink: 0;
-      position: relative;
     }
 
     .brand-container { display: flex; flex-direction: column; cursor: pointer; flex-shrink: 0; }
@@ -286,32 +284,44 @@
     .hamburger-btn.open span:nth-child(2) { opacity: 0; }
     .hamburger-btn.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
 
-    /* MENU HAMBURGUER (ALINHADO À ESQUERDA) */
-    .hamburger-menu {
-      position: absolute;
-      top: calc(100% + 8px);
-      left: 0;
+    /* MENU LATERAL (DRAWER) */
+    .drawer-menu {
+      position: fixed;
+      top: 0;
+      left: -300px; /* escondido */
+      width: 280px;
+      height: 100%;
       background: var(--modal-bg);
       backdrop-filter: blur(25px);
       -webkit-backdrop-filter: blur(25px);
-      border: 1px solid var(--glass-border);
-      border-radius: 0 0 16px 16px;
-      padding: 12px;
-      display: none;
-      flex-direction: column;
-      gap: 3px;
-      min-width: 240px;
-      max-height: calc(100vh - 65px);
+      border-right: 1px solid var(--glass-border);
+      z-index: 150; /* acima do player */
+      padding: 70px 16px 20px;
       overflow-y: auto;
-      box-shadow: 0 20px 45px rgba(0,0,0,0.65);
-      z-index: 95;
+      transition: left 0.3s cubic-bezier(0.15, 0.9, 0.2, 1);
+      box-shadow: 4px 0 30px rgba(0,0,0,0.3);
     }
-    .hamburger-menu.open { display: flex; }
+    .drawer-menu.open {
+      left: 0;
+    }
+    .drawer-menu::-webkit-scrollbar { width: 5px; }
+    .drawer-menu::-webkit-scrollbar-track { background: transparent; }
+    .drawer-menu::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 10px; }
+    .drawer-menu::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-    .hamburger-menu::-webkit-scrollbar { width: 5px; }
-    .hamburger-menu::-webkit-scrollbar-track { background: transparent; }
-    .hamburger-menu::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 10px; }
-    .hamburger-menu::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+    .drawer-close-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.6rem;
+      cursor: pointer;
+      padding: 4px;
+      line-height: 1;
+    }
+    .drawer-close-btn:hover { color: var(--accent); }
 
     .menu-section-title {
       font-size: 0.65rem;
@@ -328,16 +338,16 @@
       margin: 6px 0;
     }
 
-    .hamburger-menu .menu-item {
+    .drawer-menu .menu-item {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 9px 12px;
+      padding: 10px 12px;
       border-radius: 10px;
       border: 1px solid transparent;
       color: var(--text);
       text-decoration: none;
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       font-weight: 600;
       background: transparent;
       cursor: pointer;
@@ -345,26 +355,26 @@
       width: 100%;
       text-align: left;
     }
-    .hamburger-menu .menu-item:hover {
+    .drawer-menu .menu-item:hover {
       background: var(--glass-card);
       border-color: var(--glass-border);
       color: var(--accent);
     }
-    .hamburger-menu .menu-item svg { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
-    .hamburger-menu .menu-item.spotify:hover { color: #1DB954; border-color: #1DB954; }
-    .hamburger-menu .menu-item.apple:hover { color: #FA243C; border-color: #FA243C; }
-    .hamburger-menu .menu-item.instagram:hover { color: #E1306C; border-color: #E1306C; }
-    .hamburger-menu .menu-item.tiktok:hover { color: var(--accent); border-color: #ff0050; }
-    .hamburger-menu .menu-item.youtube:hover { color: #ff0000; border-color: #ff0000; }
-    .hamburger-menu .menu-item.support {
+    .drawer-menu .menu-item svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+    .drawer-menu .menu-item.spotify:hover { color: #1DB954; border-color: #1DB954; }
+    .drawer-menu .menu-item.apple:hover { color: #FA243C; border-color: #FA243C; }
+    .drawer-menu .menu-item.instagram:hover { color: #E1306C; border-color: #E1306C; }
+    .drawer-menu .menu-item.tiktok:hover { color: var(--accent); border-color: #ff0050; }
+    .drawer-menu .menu-item.youtube:hover { color: #ff0000; border-color: #ff0000; }
+    .drawer-menu .menu-item.support {
       background: rgba(255, 82, 82, 0.12);
       border-color: rgba(255, 82, 82, 0.35);
       color: #ff5252;
       margin-top: 4px;
     }
-    .hamburger-menu .menu-item.support:hover { background: #ff5252; color: #fff; }
+    .drawer-menu .menu-item.support:hover { background: #ff5252; color: #fff; }
 
-    /* BANNER PRINCIPAL RESPONSIVO */
+    /* BANNER */
     .hero-banner {
       text-align: center;
       padding: 24px 12px 14px;
@@ -440,7 +450,7 @@
     .bottom-video-box { width: 100%; aspect-ratio: 16/9; border-radius: 14px; overflow: hidden; background: #000; border: 1px solid var(--glass-border); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
     .bottom-video-box iframe { width: 100%; height: 100%; border: none; }
 
-    /* MODAL, PLAYER & CONTROLS */
+    /* MODAIS & PLAYER */
     .album-modal { position: fixed; inset: 0; background: var(--modal-bg); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); z-index: 150; display: flex; flex-direction: column; padding: 24px; transform: translateY(100%); transition: transform 0.35s cubic-bezier(0.15, 0.9, 0.2, 1); overflow-y: auto; }
     .album-modal.open { transform: translateY(0); }
     .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
@@ -523,6 +533,74 @@
     <span id="toastMsg">Track link copied!</span>
   </div>
 
+  <!-- MENU LATERAL (DRAWER) -->
+  <div class="drawer-menu" id="drawerMenu">
+    <button class="drawer-close-btn" onclick="toggleMenu()">✕</button>
+    <div class="menu-section-title">Navigation</div>
+    
+    <button class="menu-item" onclick="showAllContent(); toggleMenu();">
+      <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      Home (All Tracks)
+    </button>
+
+    <button class="menu-item" onclick="openCategoryView('favorites'); toggleMenu();">
+      <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      Favorites
+    </button>
+
+    <button class="menu-item" onclick="openCategoryView('discovery'); toggleMenu();">
+      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+      Discovery & Highlights
+    </button>
+
+    <button class="menu-item" onclick="openCategoryView('top10'); toggleMenu();">
+      <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+      Top 10 Hits
+    </button>
+
+    <button class="menu-item" onclick="openCategoryView('albums'); toggleMenu();">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14.5c-2.49 0-4.5-2.01-4.5-4.5S9.51 7.5 12 7.5s4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5zm0-5.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"/></svg>
+      Official Albums
+    </button>
+
+    <div class="menu-divider"></div>
+    <div class="menu-section-title">Music Genres</div>
+    <div id="genresMenuContainerDrawer"></div>
+
+    <div class="menu-divider"></div>
+    <div class="menu-section-title">Official Streaming & Social</div>
+
+    <a href="https://open.spotify.com/artist/7zC8gZzKx8sM3zR5a1f6Tq" target="_blank" class="menu-item spotify">
+      <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.503 17.308c-.218.358-.684.47-1.042.252-2.855-1.744-6.448-2.14-10.679-1.173-.408.093-.812-.162-.905-.57-.093-.408.162-.812.57-.905 4.636-1.06 8.604-.609 11.804 1.354.358.218.47.684.252 1.042zm1.47-3.267c-.274.446-.856.587-1.302.313-3.268-2.008-8.25-2.59-12.114-1.416-.502.152-1.037-.133-1.189-.635-.152-.502.133-1.037.635-1.189 4.417-1.34 9.907-.69 13.657 1.625.446.274.587.856.313 1.302zm.126-3.41c-3.918-2.327-10.375-2.542-14.11-1.408-.6.182-1.24-.165-1.422-.765-.182-.6.165-1.24.765-1.422 4.292-1.303 11.42-1.05 15.894 1.606.54.321.716 1.02.395 1.56-.321.54-1.02.716-1.522.429z"/></svg>
+      Spotify
+    </a>
+    <a href="https://music.apple.com/br/artist/naldoa/1782398892" target="_blank" class="menu-item apple">
+      <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.63-.77 1.06-1.84.95-2.91-.92.04-2.03.62-2.69 1.39-.58.67-1.09 1.76-.95 2.8.03 0 .07.01.1.01.95 0 1.96-.52 2.59-1.29z"/></svg>
+      Apple Music
+    </a>
+    <a href="https://instagram.com/naldoamusic" target="_blank" class="menu-item instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+    <a href="https://tiktok.com/@naldoamusic" target="_blank" class="menu-item tiktok">
+      <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      TikTok
+    </a>
+    <a href="https://youtube.com/@naldoamusic?si=NhBGNUKl8piB9yt_" target="_blank" class="menu-item youtube">
+      <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      Subscribe (Main)
+    </a>
+    <a href="https://youtube.com/@NaldoADigitalMusic" target="_blank" class="menu-item youtube">
+      <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      Digital Music Videos
+    </a>
+    <button class="menu-item support" onclick="openSupportModal(); toggleMenu();">
+      <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      Support NaldoA (Pix)
+    </button>
+  </div>
+
+  <!-- HEADER -->
   <header>
     <div class="header-left">
       <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Menu">
@@ -534,71 +612,6 @@
       <div class="brand-container" onclick="showAllContent()">
         <div class="brand-main">NALDOA</div>
         <div class="brand-sub">DIGITAL MUSIC</div>
-      </div>
-
-      <div class="hamburger-menu" id="hamburgerMenu">
-        <div class="menu-section-title">Navigation</div>
-        
-        <button class="menu-item" onclick="showAllContent(); toggleMenu();">
-          <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-          Home (All Tracks)
-        </button>
-
-        <button class="menu-item" onclick="openCategoryView('favorites'); toggleMenu();">
-          <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-          Favorites
-        </button>
-
-        <button class="menu-item" onclick="openCategoryView('discovery'); toggleMenu();">
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          Discovery & Highlights
-        </button>
-
-        <button class="menu-item" onclick="openCategoryView('top10'); toggleMenu();">
-          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
-          Top 10 Hits
-        </button>
-
-        <button class="menu-item" onclick="openCategoryView('albums'); toggleMenu();">
-          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14.5c-2.49 0-4.5-2.01-4.5-4.5S9.51 7.5 12 7.5s4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5zm0-5.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"/></svg>
-          Official Albums
-        </button>
-
-        <div class="menu-divider"></div>
-        <div class="menu-section-title">Music Genres</div>
-        <div id="genresMenuContainer"></div>
-
-        <div class="menu-divider"></div>
-        <div class="menu-section-title">Official Streaming & Social</div>
-
-        <a href="https://open.spotify.com/artist/7zC8gZzKx8sM3zR5a1f6Tq" target="_blank" class="menu-item spotify">
-          <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.503 17.308c-.218.358-.684.47-1.042.252-2.855-1.744-6.448-2.14-10.679-1.173-.408.093-.812-.162-.905-.57-.093-.408.162-.812.57-.905 4.636-1.06 8.604-.609 11.804 1.354.358.218.47.684.252 1.042zm1.47-3.267c-.274.446-.856.587-1.302.313-3.268-2.008-8.25-2.59-12.114-1.416-.502.152-1.037-.133-1.189-.635-.152-.502.133-1.037.635-1.189 4.417-1.34 9.907-.69 13.657 1.625.446.274.587.856.313 1.302zm.126-3.41c-3.918-2.327-10.375-2.542-14.11-1.408-.6.182-1.24-.165-1.422-.765-.182-.6.165-1.24.765-1.422 4.292-1.303 11.42-1.05 15.894 1.606.54.321.716 1.02.395 1.56-.321.54-1.02.716-1.522.429z"/></svg>
-          Spotify
-        </a>
-        <a href="https://music.apple.com/br/artist/naldoa/1782398892" target="_blank" class="menu-item apple">
-          <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.63-.77 1.06-1.84.95-2.91-.92.04-2.03.62-2.69 1.39-.58.67-1.09 1.76-.95 2.8.03 0 .07.01.1.01.95 0 1.96-.52 2.59-1.29z"/></svg>
-          Apple Music
-        </a>
-        <a href="https://instagram.com/naldoamusic" target="_blank" class="menu-item instagram">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          Instagram
-        </a>
-        <a href="https://tiktok.com/@naldoamusic" target="_blank" class="menu-item tiktok">
-          <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-          TikTok
-        </a>
-        <a href="https://youtube.com/@naldoamusic?si=NhBGNUKl8piB9yt_" target="_blank" class="menu-item youtube">
-          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-          Subscribe (Main)
-        </a>
-        <a href="https://youtube.com/@NaldoADigitalMusic" target="_blank" class="menu-item youtube">
-          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-          Digital Music Videos
-        </a>
-        <button class="menu-item support" onclick="openSupportModal(); toggleMenu();">
-          <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-          Support NaldoA (Pix)
-        </button>
       </div>
     </div>
     
@@ -872,7 +885,7 @@
     const albumsCarousel = document.getElementById('albumsCarousel');
     const secAlbums = document.getElementById('sec-Albums');
     const dynamicSections = document.getElementById('dynamicSections');
-    const genresMenuContainer = document.getElementById('genresMenuContainer');
+    const genresMenuContainerDrawer = document.getElementById('genresMenuContainerDrawer');
     const mainCarouselView = document.getElementById('mainCarouselView');
     const categoryDedicatedView = document.getElementById('categoryDedicatedView');
     const categoryGrid = document.getElementById('categoryGrid');
@@ -886,6 +899,7 @@
     const btnRepeat = document.getElementById('btnRepeat');
     const toastBox = document.getElementById('toastBox');
     const toastMsg = document.getElementById('toastMsg');
+    const drawerMenu = document.getElementById('drawerMenu');
 
     function showToast(msg) {
       toastMsg.innerText = msg;
@@ -1046,7 +1060,7 @@
       const isDark = darkThemes.includes(theme);
       icon.innerHTML = isDark 
         ? `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>`
-        : `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>`;
+        : `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>`;
     }
 
     function toggleTheme() {
@@ -1060,14 +1074,12 @@
     }
 
     function toggleMenu() {
-      const menu = document.getElementById('hamburgerMenu');
-      const btn = document.getElementById('hamburgerBtn');
-      menu.classList.toggle('open');
-      btn.classList.toggle('open');
+      drawerMenu.classList.toggle('open');
+      document.getElementById('hamburgerBtn').classList.toggle('open');
     }
 
     document.addEventListener('click', function(e) {
-      const menu = document.getElementById('hamburgerMenu');
+      const menu = drawerMenu;
       const btn = document.getElementById('hamburgerBtn');
       if (!menu.contains(e.target) && !btn.contains(e.target)) {
         menu.classList.remove('open');
@@ -1789,7 +1801,8 @@
         return a.localeCompare(b);
       });
 
-      genresMenuContainer.innerHTML = '';
+      // Preenche o container de gêneros no drawer
+      genresMenuContainerDrawer.innerHTML = '';
       detectedGenres.forEach(genre => {
         const btn = document.createElement('button');
         btn.className = 'menu-item';
@@ -1801,7 +1814,7 @@
           openCategoryView(genre);
           toggleMenu();
         };
-        genresMenuContainer.appendChild(btn);
+        genresMenuContainerDrawer.appendChild(btn);
       });
 
       dynamicSections.innerHTML = '';
