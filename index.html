@@ -2434,40 +2434,52 @@
 </div>
 
 <script>
-let deferredPrompt;
-const installBtn = document.getElementById('installContainer');
+  // ====== 1. REGISTRO DO SERVICE WORKER (PWA) ======
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').then(registration => {
+        console.log('Service Worker registrado com sucesso:', registration.scope);
+      }).catch(error => {
+        console.log('Falha ao registrar o Service Worker:', error);
+      });
+    });
+  }
 
-// 1. Verifica se já está rodando como APP INSTALADO (Tela Cheia)
-const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  // ====== 2. LÓGICA DO BOTÃO DE INSTALAÇÃO (MOSTRA SÓ SE NÃO ESTIVER INSTALADO) ======
+  let deferredPrompt;
+  const installBtn = document.getElementById('installContainer');
 
-// Se já for um app instalado, nem escuta o evento e esconde o botão para sempre
-if (isStandalone) {
-  installBtn.style.display = 'none';
-} else {
-  // 2. Escuta o evento do navegador que diz que dá para instalar
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    
-    // Se a pagina nao estiver standalone, mostra o botão
-    if (!isStandalone) {
-      installBtn.style.display = 'block';
+  // 1. Verifica se já está rodando como APP INSTALADO (Tela Cheia)
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+  // Se já for um app instalado, nem escuta o evento e esconde o botão para sempre
+  if (isStandalone) {
+    installBtn.style.display = 'none';
+  } else {
+    // 2. Escuta o evento do navegador que diz que dá para instalar
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      
+      // Se a pagina nao estiver standalone, mostra o botão
+      if (!isStandalone) {
+        installBtn.style.display = 'block';
+      }
+    });
+  }
+
+  // 3. Ação ao clicar no botão
+  installBtn.addEventListener('click', async () => {
+    installBtn.style.display = 'none';
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        console.log('App instalado com sucesso!');
+      }
+      deferredPrompt = null;
     }
   });
-}
-
-// 3. Ação ao clicar no botão
-installBtn.addEventListener('click', async () => {
-  installBtn.style.display = 'none';
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    if (outcome === 'accepted') {
-      console.log('App instalado com sucesso!');
-    }
-    deferredPrompt = null;
-  }
-});
 </script>
 </body>
 </html>
