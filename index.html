@@ -300,7 +300,6 @@
     .profile-hero {
       position: relative;
       min-height: 320px;
-      /* Imagem de fundo (Banner) configurada via HTML inline */
       background-size: cover;
       background-position: center top;
       display: flex;
@@ -343,7 +342,6 @@
       gap: 8px;
     }
     
-    /* SELO DE NOTA MUSICAL MODERNO (Estilo YouTube) */
     .music-note-badge {
       display: inline-flex;
       align-items: center;
@@ -433,6 +431,150 @@
       transition: opacity 0.5s ease;
     }
     #newReleaseBox.fading { opacity: 0; }
+
+    /* ===== BANNER PRINCIPAL DA HOME (Com Fundo Desfocado e Setas Manuais) ===== */
+    .home-hero-banner {
+      width: 100%;
+      max-width: 750px;
+      margin: 12px auto;
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 10px 35px rgba(0,0,0,0.5);
+    }
+    /* Fundo desfocado da capa */
+    .home-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: blur(20px) brightness(0.65);
+      transform: scale(1.1);
+      z-index: 0;
+    }
+    .home-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, var(--bg) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+      z-index: 1;
+    }
+    /* Setas de Navegação */
+    .home-hero-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--glass-card);
+      border: 1px solid var(--glass-border);
+      color: var(--text);
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 5;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .home-hero-arrow:hover { border-color: var(--accent); color: var(--accent); background: var(--card-bg-hover); }
+    .home-hero-arrow.prev { left: 10px; }
+    .home-hero-arrow.next { right: 10px; }
+
+    .home-hero-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 18px;
+      min-height: 130px;
+      pointer-events: none; /* Permite cliques nos botões internos */
+    }
+    .home-hero-imgbox {
+      flex-shrink: 0;
+      width: 100px;
+      height: 100px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+      border: 3px solid var(--glass-border);
+      pointer-events: auto;
+    }
+    .home-hero-imgbox img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .home-hero-text {
+      flex: 1;
+      overflow: hidden;
+      pointer-events: auto;
+    }
+    .home-hero-text h2 {
+      font-size: 1.5rem;
+      font-weight: 900;
+      margin-bottom: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--text);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+    .home-hero-text p {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .home-hero-text .genre-tag {
+      font-size: 0.7rem;
+      color: var(--accent);
+      font-weight: 800;
+      text-transform: uppercase;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+    /* Botão Play */
+    .home-hero-btn {
+      flex-shrink: 0;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 50px;
+      width: 55px;
+      height: 55px;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 20px var(--accent-glow);
+      pointer-events: auto;
+    }
+    .home-hero-btn:hover { transform: scale(1.05); }
+    .home-hero-indicators {
+      position: absolute;
+      bottom: 8px;
+      right: 15px;
+      z-index: 3;
+      display: flex;
+      gap: 6px;
+    }
+    .home-hero-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text-dim);
+      opacity: 0.8;
+      transition: all 0.3s;
+    }
+    .home-hero-dot.active {
+      background: var(--accent);
+      transform: scale(1.4);
+      opacity: 1;
+    }
 
     /* ===== BOTTOM NAVIGATION ===== */
     .bottom-nav {
@@ -812,7 +954,6 @@
     <div class="header-right">
       <!-- BOTÃO DE PERFIL ADICIONADO -->
       <button class="mini-profile-btn" onclick="openArtistProfile()">
-        <!-- A imagem do perfil busca 'profile.jpg' no Archive. Se não achar, usa 'cover.jpg' -->
         <img src="https://archive.org/download/naldoa-digital-music-stream/profile.jpg" alt="NaldoA" onerror="this.src='https://archive.org/download/naldoa-digital-music-stream/cover.jpg'">
         <span>NaldoA</span>
       </button>
@@ -825,7 +966,6 @@
 
   <!-- TELA DE PERFIL DO ARTISTA (NOVA) -->
   <div id="profileView">
-    <!-- Banner de fundo com banner.jpg -->
     <div class="profile-hero" style="background-image: url('https://archive.org/download/naldoa-digital-music-stream/banner.jpg');">
       <button class="btn-back-profile" onclick="closeArtistProfile()">← Voltar</button>
       <div class="profile-hero-content">
@@ -853,7 +993,6 @@
             Destaques & Últimos Lançamentos
           </div>
         </div>
-        <!-- O card abaixo será preenchido dinamicamente e vai variar entre os últimos EDM -->
         <div id="newReleaseBox" style="margin-bottom: 20px;"></div>
 
         <div class="section-header">
@@ -862,7 +1001,6 @@
              Todas as Músicas EDM / Electronic
           </div>
         </div>
-        <!-- TODAS as músicas EDM/Eletronic serão adicionadas aqui dinamicamente -->
         <div class="category-grid" id="profileEdmGrid" style="grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));"></div>
       </div>
     </div>
@@ -886,6 +1024,21 @@
     <div class="hero-banner" onclick="showAllContent()" style="cursor:pointer;">
       <div class="hero-title">NALDOA</div>
       <div class="hero-subtitle">Digital Music Stream</div>
+    </div>
+
+    <!-- Banner principal da Home com setas e fundo desfocado -->
+    <div class="home-hero-banner" id="homeHeroBanner">
+      <div class="home-hero-bg" id="homeHeroBg"></div>
+      <div class="home-hero-overlay"></div>
+      
+      <!-- Setas Manuais -->
+      <div class="home-hero-arrow prev" onclick="homeHeroManual(-1)">‹</div>
+      <div class="home-hero-arrow next" onclick="homeHeroManual(1)">›</div>
+
+      <div class="home-hero-inner" id="homeHeroContent">
+        <!-- Preenchido via JS -->
+      </div>
+      <div class="home-hero-indicators" id="homeHeroIndicators"></div>
     </div>
 
     <div id="mainCarouselView">
@@ -1189,6 +1342,10 @@
     const mainContainer = document.getElementById('mainContainer');
     const profileView = document.getElementById('profileView');
     const newReleaseBox = document.getElementById('newReleaseBox');
+    const homeHeroBanner = document.getElementById('homeHeroBanner');
+    const homeHeroBg = document.getElementById('homeHeroBg');
+    const homeHeroContent = document.getElementById('homeHeroContent');
+    const homeHeroIndicators = document.getElementById('homeHeroIndicators');
 
     // ========== SVG ICONES OFICIAIS REDES SOCIAIS ==========
     const SOCIAL_ICONS = {
@@ -1447,12 +1604,12 @@
       }
     }
 
-    // Variáveis para controlar o Destaque Rotativo
+    // Variáveis para controlar o Destaque Rotativo do Perfil
     let releaseInterval = null;
     let releaseTrackIndex = 0;
     let recentTracks = [];
 
-    // Função para renderizar o destaque que vai variar entre as últimas EDM
+    // Função para renderizar o destaque no Perfil que vai variar entre as últimas EDM
     function renderNewRelease() {
       const box = newReleaseBox;
       box.innerHTML = '';
@@ -1470,12 +1627,10 @@
       
       // Função interna para atualizar a visualização
       const updateReleaseDisplay = () => {
-        // Se saiu da aba, para de atualizar (evita bugs)
         if (profileView.style.display === 'none') return;
 
         const lastTrack = recentTracks[releaseTrackIndex % recentTracks.length];
         
-        // Fade out
         box.classList.add('fading');
         setTimeout(() => {
           box.innerHTML = '';
@@ -1505,28 +1660,21 @@
             </button>
           `;
           box.appendChild(card);
-          
-          // Fade in
           box.classList.remove('fading');
         }, 350);
       };
 
-      // Executa imediatamente e depois cria a rotação a cada 4 segundos
       updateReleaseDisplay();
       releaseTrackIndex++;
       releaseInterval = setInterval(updateReleaseDisplay, 4000);
     }
 
-        function renderProfileEdm() {
+    function renderProfileEdm() {
       const grid = document.getElementById('profileEdmGrid');
       grid.innerHTML = '';
-      // Filtra TODAS as músicas de EDM e Electronic
       let edmTracks = allTracks.filter(t => t.rhythm === 'Electronic / EDM');
-      
-      // Se não houver nenhuma EDM, mostra todas as outras
       let finalTracks = edmTracks.length > 0 ? edmTracks : allTracks;
       
-      // INVERTE A ORDEM PARA AS MAIS RECENTES FICAREM NO TOPO (CIMA)
       finalTracks = finalTracks.slice().reverse();
 
       finalTracks.forEach(track => grid.appendChild(createTrackCard(track)));
@@ -1543,12 +1691,92 @@
       }
     }
 
+    // ========== FUNÇÃO DO BANNER DA HOME (Com Fundo Desfocado, Setas e Troca Automática/Manual) ==========
+    let homeHeroInterval = null;
+    let homeHeroIndex = 0;
+    let homeHeroTracks = [];
+
+    // Função para trocar o banner manualmente via setas
+    function homeHeroManual(direction) {
+      if (homeHeroTracks.length === 0) return;
+      homeHeroIndex += direction;
+      if (homeHeroIndex < 0) homeHeroIndex = homeHeroTracks.length - 1;
+      if (homeHeroIndex >= homeHeroTracks.length) homeHeroIndex = 0;
+      
+      renderHomeHeroSlide();
+      
+      // Reseta o timer automático para não pular rápido após clique manual
+      if (homeHeroInterval) clearInterval(homeHeroInterval);
+      homeHeroInterval = setInterval(() => {
+        homeHeroIndex++;
+        if (homeHeroIndex >= homeHeroTracks.length) homeHeroIndex = 0;
+        renderHomeHeroSlide();
+      }, 5000);
+    }
+
+    // Função interna que desenha o slide atual
+    function renderHomeHeroSlide() {
+      if (mainContainer.style.display === 'none' || homeHeroTracks.length === 0) return;
+
+      const track = homeHeroTracks[homeHeroIndex];
+      
+      // Atualiza o Fundo Desfocado
+      homeHeroBg.style.backgroundImage = `url('${track.cover}')`;
+
+      // Atualiza Imagem e Texto
+      homeHeroContent.innerHTML = `
+        <div class="home-hero-imgbox">
+          <img src="${track.cover}" onerror="this.src='${ARCHIVE_DOWNLOAD_BASE}/cover.jpg'">
+        </div>
+        <div class="home-hero-text">
+          <h2>${track.title}</h2>
+          <p>NaldoA</p>
+          <span class="genre-tag">${track.rhythm}</span>
+        </div>
+        <button class="home-hero-btn" onclick="event.stopPropagation(); playTrackRespectingGenre(track); openFullPlayer();">
+          ▶
+        </button>
+      `;
+
+      // Atualiza indicadores (bolinhas)
+      homeHeroIndicators.innerHTML = '';
+      homeHeroTracks.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = `home-hero-dot ${i === homeHeroIndex ? 'active' : ''}`;
+        homeHeroIndicators.appendChild(dot);
+      });
+    }
+
+    // Função principal que inicia o banner
+    function renderHomeHero() {
+      if (allTracks.length === 0) return;
+
+      // Pega o pool de EDM mais recentes
+      let edmTracks = allTracks.filter(t => t.rhythm === 'Electronic / EDM');
+      if (edmTracks.length === 0) edmTracks = [...allTracks]; // Fallback
+      
+      // Pega as últimas 6 adicionadas (mais recentes)
+      homeHeroTracks = edmTracks.slice(-6).reverse();
+      if (homeHeroTracks.length === 0) return;
+
+      // Limpa intervalo anterior
+      if (homeHeroInterval) clearInterval(homeHeroInterval);
+
+      renderHomeHeroSlide();
+      homeHeroIndex = 1;
+      // Troca a cada 5 segundos
+      homeHeroInterval = setInterval(() => {
+        if (homeHeroIndex >= homeHeroTracks.length) homeHeroIndex = 0;
+        renderHomeHeroSlide();
+        homeHeroIndex++;
+      }, 5000);
+    }
+
     // ========== FUNÇÃO QUE PEGA A CAPA DA MÚSICA MAIS TOCADA DO GÊNERO ==========
     function getGenreCover(genre) {
       const genreTracks = allTracks.filter(t => t.rhythm === genre);
       if (genreTracks.length === 0) return null;
       
-      // Ordena por plays (mais tocada primeiro)
       const sorted = [...genreTracks].sort((a, b) => b.plays - a.plays);
       return sorted[0];
     }
@@ -1637,7 +1865,6 @@
         categoryGrid.appendChild(card);
       });
 
-      // Suporte
       const supportCard = document.createElement('div');
       supportCard.className = 'track-card';
       supportCard.style.minWidth = '100%';
@@ -1984,8 +2211,8 @@
         allTracks = Array.from(uniqueMap.values());
 
         const edmPool = allTracks.filter(t => t.rhythm === 'Electronic / EDM');
-        discoveryTracks = (edmPool.length > 0 ? edmPool : allTracks).sort(() => 0.5 - Math.random()).slice(0, 10);
-        
+        discoveryTracks = edmPool.slice(-8).reverse();
+
         currentQueueContext = 'all';
         currentGenre = 'all';
         originalQueue = [...allTracks];
@@ -2423,63 +2650,60 @@
       });
       setupPcWheelScroll();
       updateFavBadge();
+      
+      // Chama o banner da Home
+      renderHomeHero();
     }
 
     loadCatalog();
   </script>
 
   <!-- Botão Flutuante de Instalação -->
-<div id="installContainer" style="display: none; position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%); z-index: 999; background: var(--accent); color: #000; padding: 12px 20px; border-radius: 50px; font-weight: 800; box-shadow: 0 4px 15px var(--accent-glow); cursor: pointer;">
-  📲 Instalar App
-</div>
+  <div id="installContainer" style="display: none; position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%); z-index: 999; background: var(--accent); color: #000; padding: 12px 20px; border-radius: 50px; font-weight: 800; box-shadow: 0 4px 15px var(--accent-glow); cursor: pointer;">
+    📲 Instalar App
+  </div>
 
-<script>
-  // ====== 1. REGISTRO DO SERVICE WORKER (PWA) ======
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js').then(registration => {
-        console.log('Service Worker registrado com sucesso:', registration.scope);
-      }).catch(error => {
-        console.log('Falha ao registrar o Service Worker:', error);
+  <script>
+    // ====== 1. REGISTRO DO SERVICE WORKER (PWA) ======
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').then(registration => {
+          console.log('Service Worker registrado com sucesso:', registration.scope);
+        }).catch(error => {
+          console.log('Falha ao registrar o Service Worker:', error);
+        });
       });
-    });
-  }
-
-  // ====== 2. LÓGICA DO BOTÃO DE INSTALAÇÃO (MOSTRA SÓ SE NÃO ESTIVER INSTALADO) ======
-  let deferredPrompt;
-  const installBtn = document.getElementById('installContainer');
-
-  // 1. Verifica se já está rodando como APP INSTALADO (Tela Cheia)
-  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-
-  // Se já for um app instalado, nem escuta o evento e esconde o botão para sempre
-  if (isStandalone) {
-    installBtn.style.display = 'none';
-  } else {
-    // 2. Escuta o evento do navegador que diz que dá para instalar
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      
-      // Se a pagina nao estiver standalone, mostra o botão
-      if (!isStandalone) {
-        installBtn.style.display = 'block';
-      }
-    });
-  }
-
-  // 3. Ação ao clicar no botão
-  installBtn.addEventListener('click', async () => {
-    installBtn.style.display = 'none';
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === 'accepted') {
-        console.log('App instalado com sucesso!');
-      }
-      deferredPrompt = null;
     }
-  });
-</script>
+
+    // ====== 2. LÓGICA DO BOTÃO DE INSTALAÇÃO (MOSTRA SÓ SE NÃO ESTIVER INSTALADO) ======
+    let deferredPrompt;
+    const installBtn = document.getElementById('installContainer');
+
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+    if (isStandalone) {
+      installBtn.style.display = 'none';
+    } else {
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        if (!isStandalone) {
+          installBtn.style.display = 'block';
+        }
+      });
+    }
+
+    installBtn.addEventListener('click', async () => {
+      installBtn.style.display = 'none';
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          console.log('App instalado com sucesso!');
+        }
+        deferredPrompt = null;
+      }
+    });
+  </script>
 </body>
 </html>
