@@ -1515,15 +1515,18 @@
       releaseInterval = setInterval(updateReleaseDisplay, 4000);
     }
 
-    function renderProfileEdm() {
+        function renderProfileEdm() {
       const grid = document.getElementById('profileEdmGrid');
       grid.innerHTML = '';
       // Filtra TODAS as músicas de EDM e Electronic
-      const edmTracks = allTracks.filter(t => t.rhythm === 'Electronic / EDM');
+      let edmTracks = allTracks.filter(t => t.rhythm === 'Electronic / EDM');
       
       // Se não houver nenhuma EDM, mostra todas as outras
-      const finalTracks = edmTracks.length > 0 ? edmTracks : allTracks;
+      let finalTracks = edmTracks.length > 0 ? edmTracks : allTracks;
       
+      // INVERTE A ORDEM PARA AS MAIS RECENTES FICAREM NO TOPO (CIMA)
+      finalTracks = finalTracks.slice().reverse();
+
       finalTracks.forEach(track => grid.appendChild(createTrackCard(track)));
     }
 
