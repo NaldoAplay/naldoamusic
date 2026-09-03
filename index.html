@@ -549,62 +549,65 @@
 }
 
 
-    /* ===== CINZA GRAFITE GLASS (TEMA ESCURO E CLARO) ===== */
+    /* ===== CINZA GRAFITE ELEGANTE (SEM GLASS PESADO) ===== */
 
-/* TEMA ESCURO - GRAFITE */
+/* TEMA ESCURO - GRAFITE ELEGANTE */
 [data-theme="dark"] {
-  --bg: #14181e; /* Grafite escuro */
-  --bg-gradient-1: rgba(0, 0, 0, 0.30); /* Sombra escura sutil */
-  --bg-gradient-2: rgba(0, 0, 0, 0.20);
-  --glass-card: rgba(38, 44, 54, 0.55); /* Cinza médio vidro */
-  --glass-border: rgba(255, 255, 255, 0.15);
-  --header-bg: rgba(20, 24, 30, 0.80);
-  --nav-bg: rgba(20, 24, 30, 0.65);
-  --player-glass: rgba(20, 24, 30, 0.80);
-  --text: #ffffff;
-  --text-dim: #bdbdbd;
+  --bg: #14181e !important;
+  --bg-gradient-1: rgba(0, 0, 0, 0.30) !important;
+  --bg-gradient-2: rgba(0, 0, 0, 0.20) !important;
+  --glass-card: rgba(38, 44, 54, 0.95) !important; /* Quase sólido, leve transparência */
+  --glass-border: rgba(255, 255, 255, 0.15) !important;
+  --header-bg: rgba(20, 24, 30, 0.95) !important;
+  --nav-bg: rgba(20, 24, 30, 0.95) !important;
+  --player-glass: rgba(20, 24, 30, 0.95) !important;
+  --text: #ffffff !important;
+  --text-dim: #bdbdbd !important;
 }
 
-/* TEMA CLARO - CINZA GLASS */
+/* TEMA CLARO - CINZA ELEGANTE */
 [data-theme="light"] {
-  --bg: #cfd3da; /* Cinza claro com tom suave */
-  --bg-gradient-1: rgba(0, 0, 0, 0.08);
-  --bg-gradient-2: rgba(0, 0, 0, 0.05);
-  --glass-card: rgba(255, 255, 255, 0.70);
-  --glass-border: rgba(0, 0, 0, 0.12);
-  --header-bg: rgba(207, 211, 218, 0.80);
-  --nav-bg: rgba(207, 211, 218, 0.70);
-  --player-glass: rgba(207, 211, 218, 0.80);
-  --text: #000000;
-  --text-dim: #333333;
+  --bg: #cfd3da !important;
+  --bg-gradient-1: rgba(0, 0, 0, 0.08) !important;
+  --bg-gradient-2: rgba(0, 0, 0, 0.05) !important;
+  --glass-card: rgba(255, 255, 255, 0.95) !important; /* Quase sólido */
+  --glass-border: rgba(0, 0, 0, 0.12) !important;
+  --header-bg: rgba(207, 211, 218, 0.95) !important;
+  --nav-bg: rgba(207, 211, 218, 0.95) !important;
+  --player-glass: rgba(207, 211, 218, 0.95) !important;
+  --text: #000000 !important;
+  --text-dim: #333333 !important;
 }
 
-/* Também aplica o grafite no tema 'black' (que é o padrão do sistema) */
+/* Também aplica o grafite no tema 'black' (padrão do sistema) */
 [data-theme="black"] {
-  --bg: #14181e;
-  --bg-gradient-1: rgba(0, 0, 0, 0.30);
-  --bg-gradient-2: rgba(0, 0, 0, 0.20);
-  --glass-card: rgba(38, 44, 54, 0.55);
-  --glass-border: rgba(255, 255, 255, 0.15);
-  --header-bg: rgba(20, 24, 30, 0.80);
-  --nav-bg: rgba(20, 24, 30, 0.65);
-  --player-glass: rgba(20, 24, 30, 0.80);
-  --text: #ffffff;
-  --text-dim: #bdbdbd;
+  --bg: #14181e !important;
+  --bg-gradient-1: rgba(0, 0, 0, 0.30) !important;
+  --bg-gradient-2: rgba(0, 0, 0, 0.20) !important;
+  --glass-card: rgba(38, 44, 54, 0.95) !important;
+  --glass-border: rgba(255, 255, 255, 0.15) !important;
+  --header-bg: rgba(20, 24, 30, 0.95) !important;
+  --nav-bg: rgba(20, 24, 30, 0.95) !important;
+  --player-glass: rgba(20, 24, 30, 0.95) !important;
+  --text: #ffffff !important;
+  --text-dim: #bdbdbd !important;
 }
 
-/* FORÇAR EFEITO VIDRO FOSCO (Blur) */
+/* ===== REMOVER EFEITO DE VIDRO PESADO (Backdrop-filter) ===== */
 .track-card, .section-header, .bottom-video-section, .album-modal, .full-player {
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: var(--glass-card) !important;
 }
 
+/* Mantém um leve efeito de vidro nos elementos fixos (barra e player) */
 .bottom-nav, .player-bar {
-  backdrop-filter: blur(35px);
-  -webkit-backdrop-filter: blur(35px);
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+  background: var(--nav-bg) !important;
 }
 
-/* Sombra suave para deixar o vidro mais fosco */
+/* Sombra elegante para fechar o visual */
 .track-card, .bottom-nav, .player-bar {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
 }
