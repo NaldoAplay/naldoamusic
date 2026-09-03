@@ -547,6 +547,67 @@
 [data-theme="black"] .bottom-nav .nav-item svg {
   fill: #ffffff !important;
 }
+
+
+    /* ===== CINZA GRAFITE GLASS (TEMA ESCURO E CLARO) ===== */
+
+/* TEMA ESCURO - GRAFITE */
+[data-theme="dark"] {
+  --bg: #14181e; /* Grafite escuro */
+  --bg-gradient-1: rgba(0, 0, 0, 0.30); /* Sombra escura sutil */
+  --bg-gradient-2: rgba(0, 0, 0, 0.20);
+  --glass-card: rgba(38, 44, 54, 0.55); /* Cinza médio vidro */
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --header-bg: rgba(20, 24, 30, 0.80);
+  --nav-bg: rgba(20, 24, 30, 0.65);
+  --player-glass: rgba(20, 24, 30, 0.80);
+  --text: #ffffff;
+  --text-dim: #bdbdbd;
+}
+
+/* TEMA CLARO - CINZA GLASS */
+[data-theme="light"] {
+  --bg: #cfd3da; /* Cinza claro com tom suave */
+  --bg-gradient-1: rgba(0, 0, 0, 0.08);
+  --bg-gradient-2: rgba(0, 0, 0, 0.05);
+  --glass-card: rgba(255, 255, 255, 0.70);
+  --glass-border: rgba(0, 0, 0, 0.12);
+  --header-bg: rgba(207, 211, 218, 0.80);
+  --nav-bg: rgba(207, 211, 218, 0.70);
+  --player-glass: rgba(207, 211, 218, 0.80);
+  --text: #000000;
+  --text-dim: #333333;
+}
+
+/* Também aplica o grafite no tema 'black' (que é o padrão do sistema) */
+[data-theme="black"] {
+  --bg: #14181e;
+  --bg-gradient-1: rgba(0, 0, 0, 0.30);
+  --bg-gradient-2: rgba(0, 0, 0, 0.20);
+  --glass-card: rgba(38, 44, 54, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --header-bg: rgba(20, 24, 30, 0.80);
+  --nav-bg: rgba(20, 24, 30, 0.65);
+  --player-glass: rgba(20, 24, 30, 0.80);
+  --text: #ffffff;
+  --text-dim: #bdbdbd;
+}
+
+/* FORÇAR EFEITO VIDRO FOSCO (Blur) */
+.track-card, .section-header, .bottom-video-section, .album-modal, .full-player {
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+}
+
+.bottom-nav, .player-bar {
+  backdrop-filter: blur(35px);
+  -webkit-backdrop-filter: blur(35px);
+}
+
+/* Sombra suave para deixar o vidro mais fosco */
+.track-card, .bottom-nav, .player-bar {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+}
   </style>
 </head>
 <body>
