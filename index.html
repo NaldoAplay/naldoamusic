@@ -594,13 +594,23 @@
 }
 
 /* ===== REMOVER EFEITO DE VIDRO PESADO (Backdrop-filter) ===== */
-.track-card, .section-header, .bottom-video-section, .album-modal, .full-player {
+
+/* Só aplica o efeito nos CARDS e na BARRA DE BAIXO, NUNCA no player grande */
+.track-card, .section-header, .bottom-video-section, .album-modal {
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
   background: var(--glass-card) !important;
 }
 
-/* Mantém um leve efeito de vidro nos elementos fixos (barra e player) */
+/* Player GRANDE: Fundo SÓLIDO escuro (para não atrapalhar a leitura) */
+.full-player {
+  background: var(--bg) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: none !important;
+}
+
+/* Mantém um leve efeito de vidro nos elementos fixos (barra e mini player) */
 .bottom-nav, .player-bar {
   backdrop-filter: blur(5px) !important;
   -webkit-backdrop-filter: blur(5px) !important;
