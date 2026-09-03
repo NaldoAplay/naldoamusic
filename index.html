@@ -494,6 +494,59 @@
     .social-cover-wrapper { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; border-radius: 12px; position: relative; overflow: hidden; background: var(--glass-card); }
     .social-cover-wrapper svg { width: 45%; height: 45%; fill: currentColor; z-index: 1; }
     .social-cover-wrapper .social-bg { position: absolute; inset: 0; opacity: 0.15; border-radius: 12px; }
+
+
+    /* ===== TRANSPARÊNCIA ESTILO VIDRO (BARRA DE BAIXO E MINI PLAYER) ===== */
+.bottom-nav {
+  background: rgba(6, 8, 13, 0.45) !important; /* Fundo ainda mais transparente */
+  backdrop-filter: blur(40px) !important;
+  -webkit-backdrop-filter: blur(40px) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.player-bar {
+  background: rgba(10, 14, 22, 0.45) !important;
+  backdrop-filter: blur(40px) !important;
+  -webkit-backdrop-filter: blur(40px) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* ===== AUMENTAR CONTRASTE DAS LETRAS E ÍCONES ===== */
+/* No tema escuro: letras brancas fortes */
+[data-theme="dark"] .bottom-nav .nav-label,
+[data-theme="black"] .bottom-nav .nav-label,
+[data-theme="dark"] .player-bar .mini-title,
+[data-theme="black"] .player-bar .mini-title {
+  color: #ffffff !important;
+}
+
+/* No tema claro: letras pretas fortes */
+[data-theme="light"] .bottom-nav .nav-label,
+[data-theme="white"] .bottom-nav .nav-label,
+[data-theme="light"] .player-bar .mini-title,
+[data-theme="white"] .player-bar .mini-title {
+  color: #000000 !important;
+}
+
+/* Ajustar ícones e outros textos para terem sempre cor forte */
+.bottom-nav .nav-item svg,
+.bottom-nav .nav-item .nav-label,
+.player-bar .mini-title,
+.player-bar .mini-rhythm {
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6), 0 0 2px rgba(255,255,255,0.5) !important;
+  font-weight: 800 !important; /* Deixa as letras mais grossas para leitura */
+  opacity: 1 !important;
+}
+
+/* No tema claro, os ícones precisam ser pretos */
+[data-theme="light"] .bottom-nav .nav-item svg,
+[data-theme="white"] .bottom-nav .nav-item svg {
+  fill: #000000 !important;
+}
+[data-theme="dark"] .bottom-nav .nav-item svg,
+[data-theme="black"] .bottom-nav .nav-item svg {
+  fill: #ffffff !important;
+}
   </style>
 </head>
 <body>
